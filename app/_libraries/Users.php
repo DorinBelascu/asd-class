@@ -145,4 +145,46 @@ class Users
 		}
 		return $result;
 	}
+
+	public static function update($data)
+	{
+		try
+		{
+		    // Get the current active/logged in user
+		    $user = \Sentry::getUser();
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+		    // User wasn't found, should only happen if the user was deleted
+		    // when they were already logged in or had a "remember me" cookie set
+		    // and they were deleted.
+		}
+		$user->first_name = $data['first_name'];
+		$user->last_name = $data['last_name'];
+		$user->save();
+		return 'success';	
+	}
+
+	public static function passwordUpdate($data)
+	{
+		try
+		{
+			$user = \Sentry::getUser();
+			if($user->checkPassword($data['password']))
+    		{
+      			$user->password = $data['new_password'];
+				$user->save();
+				$result = 'Parola a fost schimbata cu succes!';
+    		}
+   	 		else
+    		{
+       			$result = 'Parola nu este cea corecta.';
+   			}
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+    		echo 'User was not found.';
+		}
+		return $result;
+	}
 }
