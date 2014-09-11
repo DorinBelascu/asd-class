@@ -29,12 +29,23 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="./">Default</a></li>
               @if ( ! Sentry::check() )
-                <li><a href="{{ URL::route('login') }}">Login</a></li>
+                <li><a href="{{ URL::route('login') }}">Log in</a></li>
                 <li><a href="{{ URL::route('register') }}">Register</a></li>
               @else
-                <li><a href="{{ URL::route('logout') }}">Logout</a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Sentry::getUser()->email }} <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+                <li><a href="{{ URL::route('logout') }}">Log out</a></li>
               @endif
             </ul>
           </div><!--/.nav-collapse -->
