@@ -84,4 +84,32 @@ class Users
 		}
 		return $result;
 	}
+
+	public static function activate($user_id, $activation_code)
+	{
+		try
+		{
+		    // Find the user using the user id
+		    $user = \Sentry::findUserById($user_id);
+
+		    // Attempt to activate the user
+		    if ($user->attemptActivation($activation_code))
+		    {
+		        $result = 'success';
+		    }
+		    else
+		    {
+		        $result = 'failed';
+		    }
+		}
+		catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+		    $result = 'User was not found.';
+		}
+		catch (\Cartalyst\Sentry\Users\UserAlreadyActivatedException $e)
+		{
+		    $result = 'User is already activated.';
+		}
+		return $result;
+	}
 }

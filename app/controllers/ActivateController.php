@@ -4,15 +4,12 @@ class ActivateController extends BaseController
 {
 	public function index($user_id, $activation_code)
 	{
-		
-		$user = User::find($user_id);
-		if (! $user)
+
+		$result = Libs\Users::activate($user_id, $activation_code);
+		if ($result != 'success')
 		{
-			return Redirect::route('home');
+			return Redirect::route('home')->with('result', $result);
 		}
-		echo '<pre>';
-		// dd($user);
-		dd($user->activation_code . '|' . $activation_code );
-		//return View::make('activate-account');
+		return Redirect::route('login');
 	}
 }

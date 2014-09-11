@@ -29,3 +29,8 @@ Route::get('activate-account/{id}/{code}', array(
 	'as'  =>'activate-account',
 	'uses'=>'ActivateController@index'
 ));
+
+Route::get('logout', array(
+	'as'  => 'logout',
+	'uses'=> 'LogoutController@index'
+));
