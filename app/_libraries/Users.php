@@ -117,7 +117,7 @@ class Users
 		$user->password = $data['password'];
 		$user->save();
 		return 'success';
-
+	}
 	public static function activate($user_id, $activation_code)
 	{
 		try
