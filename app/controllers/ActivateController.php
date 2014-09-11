@@ -10,6 +10,6 @@ class ActivateController extends BaseController
 		{
 			return Redirect::route('home')->with('result', $result);
 		}
-		return Redirect::route('login');
+		return Redirect::route('login')->with('result', 'Contul tau s-a activat cu succes!');
 	}
 }
