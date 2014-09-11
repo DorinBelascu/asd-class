@@ -102,32 +102,6 @@ class Users
 
 	public static function change_password($data)
 	{
-		// try
-		// {
-		//     // Find the user using the user id
-		//     $user = Sentry::findUserById($id);
-		//     // Check if the reset password code is valid
-		//     if ($user->checkResetPasswordCode($user->reset_password_code))
-		//     {
-		//         // Attempt to reset the user password
-		//         if ($user->attemptResetPassword($user->reset_password_code, $data['password']))
-		//         {
-		//             $result = 'success'
-		//         }
-		//         else
-		//         {
-		//             $result = 'fail'
-		//         }
-		//     }
-		//     else
-		//     {
-		//         $result = 'Invalid Code'
-		//     }
-		// }
-		// catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
-		// {
-		//     $result = 'User was not found.';
-		// }
 		try
 		{
 			$user = \Sentry::findUserByLogin($data['email']);
@@ -144,5 +118,31 @@ class Users
 		$user->save();
 		return 'success';
 
+	public static function activate($user_id, $activation_code)
+	{
+		try
+		{
+		    // Find the user using the user id
+		    $user = \Sentry::findUserById($user_id);
+
+		    // Attempt to activate the user
+		    if ($user->attemptActivation($activation_code))
+		    {
+		        $result = 'success';
+		    }
+		    else
+		    {
+		        $result = 'failed';
+		    }
+		}
+		catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+		    $result = 'User was not found.';
+		}
+		catch (\Cartalyst\Sentry\Users\UserAlreadyActivatedException $e)
+		{
+		    $result = 'User is already activated.';
+		}
+		return $result;
 	}
 }

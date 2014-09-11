@@ -44,3 +44,8 @@ Route::post('reset-password-processing', array(
 	'as'  =>'reset-password-post',
 	'uses'=>'ForgotPasswordController@change'
 ));
+
+Route::get('logout', array(
+	'as'  => 'logout',
+	'uses'=> 'LogoutController@index'
+));

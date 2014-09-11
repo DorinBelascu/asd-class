@@ -22,7 +22,7 @@ class LoginController extends BaseController
 			$result = Libs\Users::authenticate($data);
 			if ($result == 'success') 
 			{
-			 	return Redirect::route('home');
+			 	return Redirect::route('home')->with('result', 'Hello, ' . Sentry::getUser()->first_name . ' ' . Sentry::getUser()->last_name . '!');
 			} 
 			return Redirect::route('login')->withinput()->with('result', $result);
 		}

@@ -30,8 +30,12 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="./">Default</a></li>
-              <li><a href="../navbar-static-top/">Static top</a></li>
-              <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+              @if ( ! Sentry::check() )
+                <li><a href="{{ URL::route('login') }}">Login</a></li>
+                <li><a href="{{ URL::route('register') }}">Register</a></li>
+              @else
+                <li><a href="{{ URL::route('logout') }}">Logout</a></li>
+              @endif
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
