@@ -114,6 +114,15 @@ class Users
 		{
 			return 'User not found!';
 		}
+		// echo '<pre>';
+		// var_dump($user->id, $data['id']);
+		// var_dump($user->code, $data['code']);
+		// dd('----');
+		if (($user->id != $data['id']) || ($user->reset_password_code != $data['code']))
+		{
+			return 'Cerere invalida!';
+		}
+		
 		$user->password = $data['password'];
 		$user->save();
 		return 'success';
@@ -183,7 +192,28 @@ class Users
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-    		echo 'User was not found.';
+    		$result = 'User was not found.';
+		}
+		return $result;
+	}
+
+	public static function getResetPasswordCode($data)
+	{
+		try
+		{
+		    // Find the user using the user email address
+		    $user = \Sentry::findUserByLogin($data['email']);
+
+		    // Get the password reset code
+		    $resetCode = $user->getResetPasswordCode();
+
+		    $result = array('success' => true, 'user' => $user);
+
+		    // Now you can send this code to your user via email for example.
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+		    $result =  array('success' => false, 'message' => 'User not found');
 		}
 		return $result;
 	}

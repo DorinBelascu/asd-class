@@ -7,8 +7,8 @@
     <title>ASD Class</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/asdclass.css" rel="stylesheet">
+    {{HTML::style('css/bootstrap.min.css')}}
+    {{HTML::style('css/asdclass.css')}}
 
     @yield('css')
 
@@ -33,6 +33,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    {{HTML::script('js/bootstrap.min.js')}}
   </body>
 </html>

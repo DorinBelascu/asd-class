@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'asdclass',
 			'username'  => 'root',
-			'password'  => 'stefy1222',
+			'password'  => '123qwe',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

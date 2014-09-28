@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{ Form::open(['url'=> URL::route('login-post'), 'class' => 'form']) }}
+{{ Form::open(['url'=> URL::route('reset-password-post'), 'class' => 'form']) }}
   <div class="row">
   	<div class="col-md-4">
   	</div>
@@ -17,25 +17,34 @@
   		</div>
   		<div class="row">
   			<div class="col-md-12">
-  			{{ Form::password('password', array('class' => "form-control", 'placeholder' => "Password")) }}
+  			{{ Form::password('password', array('class' => "form-control", 'placeholder' => "New Password")) }}
           @if ($errors->has('password'))
             <span class="error-message">{{ $errors->first('password') }}</span>
           @endif
   			</div>
   		</div>
+      <div class="row">
+        <div class="col-md-12">
+        {{ Form::password('password_confirmed', array('class' => "form-control", 'placeholder' => "Confirm New Password")) }}
+          @if ($errors->has('password_confirmed'))
+            <span class="error-message">{{ $errors->first('password_confirmed') }}</span>
+          @endif
+        </div>
+      </div>
+
   		<div class='row text-center'>
-  			{{ Form::submit('Login', array('name' => "login", 'class' => "btn btn-primary")) }}
+  			{{ Form::submit('Change Password', array('name' => "changepassword", 'class' => "btn btn-primary")) }}
   		</div>
   		@if(Session::has('result'))
   		<div class="alert alert-danger" role="alert">{{Session::get('result')}}</div>
   		@endif
-        <div class='row text-center'>
-        {{ HTML::link(URL::route('show-forgot-password-form'), 'Forgot password') }}
-        </div>
   	</div>
   	<div class="col-md-4">
   	</div>
   </div>
+
+  {{Form::hidden('id', $id)}}
+  {{Form::hidden('code', $code)}}
 {{ Form::close() }}
 
 

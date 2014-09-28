@@ -29,21 +29,36 @@ Route::get('activate-account/{id}/{code}', array(
 	'as'  =>'activate-account',
 	'uses'=>'ActivateController@index'
 ));
-
-Route::get('forgot-password/{id}/{code}', array(
-	'as'  =>'forgot-password',
-	'uses'=>'ForgotPasswordController@index'
+/*---------------------------------------------------------*/
+Route::get('forgot-password', array(
+	'as'   => 'show-forgot-password-form',
+	'uses' => 'ForgotPasswordController@ShowStartForm'
 ));
 
-Route::get('reset-password/', array(
-	'as'  =>'reset-password',
-	'uses'=>'ForgotPasswordController@reset'
+Route::post('forgot-password-process', array(
+	'as'   => 'show-forgot-password-form-post',
+	'uses' => 'ForgotPasswordController@StartFormProcess'
 ));
+
+Route::get('reset-forgotten-password/{id}/{code}', array(
+	'as'   => 'show-set-password-form',
+	'uses' => 'ForgotPasswordController@ShowChangePasswordForm'
+));
+// Route::get('forgot-password/{id}/{code}', array(
+// 	'as'  =>'forgot-password',
+// 	'uses'=>'ForgotPasswordController@index'
+// ));
+
+// Route::get('reset-password/', array(
+// 	'as'  =>'reset-password',
+// 	'uses'=>'ForgotPasswordController@reset'
+// ));
 
 Route::post('reset-password-processing', array(
 	'as'  =>'reset-password-post',
 	'uses'=>'ForgotPasswordController@change'
 ));
+/*---------------------------------------------------------*/
 
 Route::get('logout', array(
 	'as'  => 'logout',
@@ -60,7 +75,7 @@ Route::post('profile-update', array(
 	'uses'=>'ProfileController@update'
 ));
 
-Route::post('password-update',array(
+Route::post('profile-password-update',array(
 	'as'  =>'password-update',
 	'uses'=>'ProfileController@passwordUpdate',
 ));
