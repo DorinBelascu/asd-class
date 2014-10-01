@@ -36,6 +36,36 @@ class ExtendAsdclass extends Migration
 			$table->date('data nasterii');
 			$table->timestamps();
 		});
+
+		Schema::create('profesori_materii', function($table)
+		{
+			$table->increments('id');
+			$table->integer('profesor_id');
+			$table->integer('materie_id');
+			$table->timestamps();
+		});
+
+		Schema::create('note', function($table)
+		{
+			$table->increments('id');
+			$table->float('valoare');
+			$table->integer('materie_id');
+			$table->integer('elev_id');
+			$table->date('data');
+			$table->boolean('publica_sau_nu');
+			$table->timestamps();
+		});
+
+		Schema::create('absente', function($table)
+		{
+			$table->increments('id');
+			$table->date('data');
+			$table->string('materie_id');
+			$table->string('nume_elev');
+			$table->boolean('stare');
+			$table->boolean('publica_sau_nu');
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -45,9 +75,12 @@ class ExtendAsdclass extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('elevi');
-		Schema::drop('materii');
-		Schema::drop('profesori');
+		// Schema::drop('elevi');
+		// Schema::drop('materii');
+		// Schema::drop('profesori');
+		// Schema::drop('profesori_materii');
+		Schema::drop('note');
+		Schema::drop('absente');
 	}
 
 }
