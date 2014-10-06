@@ -75,10 +75,10 @@ class ExtendAsdclass extends Migration
 	 */
 	public function down()
 	{
-		// Schema::drop('elevi');
-		// Schema::drop('materii');
-		// Schema::drop('profesori');
-		// Schema::drop('profesori_materii');
+		Schema::drop('elevi');
+		Schema::drop('materii');
+		Schema::drop('profesori');
+		Schema::drop('profesori_materii');
 		Schema::drop('note');
 		Schema::drop('absente');
 	}

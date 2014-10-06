@@ -79,3 +79,14 @@ Route::post('profile-password-update',array(
 	'as'  =>'password-update',
 	'uses'=>'ProfileController@passwordUpdate',
 ));
+
+Route::get('materii', array(
+	'as'   => 'materii',
+	'uses' => 'MateriiController@index'
+
+));
+
+Route::get('materii/add', array(
+	'as'   => 'add-new-materie',
+	'uses' => 'MateriiController@showAddForm'
+));
