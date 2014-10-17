@@ -90,3 +90,13 @@ Route::get('materii/add', array(
 	'as'   => 'add-new-materie',
 	'uses' => 'MateriiController@showAddForm'
 ));
+
+Route::get('profesori', array(
+	'as'   => 'profesori',
+	'uses' => 'ProfesoriController@index'
+));
+
+Route::get('profesori/add', array(
+	'as'   => 'add-new-profesor',
+	'uses' => 'ProfesoriController@showAddForm'
+));
