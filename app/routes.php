@@ -90,3 +90,13 @@ Route::get('materii/add', array(
 	'as'   => 'add-new-materie',
 	'uses' => 'MateriiController@showAddForm'
 ));
+
+Route::get('elevi', array(
+	'as'   => 'elevi',
+	'uses' => 'EleviController@index'
+));
+
+Route::get('elevi/add', array(
+	'as'   => 'add-new-elev',
+	'uses' => 'EleviController@showAddForm'
+));
