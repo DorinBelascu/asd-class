@@ -100,6 +100,7 @@ Route::get('elevi', array(
 Route::get('elevi/add', array(
 	'as'   => 'add-new-elev',
 	'uses' => 'EleviController@showAddForm'
+));
 
 Route::get('profesori', array(
 	'as'   => 'profesori',
