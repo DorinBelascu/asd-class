@@ -91,6 +91,7 @@ Route::get('materii/add', array(
 	'uses' => 'MateriiController@showAddForm'
 ));
 
+
 Route::get('elevi', array(
 	'as'   => 'elevi',
 	'uses' => 'EleviController@index'
@@ -99,4 +100,13 @@ Route::get('elevi', array(
 Route::get('elevi/add', array(
 	'as'   => 'add-new-elev',
 	'uses' => 'EleviController@showAddForm'
+
+Route::get('profesori', array(
+	'as'   => 'profesori',
+	'uses' => 'ProfesoriController@index'
+));
+
+Route::get('profesori/add', array(
+	'as'   => 'add-new-profesor',
+	'uses' => 'ProfesoriController@showAddForm'
 ));
