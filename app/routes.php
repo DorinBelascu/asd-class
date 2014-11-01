@@ -107,7 +107,17 @@ Route::get('profesori', array(
 	'uses' => 'ProfesoriController@index'
 ));
 
-Route::get('profesori/add', array(
+Route::post('profesori/add', array(
 	'as'   => 'add-new-profesor',
 	'uses' => 'ProfesoriController@showAddForm'
+));
+
+Route::post('profesori/edit', array(
+	'as'   => 'edit-profesor',
+	'uses' => 'ProfesoriController@edit'
+));
+
+Route::post('profesori/delete', array(
+	'as'   => 'delete-profesor',
+	'uses' => 'ProfesoriController@delete'
 ));
