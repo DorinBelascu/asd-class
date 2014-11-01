@@ -86,7 +86,7 @@ Route::get('materii', array(
 
 ));
 
-Route::get('materii/add', array(
+Route::post('materii/add', array(
 	'as'   => 'add-new-materie',
 	'uses' => 'MateriiController@showAddForm'
 ));

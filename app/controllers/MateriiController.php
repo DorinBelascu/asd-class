@@ -15,7 +15,22 @@ class MateriiController extends BaseController {
 
 	public function showAddForm()
 	{
-		return __METHOD__;
+		$data = Input::all();
+		$rules = array(
+			'add_materie'=> 'required|unique:materii,denumirea',
+		);
+		$validator = Validator::make($data, $rules, array(
+			'required' => 'Baga ba materia', 
+			'unique' => 'Exista deja materia:attribute',
+		));
+		if ($validator->passes()) 
+		{
+			$materie = new Materii;
+			$materie->denumirea = $data['add_materie'];
+			$materie->save();
+			return Redirect::route('materii')->with('result', 'Materia a fost adaugata cu succes');
+		}
+		return Redirect::route('materii')->withinput()->witherrors($validator);
 	}
 
 }
