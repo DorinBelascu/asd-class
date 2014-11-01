@@ -60,6 +60,7 @@
           <td class="text-center">
           	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $profesor->id }}" data-placement="top" title="Edit this profesor ({{ $profesor->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
           	<button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $profesor->id }}"" data-placement="top" title="Delete this profesor ({{ $profesor->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+            <a href="{{URL::route('profesor_materii',['id' => $profesor->id])}}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-star"></span></a>
           </td>
         </tr>
 
