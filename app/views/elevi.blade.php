@@ -65,7 +65,10 @@
           <td>{{ $elev->nume}}</td>
           <td>{{ $elev->prenume}}</td>
           <td>{{ $elev->{"data nasterii"} }}</td>
-          <td>{{ $elev->genul}}</td>
+          <td>
+              {{HTML::image('images/' . $elev->genul . '.png', $elev->genul, ['width' => '32px', 'title' => $elev->genul])}} 
+
+          </td>
           <td>{{ $elev->created_at}}</td>
           <td>{{ $elev->updated_at}}</td>
           <td class="text-center">

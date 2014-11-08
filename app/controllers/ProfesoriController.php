@@ -42,16 +42,16 @@ class ProfesoriController extends BaseController {
 	public function edit()
 	{
 		$data = Input::all();
-		$nume_nou = Input::get('nume');
-		$prenume_nou = Input::get('prenume');
-		$data_nou = Input::get('data_nasterii');
+		$nume_nou = Input::get('nume-edit');
+		$prenume_nou = Input::get('prenume-edit');
+		$data_nou = Input::get('data_nasterii-edit');
 		$rules = array(
-			'nume'=> 'required',
-			'prenume'=> 'required',
-			'data_nasterii'=> 'required|before:1990-01-01|after:1915-01-01|date',	
+			'nume-edit'=> 'required',
+			'prenume-edit'=> 'required',
+			'data_nasterii-edit'=> 'required|before:1990-01-01|after:1915-01-01|date',	
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba :attribute',
+			'required' => 'Introdu :attribute',
 			'before' => 'Introdu o data anterioara datei 01.01.1990',
 			'after' => 'Introdu o data mai mare decat 01.01.1915'
 		));
