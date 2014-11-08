@@ -91,15 +91,34 @@ Route::post('materii/add', array(
 	'uses' => 'MateriiController@showAddForm'
 ));
 
+Route::post('materii/edit/', array(
+	'as'   => 'edit-materie',
+	'uses' => 'MateriiController@edit',
+));
+
+Route::post('materii/delete', array(
+	'as'   => 'delete-materie',
+	'uses' => 'MateriiController@delete',
+));
 
 Route::get('elevi', array(
 	'as'   => 'elevi',
 	'uses' => 'EleviController@index'
 ));
 
-Route::get('elevi/add', array(
+Route::post('elevi/add', array(
 	'as'   => 'add-new-elev',
 	'uses' => 'EleviController@showAddForm'
+));
+
+Route::post('elevi/edit', array(
+	'as'   => 'edit-elev',
+	'uses' => 'EleviController@edit',
+));
+
+Route::post('elevi/delete', array(
+	'as'   => 'delete-elev',
+	'uses' => 'EleviController@delete',
 ));
 
 Route::get('profesori', array(
@@ -121,7 +140,6 @@ Route::post('profesori/delete', array(
 	'as'   => 'delete-profesor',
 	'uses' => 'ProfesoriController@delete'
 ));
-
 
 Route::get('profesor/{id}/materii', array(
 	'as'   => 'profesor_materii',
