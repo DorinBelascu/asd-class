@@ -17,20 +17,48 @@ class MateriiController extends BaseController {
 	{
 		$data = Input::all();
 		$rules = array(
-			'add_materie'=> 'required|unique:materii,denumirea',
+			'add_materie' => 'required|unique:materii,denumirea',
 		);
 		$validator = Validator::make($data, $rules, array(
 			'required' => 'Baga ba materia', 
-			'unique' => 'Exista deja materia:attribute',
+			'unique' => 'Exista deja aceasta materie' 
 		));
 		if ($validator->passes()) 
 		{
 			$materie = new Materii;
 			$materie->denumirea = $data['add_materie'];
 			$materie->save();
-			return Redirect::route('materii')->with('result', 'Materia a fost adaugata cu succes');
+			return Redirect::route('materii')->with('result-success', 'Materia a fost adaugata cu succes');
 		}
-		return Redirect::route('materii')->withinput()->witherrors($validator);
+		return Redirect::route('materii')->withinput()->witherrors($validator)->with('result-fail', 'da');
 	}
 
+	public function edit()
+	{
+		$data = Input::all();
+		$rules = array(
+			'edit-materie' => 'required|unique:materii,denumirea',
+		);
+		$validator = Validator::make($data, $rules, array(
+			'required' => 'Va rog introduceti ceva...',
+			'unique'   => 'Denumirea introdusa exista deja la alta materie',
+		));
+		if ($validator->passes())
+		{
+			$materie = Materii::findOrFail(Input::get('id'));
+			$materie->denumirea = $data['edit-materie']; 
+			$materie->save();
+			return Redirect::back()->with('result-success', 'Editarea s-a efectuat cu succes!');
+		}
+		else
+		{
+			return Redirect::back()->withInput()->witherrors($validator)->with('result-fail', 'da');
+		}
+	}
+	public function delete()
+	{
+		$materie = Materii::findOrFail(Input::get('id'));
+		$materie->delete();	
+		return Redirect::route('materii')->with('result-success', 'Stergerea s-a efectuat cu succes!');
+	}
 }

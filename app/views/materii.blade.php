@@ -1,18 +1,24 @@
 @extends('layout')
 
-@section('content')
+@section('content') 
 
 <div class="row">
-    <div class="col-md-12">
-        @if ($errors->has('add_materie'))
-            <span class="error-message" style="font-size:20px">{{ $errors->first('add_materie') }}</span>
-        @endif
-    </div>
-</div>    
+@if ( Session::get('result-success'))
+    <div class="alert alert-success" role="alert">{{Session::get('result-success')}}</div>
+@elseif (Session::get('result-fail'))
+    @if ($errors->has('add_materie'))
+            <div class="col-md-12 alert alert-danger">
+                <span class="error-message" style="font-size:20px">{{ $errors->first('add_materie') }}</span>
+            </div>
+    @endif
+    @if ($errors->has('edit-materie'))
+            <div class="col-md-12 alert alert-danger">
+                <span class="error-message" style="font-size:20px">{{ $errors->first('edit-materie') }}</span>
+            </div>
+    @endif
 
-@if ( Session::get('result'))
-<div class="alert alert-success" role="alert">{{Session::get('result')}}</div>
 @endif
+</div>
 
 <div class="panel panel-primary">
   <!-- Default panel contents -->
@@ -31,29 +37,9 @@
   		</p>
   		<div class="alert alert-info" role="alert">
   			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myLargeModalLabel">Adauga materie 9</h4>
-                        </div>
-                        {{ Form::open(['url'=> URL::route('add-new-materie'), 'class' => 'form']) }}
-                        <div class="modal-body">
-                           {{ Form::text('add_materie', null, array('class'=>'form-control', 'placeholder' => "Denumirea")) }}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            {{ Form::submit('Adauga', array('name' => "", 'class' => "btn btn-success")) }}       
-                        </div>
-                        {{ Form::close() }}
-
-                    </div>
-                </div>
-            </div>
-        </div>
-  <!-- Table -->
+      </div>
+    @include('materii.adaugare')
+    <!-- Table -->
   <div class="table-responsive">
   	<table class="table table-hover table-condensed table-striped">
 
@@ -77,36 +63,15 @@
           <td>{{ $materie->created_at}}</td>
           <td>{{ $materie->updated_at}}</td>
           <td class="text-center">
-
-
             <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-placement="top" title="Edit this subject ({{ $materie->id }})" data-target="#Modal{{ $i }}"> <span class="glyphicon glyphicon-pencil"></span></button>
             <!-- Modal -->
-            <div class="modal fade" id="Modal{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        </div>
-                        {{ Form::open(['url'=> URL::route('add-new-materie'), 'class' => 'form']) }}
-                        <div class="modal-body">
-                           
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            {{ Form::submit('Adauga', array('name' => "", 'class' => "btn btn-success")) }}       
-                        </div>
-                        {{ Form::close() }}
-
-                    </div>
-                </div>
-            </div>
-
-
-
-
-          	<a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Delete this subject ({{ $materie->id }})"> <span class="glyphicon glyphicon-trash"></span></a>
+          	<button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $materie->id }}"" data-placement="top" title="Delete this materie ({{ $materie->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+             <!-- Modal -->
           </td>
         </tr>
+
+    @include('materii.edit')
+    @include('materii.delete')
     @endforeach   
       </tbody>
 
@@ -124,7 +89,44 @@
 @stop
 
 @section('js')
-<script> 
-	$('button').tooltip();
+<script>
+  $('a').tooltip();
+  $('button').tooltip();
+  $('input').tooltip();
+  $('input').keyup(function(){
+    var val = $(this).val();
+    if (val.length > 0)
+    {
+      $(this).parent().find('span.error-message').html('');
+    }
+    else
+    {
+      $(this).parent().find('span.error-message').html('Trebuie completata denumirea');
+    }
+  });
+  $('#btn-add').click(function(e)
+  {
+    var nume = $('input[name="add_materie"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (nume.length == 0)
+    {
+      $('#error-denumire').html('Completati denumirea!');
+      error = true;
+    }
+    return !error;
+  });
+  $('#btn-edit').click(function(e)
+  {
+    var denumire = $('input[name="edit-materie"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (denumire.length == 0)
+    {
+      $('#error-denumire-editare').html('Completati denumirea!');
+      error = true;
+    }
+    return !error;
+  });
 </script>
 @stop

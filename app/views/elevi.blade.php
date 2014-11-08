@@ -2,6 +2,23 @@
 
 @section('content')
 
+<div class="row">
+@if ( Session::get('result-success'))
+    <div class="alert alert-success" role="alert">{{Session::get('result-success')}}</div>
+@elseif (Session::get('result-fail'))
+    @if ($errors->has('add_materie'))
+            <div class="col-md-12 alert alert-danger">
+                <span class="error-message" style="font-size:20px">{{ $errors->first('add_materie') }}</span>
+            </div>
+    @endif
+    @if ($errors->has('edit-materie'))
+            <div class="col-md-12 alert alert-danger">
+                <span class="error-message" style="font-size:20px">{{ $errors->first('edit-materie') }}</span>
+            </div>
+    @endif
+@endif
+</div>
+
 <div class="panel panel-primary">
   <!-- Default panel contents -->
   <div class="panel-heading">Elevi <span class="badge pull-right"> {{ $elevi->getTotal() }}</span> </div>
@@ -18,8 +35,10 @@
   		Count: <strong> {{$elevi->count()}} </strong>.
   		</p>
   		<div class="alert alert-info" role="alert">
-  			<a href="{{URL::route('add-new-elev')}}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Add New Elev"> <span class="glyphicon glyphicon-plus-sign"></span></a>
+  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
   		</div>
+
+    @include('elevi.adaugare')
   <!-- Table -->
   <div class="table-responsive">
   	<table class="table table-hover table-condensed table-striped">
@@ -50,10 +69,12 @@
           <td>{{ $elev->created_at}}</td>
           <td>{{ $elev->updated_at}}</td>
           <td class="text-center">
-          	<a href="#" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="Edit this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-pencil"></span></a>
-          	<a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Delete this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-trash"></span></a>
+          	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $elev->id }}"" data-placement="top" title="Delete this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
           </td>
         </tr>
+        @include('elevi.edit')
+        @include('elevi.delete')
     @endforeach   
       </tbody>
 
@@ -71,7 +92,72 @@
 @stop
 
 @section('js')
-<script> 
-	$('a').tooltip();
+<script>
+  $('a').tooltip();
+  $('button').tooltip();
+  $('input').tooltip();
+  $('input').keyup(function(){
+    var val = $(this).val();
+    if (val.length > 0)
+    {
+      $(this).parent().find('span.error-message').html('');
+    }
+    else
+    {
+      $(this).parent().find('span.error-message').html('Trebuie Completat');
+    }
+  });
+  $('#btn-add').click(function(e){
+    var nume = $('input[name="nume"]').val();
+    var prenume = $('input[name="prenume"').val();
+    var data_nasterii = $('input[name="data_nasterii"]').val();
+    var genul = $('select[name="genul"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (nume.length == 0)
+    {
+      $('#error-nume').html('Completati numele!');
+      error = true;
+    }
+    if (prenume.length == 0)
+    {
+      $('#error-prenume').html('Completati prenumele!');
+      error = true;
+    }
+    if (data_nasterii.length != 10)
+    {
+      $('#error-data_nasterii').html('Completati data nasterii!');
+      error = true;
+    }
+    if (genul = '-')
+    {
+      $('#error-genul').html('Completati genul!')
+    }
+    return !error;
+  });
+  $('#btn-edit').click(function(e){
+    var nume = $('input[name="nume-edit"]').val();
+    var prenume = $('input[name="prenume-edit"').val();
+    var data_nasterii = $('input[name="data_nasterii-edit"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (nume.length == 0)
+    {
+      $('#error-nume-editare').html('Completati numele!');
+      error = true;
+    }
+    if (prenume.length == 0)
+    {
+      $('#error-prenume-editare').html('Completati prenumele!');
+      error = true;
+    }
+    if (data_nasterii.length != 10)
+    {
+      $('#error-data_nasterii-editare').html('Completati data nasterii!');
+      error = true;
+    }
+
+    return !error;
+  });
 </script>
 @stop
