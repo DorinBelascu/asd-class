@@ -143,5 +143,10 @@ Route::post('profesori/delete', array(
 
 Route::get('profesor/{id}/materii', array(
 	'as'   => 'profesor_materii',
-	'uses' => 'ProfesorMateriiController@index'
+	'uses' => 'ProfesorMateriiController@index1'
+));
+
+Route::get('materie/{id}/profesori', array(
+	'as'   => 'materie_profesori',
+	'uses' => 'ProfesorMateriiController@index2'
 ));

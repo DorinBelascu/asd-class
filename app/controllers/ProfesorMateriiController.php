@@ -2,7 +2,7 @@
 
 class ProfesorMateriiController extends BaseController {
 
-	public function index($id)
+	public function index1($id)
 	{
 		$profesor = Profesori::find($id);
 		if(! $profesor)
@@ -15,9 +15,17 @@ class ProfesorMateriiController extends BaseController {
 	    ]);
 	}
 
-	public function showAddForm()
+	public function index2($id)
 	{
-		return __METHOD__;
+		$materie = Materii::find($id);
+		if(! $materie)
+		{
+			return Redirect::route('materii');
+		}
+	    return View::make('materii/profesori/index')->with([
+	    	'materie' => $materie,
+	    	'profesori' => ProfesorMaterii::with('Profesor')->where('materie_id', $id)->get(),
+	    ]);
 	}
 
 }
