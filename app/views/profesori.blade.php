@@ -124,5 +124,29 @@
     }
     return ! error;
   });
+
+  $('#btn-edit').click(function(e){
+  var nume = $('input[name="nume-edit"]').val();
+  var prenume = $('input[name="prenume-edit"').val();
+  var data_nasterii = $('input[name="data_nasterii-edit"]').val();
+  var error = false;
+  $('span.error-message').html('');
+  if (nume.length == 0)
+  {
+    $('#error-nume-editare').html('Completati numele!');
+    error = true;
+  }
+  if (prenume.length == 0)
+  {
+    $('#error-prenume-editare').html('Completati prenumele!');
+    error = true;
+  }
+  if (data_nasterii.length != 10)
+  {
+    $('#error-data_nasterii-editare').html('Completati data nasterii!');
+    error = true;
+  }
+  return !error;
+});
 </script>
 @stop

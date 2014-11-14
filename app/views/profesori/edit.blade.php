@@ -11,14 +11,16 @@
         {{ Form::hidden('id', $profesor->id)}}
         <div class="row">
           <div class="col-md-6">
-            {{ Form::text('nume', $profesor->nume, array('class'=>'form-control', 'placeholder' => "Numele profesorului")) }}
+            {{ Form::text('nume-edit', $profesor->nume, array('class'=>'form-control', 'placeholder' => "Numele profesorului")) }}
+            <span id="error-nume-editare" class="error-message"></span>
           @if ($errors->has('nume'))
             <span class="error-message">{{ $errors->first('nume') }}</span>
           @endif
           
           </div>
           <div class="col-md-6">
-            {{ Form::text('prenume', $profesor->prenume, array('class'=>'form-control', 'placeholder' => "Prenumele profesorului")) }}
+            {{ Form::text('prenume-edit', $profesor->prenume, array('class'=>'form-control', 'placeholder' => "Prenumele profesorului")) }}
+            <span id="error-prenume-editare" class="error-message"></span>
             @if ($errors->has('prenume'))
               <span class="error-message">{{ $errors->first('prenume') }}</span>
             @endif
@@ -28,7 +30,8 @@
           <div class="col-md-4">
           </div>
           <div class="col-md-4">
-            {{ Form::input('date', 'data_nasterii', $profesor->{"data nasterii"}, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data nasterii a profesorului")) }}
+            {{ Form::input('date', 'data_nasterii-edit', $profesor->{"data nasterii"}, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data nasterii a profesorului")) }}
+            <span id="error-data_nasterii-editare" class="error-message"></span>
             @if ($errors->has('data_nasterii'))
               <span class="error-message">{{ $errors->first('data_nasterii') }}</span>
             @endif
@@ -36,7 +39,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        {{ Form::submit('Editeaza Profesor', array('class'=>'btn btn-primary')) }}
+        {{ Form::submit('Editeaza Profesor', array('class'=>'btn btn-primary', 'id' => 'btn-edit')) }}
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          {{ Form::close() }}
       </div>
