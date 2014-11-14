@@ -6,7 +6,6 @@
   <!-- Default panel contents -->
   <div class="panel-heading">Materiile Profesorului <span style="font-weight: bold;">{{ $profesor->nume . ' ' . $profesor->prenume }}</span> <span class="badge pull-right"> {{ $materii->count() }}</span> </div>
   
-
   <div class="panel-body">
 
   <!-- Table -->

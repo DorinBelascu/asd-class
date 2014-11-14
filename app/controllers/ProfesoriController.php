@@ -60,9 +60,9 @@ class ProfesoriController extends BaseController {
 			$profesor = Profesori::findOrFail(Input::get('id'));
 			if ((($profesor->nume) <> $nume_nou) || (($profesor->prenume) <> $prenume_nou) || (($profesor->{"data nasterii"}) <> $data_nou))
 			{
-				$profesor->nume = Input::get('nume');
-				$profesor->prenume = Input::get('prenume');
-				$profesor->{"data nasterii"} = Input::get('data_nasterii');
+				$profesor->nume = Input::get('nume-edit');
+				$profesor->prenume = Input::get('prenume-edit');
+				$profesor->{"data nasterii"} = Input::get('data_nasterii-edit');
 				$profesor->save();
 				return Redirect::back()->with('result', 'Editarea s-a efectuat cu succes!');
 			}

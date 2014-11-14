@@ -10,4 +10,5 @@ class Profesori extends Eloquent
         return $this->hasMany('ProfesorMaterii', 'profesor_id');
     }
 
+    
 }
