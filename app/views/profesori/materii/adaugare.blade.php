@@ -1,18 +1,3 @@
-<?php 
-  $lista = array();
-  foreach($toate_materiile as $i => $materie)
-  {
-
-    $lista = array_add($lista, $i+1, $materie['denumirea']);
-  }
-  foreach($materii as $i => $pm)
-  {
-    $lista = array_except($lista, array($pm->Materie->id, 'to', 'remove'));
-  }
-  asort($lista);
-?>  
-
-  <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -20,6 +5,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Add New Subject To {{ $profesor->nume . ' ' . $profesor->prenume }}</h4>
       </div>
+
       <div class="modal-body">
         {{ Form::open(['url'=> URL::route('profesor_materii_add'), 'class' => 'form']) }}
         {{ Form::hidden('id', $profesor->id)}} 
@@ -33,6 +19,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          {{ Form::close() }}
       </div>
+      
     </div>
   </div>
 </div>

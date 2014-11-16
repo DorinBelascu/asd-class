@@ -1,10 +1,10 @@
 <?php
 
-class ProfesorMateriiController extends BaseController {
+class ProfesorMateriiController extends BaseController 
+{
 
 	public function index1($id)
 	{
-		$toate_materiile = Materii::all();
 		$profesor = Profesori::find($id);
 		if(! $profesor)
 		{
@@ -12,8 +12,8 @@ class ProfesorMateriiController extends BaseController {
 		}
 	    return View::make('profesori/materii/index')->with([
 	    	'profesor' => $profesor,
-	    	'materii' => ProfesorMaterii::with('Materie')->where('profesor_id', $id)->get(),
-	    	'toate_materiile' => $toate_materiile,
+	    	'materii'  => $materii = Profesori::Materii($profesor),
+	    	'lista'    => Profesori::MateriiDisponibile($profesor)
 	    ]);
 	}
 
