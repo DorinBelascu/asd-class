@@ -8,6 +8,7 @@
 
     <!-- Bootstrap -->
     {{HTML::style('css/bootstrap.min.css')}}
+    {{HTML::style('css/jasny-bootstrap.min.css')}}
     {{HTML::style('css/asdclass.css')}}
 
     @yield('css')
@@ -29,10 +30,10 @@
       @yield('content')
 
     </div> <!-- /container -->
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   {{HTML::script('js/jquery.min.js')}}
+    {{HTML::script('js/jquery.min.js')}}
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    {{HTML::script('js/jasny-bootstrap.min.js')}}
     {{HTML::script('js/bootstrap.min.js')}}
     @yield('js')
   </body>

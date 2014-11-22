@@ -27,8 +27,8 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 	'stefan' => array('User-PC'),
 	'dorin' => array('Sandu-PC'),
+	'andra' => array('LAPTOP1')
 ));
-
 /*
 |--------------------------------------------------------------------------
 | Bind Paths

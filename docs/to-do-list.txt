@@ -1,0 +1,20 @@
+To Do List:
+
+#1. 22.11.2014
+
+	Cand adaug un elev, dupa ce selectez genul si dau adaugare, apare eroarea: "Trebuie completat"
+
+#2. 22.11.2014
+
+	Cand adaug un profesor, imediat ce incep sa completez data, apare eroarea: "Completati genul"
+
+#3. 22.11.2014
+
+	De pus coloana pt poza la profesori.
+	Poza se incarca din profil profesor.
+
+#4. 22.11.2014
+	
+	Elevii pot da note profesorilor. 
+	Tabela noua pt notele acordate profesorilor.
+	

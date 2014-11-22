@@ -160,3 +160,13 @@ Route::post('profesor/materii/delete', array(
 	'as'   => 'profesor_materii_delete',
 	'uses' => 'ProfesorMateriiController@delete'
 ));
+
+Route::get('elevi-photo/{id}', array(
+	'as'   => 'elevi_photo',
+	'uses' => 'EleviPhotoController@index'
+));
+
+Route::post('save-elev-photo-upload/{id}', array(
+	'as'   => 'save-elev-photo-upload',
+	'uses' => 'EleviPhotoController@upload'
+));
