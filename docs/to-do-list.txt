@@ -22,3 +22,12 @@ To Do List:
 
 	Pe pagina cu materii (http://localhost/asd-class/public/materii) tooltip-ul de la "vezi profesorii care predau materia asta" are in  paranteza id-ul materiei. Sa punem in paranteza numarul de profesori care predau materia respectiva.
 	La fel si la materiile profesorilor.
+
+#6 29.11.2014
+	-opiune in meniul principal denumita "catalog"
+	-de la catalog ajung la o pagina cu icon-uri pentru toti elevi
+	-cand se face click pe un elev sa ajungem la o pagina cu iconite pentru toate materiile
+	-la click pe o materie sa ajungem la o pagina unde vedem notele si absentele
+
+#7 29.11.2014
+	validare la size la photo,photo by default

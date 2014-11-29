@@ -3,9 +3,9 @@
 @section('content') 
 
 <div class="row">
-@if ( Session::get('result-success'))
+  @if ( Session::get('result-success'))
     <div class="alert alert-success" role="alert">{{Session::get('result-success')}}</div>
-@elseif (Session::get('result-fail'))
+  @elseif (Session::get('result-fail'))
     @if ($errors->has('add_materie'))
             <div class="col-md-12 alert alert-danger">
                 <span class="error-message" style="font-size:20px">{{ $errors->first('add_materie') }}</span>
