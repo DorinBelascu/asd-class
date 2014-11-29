@@ -15,7 +15,7 @@
   <div class="panel-body">
   	<div class="alert alert-info" role="alert">
   		@if( count($lista) )
-  		<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject To {{ $profesor->nume . ' ' . $profesor->prenume }}"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject To {{ $profesor->nume . ' ' . $profesor->prenume }}"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
   		@endif
   	</div>
 

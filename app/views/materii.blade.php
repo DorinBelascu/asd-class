@@ -63,7 +63,7 @@
           <td>{{ $materie->created_at}}</td>
           <td>{{ $materie->updated_at}}</td>
           <td class="text-center">
-            <a href="{{URL::route('materie_profesori',['id' => $materie->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='View this profesor ({{ $materie->id }})'><span class="glyphicon glyphicon-info-sign"></span></a>
+            <a href="{{URL::route('materie_profesori',['id' => $materie->id])}}" class="btn btn-xs btn-success" rel="tooltip" title="View this subject's profesors ({{ $materie->id }})"><span class="glyphicon glyphicon-info-sign"></span></a>
             <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-placement="top" title="Edit this subject ({{ $materie->id }})" data-target="#Modal{{ $i }}"> <span class="glyphicon glyphicon-pencil"></span></button>
             <!-- Modal -->
           	<button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $materie->id }}"" data-placement="top" title="Delete this subject({{ $materie->id }})"> <span class="glyphicon glyphicon-trash"></span></button>

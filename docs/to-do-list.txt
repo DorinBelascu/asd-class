@@ -18,3 +18,7 @@ To Do List:
 	Elevii pot da note profesorilor. 
 	Tabela noua pt notele acordate profesorilor.
 	
+#5. 29.11.2014
+
+	Pe pagina cu materii (http://localhost/asd-class/public/materii) tooltip-ul de la "vezi profesorii care predau materia asta" are in  paranteza id-ul materiei. Sa punem in paranteza numarul de profesori care predau materia respectiva.
+	La fel si la materiile profesorilor.

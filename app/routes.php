@@ -141,14 +141,11 @@ Route::post('profesori/delete', array(
 	'uses' => 'ProfesoriController@delete'
 ));
 
+
+
 Route::get('profesor/{id}/materii', array(
 	'as'   => 'profesor_materii',
 	'uses' => 'ProfesorMateriiController@index1'
-));
-
-Route::get('materie/{id}/profesori', array(
-	'as'   => 'materie_profesori',
-	'uses' => 'ProfesorMateriiController@index2'
 ));
 
 Route::post('profesor/materii/add', array(
@@ -160,6 +157,26 @@ Route::post('profesor/materii/delete', array(
 	'as'   => 'profesor_materii_delete',
 	'uses' => 'ProfesorMateriiController@delete'
 ));
+
+
+
+Route::get('materie/{id}/profesori', array(
+	'as'   => 'materie_profesori',
+	'uses' => 'ProfesorMateriiController@index2'
+));
+
+Route::post('materie/profesori/add', array(
+	'as'   => 'materie_profesori_add',
+	'uses' => 'ProfesorMateriiController@showAddForm2'
+));
+Route::post('materie/profesori/delete', array(
+	'as'   => 'materie_profesori_delete',
+	'uses' => 'ProfesorMateriiController@delete2'
+));
+
+
+
+
 
 Route::get('elevi-photo/{id}', array(
 	'as'   => 'elevi_photo',
