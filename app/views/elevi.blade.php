@@ -72,6 +72,7 @@
           <td>{{ $elev->created_at}}</td>
           <td>{{ $elev->updated_at}}</td>
           <td class="text-center">
+            <a href="{{URL::route('elevi_photo',['id' => $elev->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='View this elev ({{ $elev->id }})'><span class="glyphicon glyphicon-info-sign"></span></a>
           	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
             <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $elev->id }}"" data-placement="top" title="Delete this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
           </td>

@@ -20,8 +20,8 @@ class EleviPhotoController extends BaseController
 		}
 
 		$input = ['file' => $uploadedFile = Input::file('photo-elev') ];
-    	$rules = ['file' => 'image'];
-    	$messages = ['file.image' => 'Fisierul trebuie sa fie o imagine valida'];
+    	$rules = ['file' => 'image|max:3000'];
+    	$messages = ['file.image' => 'Fisierul trebuie sa fie o imagine valida', 'file.max' => 'Fisierul nu trebuie sa depaseasca 3MB'];
 
 		$validator = Validator::make($input, $rules, $messages);
 		if ($validator->fails())

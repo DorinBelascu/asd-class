@@ -1,31 +1,25 @@
 @extends('layout')
 
 @section('content')
+<div class="row">
+  @if ( Session::get('result-success'))
+    <div class="alert alert-success" role="alert">{{Session::get('result-success')}}</div>
+  @elseif ($errors->all()) 
+    <div class="col-md-12 alert alert-danger">{{$errors->all()[0] }}</span>
+    </div>
+  @endif
+</div>
+
 <div class="panel panel-primary">
   <div class="panel-heading">Adauga sau schimba poza elevului</div>
   <div class="panel-body">
-      @if($errors->all())
-        <?php
-        var_dump($errors->all());
-        ?>
-      @endif
-
-      <div class="row">
-        @if ( Session::get('result-success'))
-          <div class="alert alert-success" role="alert">{{Session::get('result-success')}}</div>
-        @elseif ($errors->all()) 
-          <div class="col-md-12 alert alert-danger">{{$errors->all()[0] }}</span>
-          </div>
-        @endif
-      </div>
-
 
       <div class="row">
         <div class="col-md-6">
           <table class="table table-hover">
             <tr><th>Nume</th><td>{{$elev->nume}}</td></tr>
             <tr><th>Prenume</th><td>{{$elev->prenume}}</td></tr>
-            <tr><th>Genul</th><td>{{$elev->gen}}</td></tr>
+            <tr><th>Genul</th><td>{{HTML::image('images/' . $elev->genul . '.png', $elev->genul, ['width' => '32px', 'title' => $elev->genul])}} </td></tr>
             <tr><th>Data nasterii</th><td>{{$elev->{'data nasterii'} }}</td></tr>
           </table>
         </div>

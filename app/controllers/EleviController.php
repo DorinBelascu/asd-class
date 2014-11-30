@@ -34,6 +34,7 @@ class EleviController extends BaseController {
 			$elev->prenume = $data['prenume'];
 			$elev->{"data nasterii"} = $data['data_nasterii'];
 			$elev->genul = $data['genul'];
+			$elev->photo = 'default.png';
 			$elev->save();
 			return Redirect::route('elevi')->with('result-success','Elevul a fost adaugat');
 		}

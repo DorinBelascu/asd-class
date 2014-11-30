@@ -187,3 +187,9 @@ Route::post('save-elev-photo-upload/{id}', array(
 	'as'   => 'save-elev-photo-upload',
 	'uses' => 'EleviPhotoController@upload'
 ));
+
+Route::get('catalog', array(
+	'as'   => 'catalog',
+	'uses' => 'CatalogController@index'
+
+));
