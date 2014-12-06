@@ -29,12 +29,42 @@ class EleviPhotoController extends BaseController
 			return Redirect::route('elevi_photo', ['id' => $id])->withErrors($validator);
 		}
 
-		$destinationPath =  app_path() . '/../public/images/photos/elevi/';
-		$elev->photo = $filename = ('photo_' . $id . '.' . $uploadedFile->getClientOriginalExtension());
+		$destinationPath = $path =  app_path() . '/../public/images/photos/elevi/';
+
+		$elev->photo = $filename = ('photo_' . $id . '(-).' . $uploadedFile->getClientOriginalExtension());
 		$elev->save();
 
 		$uploadedFile->move($destinationPath, $filename  );
 
-		return Redirect::route('elevi_photo', ['id' => $id])->with('result-success','Poza a fost adaugata cu succes');
+
+		
+		$baseName = 'photo_' . $id;
+		$photoFileName = str_replace('\\', '/', $destinationPath . $filename);
+		
+		$sizes = Config::get('images.sizes');
+		
+		$img = Image::make($photoFileName);
+		$min = min( $img->width(), $img->height() );
+		$img->crop($min, $min)->save( $path . '/' . $baseName . '-square.' . $uploadedFile->getClientOriginalExtension());
+		// echo '<pre>';
+		// // var_dump();
+
+	    foreach ($sizes as $key => $value) 
+	    {
+	    	$img = Image::make($path . '/' . $baseName . '-square.' . $uploadedFile->getClientOriginalExtension());
+	    	var_dump( $value );
+	    	$img->resize($value, $value , 
+	    		function ($constraint)
+	    		{
+	        		$constraint->aspectRatio();
+	        		$constraint->upsize();
+	    		}
+	    	)
+	    	// ->crop($value, $value)
+	    	->save($path . '/' . $baseName . $key .'.jpg');
+	    }
+
+
+		//return Redirect::route('elevi_photo', ['id' => $id])->with('result-success','Poza a fost adaugata cu succes');
 	}
 }

@@ -31,3 +31,9 @@ To Do List:
 
 #7 29.11.2014
 	validare la size la photo,photo by default
+
+#8. 6.12.2014
+	48px
+	120px
+	240px
+	480px

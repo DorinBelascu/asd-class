@@ -1,69 +1,9 @@
 <?php
 
-Route::get('/', array(
-	'as'   => 'home',
-	'uses' => 'HomeController@index'
-));
+include 'routes/commons/users.php';
 
-Route::get('register', array(
-	'as'   => 'register',
-	'uses' => 'RegisterController@index'
-));
 
-Route::post('register-processing', array(
-	'as'  => 'register-post',
-	'uses'=> 'RegisterController@create'
-));
 
-Route::get('login',array(
-	'as'  =>'login',
-	'uses'=>'LoginController@index',
-));
-
-Route::post('login-processing',array(
-	'as'  =>'login-post',
-	'uses'=>'LoginController@check',
-));
-
-Route::get('activate-account/{id}/{code}', array(
-	'as'  =>'activate-account',
-	'uses'=>'ActivateController@index'
-));
-/*---------------------------------------------------------*/
-Route::get('forgot-password', array(
-	'as'   => 'show-forgot-password-form',
-	'uses' => 'ForgotPasswordController@ShowStartForm'
-));
-
-Route::post('forgot-password-process', array(
-	'as'   => 'show-forgot-password-form-post',
-	'uses' => 'ForgotPasswordController@StartFormProcess'
-));
-
-Route::get('reset-forgotten-password/{id}/{code}', array(
-	'as'   => 'show-set-password-form',
-	'uses' => 'ForgotPasswordController@ShowChangePasswordForm'
-));
-// Route::get('forgot-password/{id}/{code}', array(
-// 	'as'  =>'forgot-password',
-// 	'uses'=>'ForgotPasswordController@index'
-// ));
-
-// Route::get('reset-password/', array(
-// 	'as'  =>'reset-password',
-// 	'uses'=>'ForgotPasswordController@reset'
-// ));
-
-Route::post('reset-password-processing', array(
-	'as'  =>'reset-password-post',
-	'uses'=>'ForgotPasswordController@change'
-));
-/*---------------------------------------------------------*/
-
-Route::get('logout', array(
-	'as'  => 'logout',
-	'uses'=> 'LogoutController@index'
-));
 
 Route::get('profile', array(
 	'as'  =>'user-profile',
@@ -207,3 +147,36 @@ Route::get('catalog/vezi-absente-elev/{denumirea}/absente/{id}', array(
 	'as'   => 'catalog-absente',
 	'uses' => 'CatalogAbsenteController@index'
 ));
+
+
+Route::get('test-image', function()
+{
+	$path  = Config::get('images.storage');
+	$sizes = Config::get('images.sizes');
+	
+	$img = Image::make(storage_path() . '/photos/test.jpg');
+	$min = min( $img->width(), $img->height() );
+	$img->crop($min, $min)->save( $path . '/test-square.jpg');
+	echo '<pre>';
+	// var_dump();
+
+    // $img = Image::make(storage_path().'/photos/test.jpg')->resize(300, 200);
+
+    // $img->save(storage_path().'/photos/altceva.jpg');
+
+    // return $img->response('jpg');
+    foreach ($sizes as $key => $value) 
+    {
+    	$img = Image::make(storage_path() . '/photos/test-square.jpg');
+    	var_dump( $value );
+    	$img->resize($value, $value , 
+    		function ($constraint)
+    		{
+        		$constraint->aspectRatio();
+        		$constraint->upsize();
+    		}
+    	)
+    	// ->crop($value, $value)
+    	->save($path . '/test-' . $key .'.jpg');
+    }
+});

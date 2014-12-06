@@ -14,7 +14,7 @@
 		        	<a href="{{ URL::route('materii-catalog', ['id' => $elev->id]) }}">
 			        	<div class="elev">
 			        		<div class="afisare">
-				          			{{ HTML::image('images/photos/elevi/' . $elev->photo, $elev->photo,['class' => 'img-responsive', 'style' => 'width:100%']) }} 
+				          			{{ HTML::image('images/photos/elevi/' . str_replace('(-)', 'medium', $elev->photo), $elev->photo,['class' => 'img-responsive', 'style' => 'width:100%']) }} 
 				          			<div class="sablon">
 				          				<div class="nume_elev">                   
 				          					{{ $elev->nume . ' ' . $elev->prenume }} 
