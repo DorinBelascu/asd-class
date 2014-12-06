@@ -11,7 +11,7 @@
 
 	  	<div class="col-md-3 col-xs-6">
 		        <div style="text-align:center; margin:4px auto">
-		        	<a href="#">
+		        	<a href="{{ URL::route('materii-catalog', ['id' => $elev->id]) }}">
 			        	<div class="elev">
 			        		<div class="afisare">
 				          			{{ HTML::image('images/photos/elevi/' . $elev->photo, $elev->photo,['class' => 'img-responsive', 'style' => 'width:100%']) }} 
