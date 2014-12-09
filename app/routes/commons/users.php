@@ -64,3 +64,18 @@ Route::get('logout', array(
 	'as'  => 'logout',
 	'uses'=> 'LogoutController@index'
 ));
+
+Route::get('profile', array(
+	'as'  =>'user-profile',
+	'uses'=>'ProfileController@index'
+));
+
+Route::post('profile-update', array(
+	'as'  =>'profile-update',
+	'uses'=>'ProfileController@update'
+));
+
+Route::post('profile-password-update',array(
+	'as'  =>'password-update',
+	'uses'=>'ProfileController@passwordUpdate',
+));
