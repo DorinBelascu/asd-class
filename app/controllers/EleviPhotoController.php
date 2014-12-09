@@ -40,9 +40,9 @@ class EleviPhotoController extends BaseController
 		
 		$baseName = 'photo_' . $id;
 		$photoFileName = str_replace('\\', '/', $destinationPath . $filename);
-		
+		$extention ='.' . $uploadedFile->getClientOriginalExtension();
 		$sizes = Config::get('images.sizes');
-		
+
 		$img = Image::make($photoFileName);
 		$min = min( $img->width(), $img->height() );
 		$img->crop($min, $min)->save( $path . '/' . $baseName . '-square.' . $uploadedFile->getClientOriginalExtension());
@@ -61,7 +61,7 @@ class EleviPhotoController extends BaseController
 	    		}
 	    	)
 	    	// ->crop($value, $value)
-	    	->save($path . '/' . $baseName . $key .'.jpg');
+	    	->save($path . '/' . $baseName . $key . $extention);
 	    }
 
 

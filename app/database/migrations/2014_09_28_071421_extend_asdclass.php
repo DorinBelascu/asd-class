@@ -34,7 +34,7 @@ class ExtendAsdclass extends Migration
 			$table->increments('id');
 			$table->date('data');
 			$table->string('materie_id');
-			$table->string('nume_elev');
+			$table->string('id_elev');
 			$table->boolean('stare');
 			$table->boolean('publica_sau_nu');
 			$table->timestamps();
