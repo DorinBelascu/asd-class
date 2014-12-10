@@ -18,7 +18,7 @@ class CatalogAbsenteController extends BaseController {
 	 	return View::make('catalog-absente')->with([
 	 		'absente' => $absente, 
 	 		'elev' => $elev,
-	 		'materie' => $denumirea 
+	 		'materie' => $materie, 
 	 	]);
 	}
 

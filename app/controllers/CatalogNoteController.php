@@ -18,7 +18,7 @@ class CatalogNoteController extends BaseController {
 	 	return View::make('catalog-note')->with([
 	 		'note' => $note, 
 	 		'elev' => $elev,
-	 		'materie' => $denumirea 
+	 		'materie' => $materie
 	 	]);
 	}
 
