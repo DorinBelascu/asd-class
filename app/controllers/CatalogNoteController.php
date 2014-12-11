@@ -74,4 +74,12 @@ class CatalogNoteController extends BaseController {
 		return Redirect::route('catalog-note')->withInput()->witherrors($validator)->with('result-fail', 'Va rog introduceti o nota intre 1 si 10')->with('denumirea', $denumirea)->with('id', $id)->with('adaugare', 'Adaugare');
 	}
 
+	public function delete()
+	{
+		$data = Input::all();
+		$nota = Note::where('id', $data['id'])->get()->first();
+		$nota->delete();	
+		return Redirect::route('catalog-note')->with('result-success', 'Stergerea s-a efectuat cu succes!')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');
+	}
+
 }

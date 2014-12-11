@@ -24,3 +24,8 @@ Route::post('catalog/adauga-nota/{denumirea}/{id}', array(
 	'as'   => 'add-new-nota',
 	'uses' => 'CatalogNoteController@showAddForm'
 ));
+
+Route::post('catalog/sterge-nota/', array(
+	'as'   => 'delete-nota',
+	'uses' => 'CatalogNoteController@delete'
+));
