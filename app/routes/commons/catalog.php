@@ -19,3 +19,8 @@ Route::get('catalog/vezi-absente-elev/{denumirea}/absente/{id}', array(
 	'as'   => 'catalog-absente',
 	'uses' => 'CatalogAbsenteController@index'
 ));
+
+Route::post('catalog/adauga-nota/{denumirea}/{id}', array(
+	'as'   => 'add-new-nota',
+	'uses' => 'CatalogNoteController@showAddForm'
+));
