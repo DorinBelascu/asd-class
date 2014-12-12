@@ -40,5 +40,3 @@ To Do List:
 
 #9 9.12.2014
 	Validarea pentru adaugarea materiei prezinta defecte(in cazul in care deja exista o materie a carei nume incepe cu numele altei materii Limba Romana-Limba Germana)
-
-
