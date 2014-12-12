@@ -43,7 +43,7 @@ class CatalogNoteController extends BaseController {
 		}
 		$data = Input::all();
 		$rules = array(
-			'nota' => 'required|min:1|max:10|numeric',
+			'nota' => 'required|min:1|max:10|integer',
 			'data' => 'required',
 			'starea' => 'required',	
 		);
@@ -51,7 +51,7 @@ class CatalogNoteController extends BaseController {
 			'required' => 'Ati uitat sa introduceti ceva',
 			'min' => 'Introduceti o nota mai mare decat 1 si mai mica decat 10',
 			'max' => 'Introduceti o nota mai mare decat 1 si mai mica decat 10',
-			'numeric' => 'Va rog introduceti un numar',
+			'integer' => 'Va rog introduceti un numar intreg',
 		));
 		if ($validator->passes()) 
 		{
