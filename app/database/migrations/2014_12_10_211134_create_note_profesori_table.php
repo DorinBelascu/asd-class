@@ -18,7 +18,7 @@ class CreateNoteProfesoriTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('note');
+		Schema::drop('note_profesori');
 	}
 
 }
