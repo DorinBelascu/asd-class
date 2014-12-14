@@ -29,3 +29,8 @@ Route::post('catalog/sterge-nota/', array(
 	'as'   => 'delete-nota',
 	'uses' => 'CatalogNoteController@delete'
 ));
+
+Route::post('catalog/editeaza-nota/{denumirea}/{id}', array(
+	'as'   => 'edit-nota',
+	'uses' => 'CatalogNoteController@edit',
+));
