@@ -60,69 +60,82 @@
                       <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
                       @include('note-elevi.delete')
                       <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
-
-
-<?php 
-    $starea = [ '-' => '[Selectati starea]', 'publica' => 'publica', 'privata' => 'privata'];
-?>  
-<!-- Modal -->
-    <div class="modal fade" id="edit-{{ $elev->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myLargeModalLabel">Editeaza nota {{ $nota->valoare }} elevului {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}}</h4>
-                </div>
-                {{ Form::open(['url'=> URL::route('edit-nota', ['denumirea'=>$materie->denumirea, 'id' => $elev->id]), 'class' => 'form']) }}
-                {{ Form::hidden('id', $nota->id)}}
-                {{ Form::hidden('id_elev', $elev->id)}}
-                {{ Form::hidden('denumirea', $materie->denumirea)}}
-                {{ Form::hidden('id_materie', $materie->id)}}
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            {{ Form::text('nota', null , array('class'=>'form-control', 'placeholder' => "Adauga o nota intre 1 si 10")) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ Form::input('date', 'data', null, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-offset-3 col-md-6">
-                            {{ Form::select('starea', $starea, Input::old('Starea Notei') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Starea Notei", ))}}
-                        </div>
-                    </div>
-                    <span id="error-denumire" class="error-message"></span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    {{ Form::submit('Editeaza', array('id' =>'btn-add', 'class' => "btn btn-success")) }}       
-                </div>
-                {{ Form::close() }}
-
-            </div>
-        </div>
-    </div>
-
-
-
-
-
+                      @include('note-elevi.edit')
                   </td>
                 </tr>
               @endif
             @endforeach   
             </tbody>
           </table>
-
-
-           <!-- Modal -->
-
-
-
-
         </div>
 </div>
 
 
+@stop
+
+@section('js')
+<script>
+  $('a').tooltip();
+  $('button').tooltip();
+  $('input').tooltip();
+  $('input').keyup(function(){
+    var val = $(this).val();
+    if (val.length > 0)
+    {
+      $(this).parent().find('span.error-message').html('');
+    }
+    else
+    {
+      $(this).parent().find('span.error-message').html('Trebuie Completat');
+    }
+  });
+  $('#btn-add-nota').click(function(e){
+
+    var data = $('input[name="data"]').val();
+    var prenume = $('input[name="nota"').val();
+    var starea = $('select[name="starea"]').val();
+    document.write(data); 
+    var error = false;
+    $('span.error-message').html('');
+    if (data.length == 0)
+    {
+      $('#error-data').html('Completati data!');
+      error = true;
+    }
+    if (nota.length == 0)
+    {
+      $('#error-nota').html('Completati nota!');
+      error = true;
+    }
+    if (starea = '-')
+    {
+      $('#error-starea').html('Completati starea!')
+    }
+    return !error;
+  });
+  $('#btn-edit').click(function(e){
+    var nume = $('input[name="nume-edit"]').val();
+    var prenume = $('input[name="prenume-edit"').val();
+    var data_nasterii = $('input[name="data_nasterii-edit"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (nume.length == 0)
+    {
+      $('#error-nume-editare').html('Completati numele!');
+      error = true;
+    }
+    if (prenume.length == 0)
+    {
+      $('#error-prenume-editare').html('Completati prenumele!');
+      error = true;
+    }
+    if (data_nasterii.length != 10)
+    {
+      $('#error-data_nasterii-editare').html('Completati data nasterii!');
+      error = true;
+    }
+
+    return !error;
+  });
+</script>
 @stop

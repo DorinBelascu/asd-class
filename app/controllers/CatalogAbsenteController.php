@@ -4,7 +4,7 @@ class CatalogAbsenteController extends BaseController {
 
 	public function index($denumirea, $id)
 	{
-		$materie = Materii::where('denumirea','=', $denumirea)->get()->first();
+		$materie = Materii::where('denumirea', $denumirea)->get()->first();
 		if (! $materie)
 		{
 			return Redirect::route('materii-catalog');	

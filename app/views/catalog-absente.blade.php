@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <div class="panel panel-primary">
   <!-- Default panel contents -->
   <div class="panel-heading">Absentele lui {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}} </div>
@@ -20,7 +22,7 @@
           </thead>
           <tbody>
             @foreach($absente as $i => $absenta)
-              @if (($elev->id == $absenta->id_elev) && ($materie->id == $absenta->materie_id))
+              @if (($elev->id == $absenta->elev_id) && ($materie->id == $absenta->materie_id))
                 <tr>
                   <td>{{ $i+1 }}.</td>
                   <td>{{ $absenta->data}}</td>
