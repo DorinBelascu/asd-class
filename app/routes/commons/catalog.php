@@ -34,3 +34,8 @@ Route::post('catalog/editeaza-nota/{denumirea}/{id}', array(
 	'as'   => 'edit-nota',
 	'uses' => 'CatalogNoteController@edit',
 ));
+
+Route::post('catalog/adauga-absenta/{denumirea}/{id}', array(
+	'as'   => 'add-new-absenta',
+	'uses' => 'CatalogAbsenteController@showAddForm',
+));
