@@ -58,48 +58,84 @@
                   <td class="text-center">
                       <!-- Modal -->
                       <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
-                      <!-- Modal -->
-
-<div class="modal fade" id="delete-{{ $nota->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Delete nota ( {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}} )</h4>
-      </div>
-      <div class="modal-body">
-        {{ Form::open(['url'=> URL::route('delete-nota'), 'class' => 'form']) }}
-        {{ Form::hidden('id', $nota->id)}}
-        {{ Form::hidden('id_elev', $elev->id)}}
-        {{ Form::hidden('denumirea', $materie->denumirea)}}
-        Esti sigur ca vrei sa stergi nota lui "{{ $elev->nume . ' ' . $elev->prenume }}"?
-      </div>
-      <div class="modal-footer">
-        {{ Form::submit('Sterge Nota', array('class'=>'btn btn-danger')) }}
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>  
-        {{ Form::close() }}
-    </div>
-  </div>
-</div>
-
-
-
+                      @include('note-elevi.delete')
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                      @include('note-elevi.edit')
                   </td>
                 </tr>
               @endif
             @endforeach   
             </tbody>
           </table>
-
-
-           <!-- Modal -->
-
-
-
-
         </div>
 </div>
 
 
+@stop
+
+@section('js')
+<script>
+  $('a').tooltip();
+  $('button').tooltip();
+  $('input').tooltip();
+  $('input').keyup(function(){
+    var val = $(this).val();
+    if (val.length > 0)
+    {
+      $(this).parent().find('span.error-message').html('');
+    }
+    else
+    {
+      $(this).parent().find('span.error-message').html('Trebuie Completat');
+    }
+  });
+  $('#btn-add-nota').click(function(e){
+
+    var data = $('input[name="data"]').val();
+    var prenume = $('input[name="nota"').val();
+    var starea = $('select[name="starea"]').val();
+    document.write(data); 
+    var error = false;
+    $('span.error-message').html('');
+    if (data.length == 0)
+    {
+      $('#error-data').html('Completati data!');
+      error = true;
+    }
+    if (nota.length == 0)
+    {
+      $('#error-nota').html('Completati nota!');
+      error = true;
+    }
+    if (starea = '-')
+    {
+      $('#error-starea').html('Completati starea!')
+    }
+    return !error;
+  });
+  $('#btn-edit').click(function(e){
+    var nume = $('input[name="nume-edit"]').val();
+    var prenume = $('input[name="prenume-edit"').val();
+    var data_nasterii = $('input[name="data_nasterii-edit"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (nume.length == 0)
+    {
+      $('#error-nume-editare').html('Completati numele!');
+      error = true;
+    }
+    if (prenume.length == 0)
+    {
+      $('#error-prenume-editare').html('Completati prenumele!');
+      error = true;
+    }
+    if (data_nasterii.length != 10)
+    {
+      $('#error-data_nasterii-editare').html('Completati data nasterii!');
+      error = true;
+    }
+
+    return !error;
+  });
+</script>
 @stop

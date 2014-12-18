@@ -40,3 +40,7 @@ To Do List:
 
 #9 9.12.2014
 	Validarea pentru adaugarea materiei prezinta defecte(in cazul in care deja exista o materie a carei nume incepe cu numele altei materii Limba Romana-Limba Germana)
+
+#10 14.12.2014 
+	Validarea pentru adaugarea unui elev are probleme la data.Cand incerci sa adaugi o data nu poti adauga 31 la zi
+	

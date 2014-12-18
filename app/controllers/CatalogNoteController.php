@@ -82,4 +82,49 @@ class CatalogNoteController extends BaseController {
 		return Redirect::route('catalog-note')->with('result-success', 'Stergerea s-a efectuat cu succes!')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');
 	}
 
+	public function edit()
+	{
+		$data = Input::all();
+		$materie = Materii::find($data['id_materie']);
+		if (! $materie)
+		{
+			return Redirect::route('materii-catalog');	
+		}
+		$elev = Elevi::find($data['id_elev']);
+		if(! $elev)
+		{
+			return Redirect::route('materii-catalog');
+		}
+		$rules = array(
+			'nota' => 'required|min:1|max:10|integer',
+			'data' => 'required',
+			'starea' => 'required',	
+		);
+		$validator = Validator::make($data, $rules, array(
+			'required' => 'Ati uitat sa introduceti ceva',
+			'min' => 'Introduceti o nota mai mare decat 1 si mai mica decat 10',
+			'max' => 'Introduceti o nota mai mare decat 1 si mai mica decat 10',
+			'integer' => 'Va rog introduceti un numar intreg',
+		));
+
+		if ($validator->passes()) 
+		{
+			$nota = Note::find($data['id']);
+			$nota->valoare = $data['nota'];
+			$nota->materie_id = $materie->id;
+			$nota->elev_id = $data['id_elev'];
+			$nota->data = $data['data'];			
+			if ($data['starea'] == 'publica') 
+			{
+				$nota->publica_sau_nu = '1';
+			}
+			else
+			{
+				$nota->publica_sau_nu = '0';	
+			}
+			$nota->save();
+			return Redirect::route('catalog-note')->with('result-success','Nota a fost modificata')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');;
+		}
+		return Redirect::route('catalog-note')->withInput()->witherrors($validator)->with('result-fail', 'Va rog introduceti o nota intre 1 si 10')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');
+	}
 }

@@ -29,3 +29,23 @@ Route::post('catalog/sterge-nota/', array(
 	'as'   => 'delete-nota',
 	'uses' => 'CatalogNoteController@delete'
 ));
+
+Route::post('catalog/editeaza-nota/{denumirea}/{id}', array(
+	'as'   => 'edit-nota',
+	'uses' => 'CatalogNoteController@edit',
+));
+
+Route::post('catalog/adauga-absenta/{denumirea}/{id}', array(
+	'as'   => 'add-new-absenta',
+	'uses' => 'CatalogAbsenteController@showAddForm',
+));
+
+Route::post('catalog/sterge-absenta/', array(
+	'as'   => 'delete-absenta',
+	'uses' => 'CatalogAbsenteController@delete'
+));
+
+Route::post('catalog/editeaza-nota/{denumirea}/{id}', array(
+	'as'   => 'edit-absenta',
+	'uses' => 'CatalogAbsenteController@edit',
+));
