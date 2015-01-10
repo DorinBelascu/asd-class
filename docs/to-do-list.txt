@@ -44,3 +44,8 @@ To Do List:
 #10 14.12.2014 
 	Validarea pentru adaugarea unui elev are probleme la data.Cand incerci sa adaugi o data nu poti adauga 31 la zi
 	
+#11 10.01.2015
+	-Sa se adauge coloana semestru la tabela note si sa se poata completa in formular
+	-Sa se adauge coloana photo la tabela profesori si tabela materii
+	-Optiunea statistici-absente
+	-de verificat validarile jquery la toate adaugarile

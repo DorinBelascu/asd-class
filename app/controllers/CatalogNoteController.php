@@ -4,12 +4,12 @@ class CatalogNoteController extends BaseController {
 
 	public function index($denumirea, $id)
 	{
-		$adaugare = Session::get('adaugare');
-		if ($adaugare) 
-		{
-			$denumirea = Session::get( 'denumirea' );
-    		$id = Session::get( 'id' );
-		}
+		// $adaugare = Session::get('adaugare');
+		// if ($adaugare) 
+		// {
+		// 	$denumirea = Session::get( 'denumirea' );
+  //   		$id = Session::get( 'id' );
+		// }
 
 		$materie = Materii::where('denumirea','=', $denumirea)->get()->first();
 		if (! $materie)
@@ -21,7 +21,7 @@ class CatalogNoteController extends BaseController {
 		{
 			return Redirect::route('materii-catalog');
 		}
-	 	$note = Note::orderBy('data')->get();
+	 	$note = Note::orderBy('data','desc')->get();
 	 	return View::make('catalog-note')->with([
 	 		'note' => $note, 
 	 		'elev' => $elev,
@@ -69,7 +69,7 @@ class CatalogNoteController extends BaseController {
 				$nota->publica_sau_nu = '0';	
 			}
 			$nota->save();
-			return Redirect::route('catalog-note')->with('result-success','Nota a fost adaugata')->with('denumirea', $denumirea)->with('id', $id)->with('adaugare', 'Adaugare');;
+			return Redirect::route('catalog-note', ['id' => $id, 'denumirea' => $denumirea])->with('result-success', 'Nota a fost adaugata');
 		}
 		return Redirect::route('catalog-note')->withInput()->witherrors($validator)->with('result-fail', 'Va rog introduceti o nota intre 1 si 10')->with('denumirea', $denumirea)->with('id', $id)->with('adaugare', 'Adaugare');
 	}
