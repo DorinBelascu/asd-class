@@ -5,6 +5,11 @@ class Materii extends Eloquent
 
 	protected $table = 'materii';
 
+    public function note()
+    {
+        return $this->hasMany('Note', 'materie_id');
+    }
+
 
 	public function Profesorimaterii()
     {
