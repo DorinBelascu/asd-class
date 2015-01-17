@@ -4,12 +4,12 @@ class CatalogAbsenteController extends BaseController {
 
 	public function index($denumirea, $id)
 	{
-		$adaugare = Session::get('adaugare');
-		if ($adaugare) 
-		{
-			$denumirea = Session::get( 'denumirea' );
-    		$id = Session::get( 'id' );
-		}
+		// $adaugare = Session::get('adaugare');
+		// if ($adaugare) 
+		// {
+		// 	$denumirea = Session::get( 'denumirea' );
+  //   		$id = Session::get( 'id' );
+		// }
 
 		$materie = Materii::where('denumirea', $denumirea)->get()->first();
 		if (! $materie)
@@ -74,9 +74,9 @@ class CatalogAbsenteController extends BaseController {
 				$absenta->stare = '0';	
 			}
 			$absenta->save();
-			return Redirect::route('catalog-absente')->with('result-success','Absenta a fost adaugata cu succes')->with('denumirea', $denumirea)->with('id', $id)->with('adaugare', 'Adaugare');;
+			return Redirect::route('catalog-absente', ['id' => $id, 'denumirea' => $denumirea])->with('result-success','Absenta a fost adaugata cu succes');
 		}
-		return Redirect::route('catalog-absente')->withInput()->witherrors($validator)->with('result-fail', 'Ati uitat sa introduceti data')->with('denumirea', $denumirea)->with('id', $id)->with('adaugare', 'Adaugare');
+		return Redirect::route('catalog-absente', ['id' => $id, 'denumirea' => $denumirea])->withInput()->witherrors($validator)->with('result-fail', 'Ati uitat sa introduceti data');
 	}
 
 	public function delete()
@@ -84,10 +84,10 @@ class CatalogAbsenteController extends BaseController {
 		$data = Input::all();
 		$absenta = Absente::where('id', $data['id'])->get()->first();
 		$absenta->delete();	
-		return Redirect::route('catalog-absente')->with('result-success', 'Stergerea s-a efectuat cu succes!')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');
+		return Redirect::route('catalog-absente', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->with('result-success', 'Stergerea s-a efectuat cu succes!');
 	}
 
-		public function edit()
+	public function edit()
 	{
 		$data = Input::all();
 		$materie = Materii::where('denumirea', $data['denumirea'])->get()->first();
@@ -132,8 +132,8 @@ class CatalogAbsenteController extends BaseController {
 				$absenta->stare = '0';	
 			}
 			$absenta->save();
-			return Redirect::route('catalog-absente')->with('result-success','Nota a fost modificata')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');;
+			return Redirect::route('catalog-absente', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->with('result-success','Nota a fost modificata');
 		}
-		return Redirect::route('catalog-absente')->withInput()->witherrors($validator)->with('result-fail', 'A aparut o problema la editarea absentei')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');
+		return Redirect::route('catalog-absente', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->withInput()->witherrors($validator)->with('result-fail', 'A aparut o problema la editarea absentei');
 	}
 }
