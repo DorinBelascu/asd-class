@@ -27,7 +27,7 @@
                 <ul class="dropdown-menu" role="menu">
                   <li><a href=" {{ URL::route('statistici-note') }}">Note</a></li>
                   <li class="divider"></li>
-                  <!-- <li><a href=" {{ URL::route('materii') }}">Absente</a></li> -->
+                  <li><a href=" {{ URL::route('statistici-absente') }}">Absente</a></li>
                 </ul>
               </li>
             </ul>
