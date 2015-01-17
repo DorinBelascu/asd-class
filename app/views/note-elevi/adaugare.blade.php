@@ -1,5 +1,7 @@
 <?php 
     $starea = [ '-' => '[Selectati starea]', 'publica' => 'publica', 'privata' => 'privata'];
+    $semestrul = ['-' => '[Selectati semestrul]' , '1' => 'Semestrul 1', '2' => 'Semestrul 2'];
+    $note = ['-' => '[Selectati valoarea notei]', '1' => '1' , '2' => '2' , '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9' , '10' => '10']
 ?>  
 <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -13,19 +15,24 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ Form::text('nota', null , array('class'=>'form-control', 'placeholder' => "Adauga o nota intre 1 si 10")) }}
-                            <span id="error-nota" class="error-message"></span>
+                            {{ Form::select('nota', $note, Input::old('Notele') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Introduceti o nota de la 1 la 10", ))}}
+                            <span id="error-nota-adaugare" class="error-message"></span>
                         </div>
                         <div class="col-md-6">
                             {{ Form::input('date', 'data', null, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
-                            <span id="error-data" class="error-message"></span>
+                            <span id="error-data-adaugare" class="error-message"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-offset-3 col-md-6">
+                        <div class="col-md-6">
                             {{ Form::select('starea', $starea, Input::old('Starea Notei') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Starea Notei", ))}}
-                            <span id="error-starea" class="error-message"></span>
+                            <span id="error-starea-adaugare" class="error-message"></span>
                         </div>
+                        <div class="col-md-6">
+                            {{ Form::select('semestrul', $semestrul, Input::old('Semestrul Notei') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Semestrul Notei", ))}}
+                            <span id="error-semestrul-adaugare" class="error-message"></span>
+                        </div>
+                    
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -37,3 +44,4 @@
             </div>
         </div>
     </div>
+

@@ -34,6 +34,8 @@
               <th>#</th>
               <th>Data</th>
               <th>Stare</th>
+              <th>Publica sau Privata </th>
+              <th>Semestrul</th>
               <th>Created at</th>
               <th>Updated at</th>
             </tr>
@@ -55,6 +57,7 @@
                       <td> publica </td>
                     @endif
                   </td>
+                  <td>{{ $absenta->semestru }}</td>
                   <td>{{ $absenta->created_at}}</td>
                   <td>{{ $absenta->updated_at}}</td>
                   <td class="text-center">

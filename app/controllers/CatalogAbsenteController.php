@@ -4,13 +4,6 @@ class CatalogAbsenteController extends BaseController {
 
 	public function index($denumirea, $id)
 	{
-		// $adaugare = Session::get('adaugare');
-		// if ($adaugare) 
-		// {
-		// 	$denumirea = Session::get( 'denumirea' );
-  //   		$id = Session::get( 'id' );
-		// }
-
 		$materie = Materii::where('denumirea', $denumirea)->get()->first();
 		if (! $materie)
 		{
@@ -46,6 +39,7 @@ class CatalogAbsenteController extends BaseController {
 			'data' => 'required',
 			'publica_sau_nu' => 'required',	
 			'motivata_sau_nemotivata' => 'required',
+			'semestrul' => 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
 			'required' => 'Ati uitat sa introduceti ceva',
@@ -55,6 +49,7 @@ class CatalogAbsenteController extends BaseController {
 			$absenta = new Absente;
 			$absenta->materie_id = $materie->id;
 			$absenta->elev_id = $id;
+			$absenta->semestru = $data['semestrul'];
 			$absenta->data = $data['data'];			
 			if ($data['publica_sau_nu'] == 'publica') 
 			{
@@ -104,6 +99,7 @@ class CatalogAbsenteController extends BaseController {
 			'data' => 'required',
 			'publica_sau_nu' => 'required',	
 			'motivata_sau_nemotivata' => 'required',
+			'semestru-edit' => 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
 			'required' => 'Ati uitat sa introduceti ceva',
@@ -113,6 +109,7 @@ class CatalogAbsenteController extends BaseController {
 			$absenta = Absente::find($data['id']);
 			$absenta->materie_id = $materie->id;
 			$absenta->elev_id = $data['id_elev'];
+			$absenta->semestru = $data['semestru-edit'];
 			$absenta->data = $data['data'];			
 			if ($data['publica_sau_nu'] == 'publica') 
 			{

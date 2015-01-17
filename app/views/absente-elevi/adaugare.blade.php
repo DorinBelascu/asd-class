@@ -1,6 +1,7 @@
 <?php 
     $motivata_sau_nemotivata = [ '-' => '[Selectati daca motivata sau nemotivata]', 'motivata' => 'motivata', 'nemotivata' => 'nemotivata'];
     $publica_sau_nu = ['-' => '[Selectati daca sa fie publica sau nu]', 'publica' => 'publica', 'privata' => 'privata'];
+    $semestrul = ['-' => '[Selectati semestrul]' , '1' => 'Semestrul 1', '2' => 'Semestrul 2'];
 ?>  
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -23,9 +24,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-offset-3 col-md-6">
+                    <div class="col-md-6">
                         {{ Form::select('publica_sau_nu', $publica_sau_nu, Input::old('Publica sau nu') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Publica sau nu", ))}}
                         <span id="error-starea" class="error-message"></span>
+                    </div>
+                    <div class="col-md-6">
+                        {{ Form::select('semestrul', $semestrul, Input::old('Semestrul Notei') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Semestrul Notei", ))}}
                     </div>
                 </div>
             </div>

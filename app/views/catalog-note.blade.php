@@ -37,6 +37,7 @@
               <th>Valoare</th>
               <th>Publica sau nu</th>
               <th>Data</th>
+              <th>Semestrul</th>
               <th>Created at</th>
               <th>Updated at</th>
             </tr>
@@ -52,9 +53,10 @@
                   @else
                       <td> Publica </td>
                   @endif    
-                  <td>{{ $nota->data}}</td>
-                  <td>{{ $nota->created_at}}</td>
-                  <td>{{ $nota->updated_at}}</td>
+                  <td>{{ $nota->data }}</td>
+                  <td>{{ $nota->semestru }}</td>
+                  <td>{{ $nota->created_at }}</td>
+                  <td>{{ $nota->updated_at }}</td>
                   <td class="text-center">
                       <!-- Modal -->
                       <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
@@ -70,38 +72,125 @@
         </div>
 </div>
 
-
 @stop
 
 @section('js')
 <script>
 
+// function validare()
+// {
+//   var data    = $('input[name="data"]').val();
+//   var nota = $('input[name="nota"').val();
+//   var starea  = $('select[name="starea"]').val();
+//   var error = false;
+//   $('span.error-message').html('');
+//   if (data.length != 10)
+//   {
+//     $('#error-data').html('Completati data!');
+//     error = true;
+//   }
+//   if (nota.length == 0)
+//   {
+//     $('#error-nota').html('Completati nota!');
+//     error = true;
+//   }
+//   if (starea == '-')
+//   {
+//     $('#error-starea').html('Completati starea!');
+//     error = true;
+//   }
+//   return !error;
+// }
 
-function validare()
+
+//   $('a').tooltip();
+//   $('button').tooltip();
+//   $('input').tooltip();
+//   $('input').keyup(function(){
+//     var val = $(this).val();
+//     if (val.length > 0)
+//     {
+//       $(this).parent().find('span.error-message').html('');
+//     }
+//     else
+//     {
+//       $(this).parent().find('span.error-message').html('Trebuie Completat');
+//     }
+//   });
+//   $('#btn-add-nota').click(function(e){
+    
+//     return validare();
+    
+//   });
+//   $('#btn-edit').click(function(e){
+//     return validare();
+//   });
+
+
+function validareAdaugare()
 {
   var data    = $('input[name="data"]').val();
-    var nota = $('input[name="nota"').val();
-    var starea  = $('select[name="starea"]').val();
-var error = false;
-    $('span.error-message').html('');
-    if (data.length != 10)
-    {
-      $('#error-data').html('Completati data!');
-      error = true;
-    }
-    if (nota.length == 0)
-    {
-      $('#error-nota').html('Completati nota!');
-      error = true;
-    }
-    if (starea == '-')
-    {
-      $('#error-starea').html('Completati starea!');
-      error = true;
-    }
-    return !error;
+  var nota = $('input[name="nota"').val();
+  var starea  = $('select[name="starea"]').val();
+  var semestrul = $ ('select[name="semestrul"]').val();
+  var error = false;
+  $('span.error-message').html('');
+  if (data.length != 10)
+  {
+    $('#error-data-adaugare').html('Completati data!');
+    error = true;
+  }
+  if (nota.length == 0)
+  {
+    $('#error-nota-adaugare').html('Completati nota!');
+    error = true;
+  }
+  if (starea == '-')
+  {
+    $('#error-starea-adaugare').html('Completati starea!');
+    error = true;
+  }
+
+  if (semestrul == '-')
+  {
+    $('#error-semestrul-adaugare').html('Completati semestrul!');
+    error = true;
+  }
+
+  return !error;
 }
 
+function validareEditare()
+{
+  var data    = $('input[name="data-edit"]').val();
+  var nota = $('input[name="nota-edit"').val();
+  var starea  = $('select[name="starea-edit"]').val();
+  var semestrul = $ ('select[name="semestrul-edit"]').val();
+  var error = false;
+  $('span.error-message').html('');
+  if (data.length != 10)
+  {
+    $('#error-data-edit').html('Completati data!');
+    error = true;
+  }
+  if (nota.length == 0)
+  {
+    $('#error-nota-edit').html('Completati nota!');
+    error = true;
+  }
+  if (starea == '-')
+  {
+    $('#error-starea-edit').html('Completati starea!');
+    error = true;
+  }
+
+  if (semestrul == '-')
+  {
+    $('#error-semestrul-edit').html('Completati semestrul!');
+    error = true;
+  }
+  return !error;
+}
 
   $('a').tooltip();
   $('button').tooltip();
@@ -118,12 +207,13 @@ var error = false;
     }
   });
   $('#btn-add-nota').click(function(e){
-    
-    return validare();
-    
+    return validareAdaugare();
   });
   $('#btn-edit').click(function(e){
-    return validare();
+    return validareEditare();
   });
+
 </script>
+@stop
+
 @stop

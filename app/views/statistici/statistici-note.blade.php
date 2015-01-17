@@ -27,6 +27,7 @@
       		<th><a href="{{URL::route('statistici-note') . '?sort=elev'}}">Elevul</a></th>
       		<th><a href="{{URL::route('statistici-note') . '?sort=materie'}}">Materia</a></th>
       		<th>Nota</th>
+          <th>Semestrul</th>
 		</tr>
 	</thead>
 
@@ -40,6 +41,7 @@
           <td>{{ $nota->elev->nume . ' ' . $nota->elev->prenume }}</td>
           <td>{{ $nota->materie->denumirea}}</td>
           <td>{{ $nota->valoare}}</td>
+          <td>{{ $nota->semestru }} </td>
         </tr>
     @endforeach   
       </tbody>

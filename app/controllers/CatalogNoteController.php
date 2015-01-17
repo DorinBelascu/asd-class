@@ -39,6 +39,7 @@ class CatalogNoteController extends BaseController {
 			'nota' => 'required|min:1|max:10|integer',
 			'data' => 'required',
 			'starea' => 'required',	
+			'semestrul' => 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
 			'required' => 'Ati uitat sa introduceti ceva',
@@ -52,7 +53,8 @@ class CatalogNoteController extends BaseController {
 			$nota->valoare = $data['nota'];
 			$nota->materie_id = $materie->id;
 			$nota->elev_id = $id;
-			$nota->data = $data['data'];			
+			$nota->data = $data['data'];	
+			$nota->semestru = $data['semestrul'];		
 			if ($data['starea'] == 'publica') 
 			{
 				$nota->publica_sau_nu = '1';
@@ -77,7 +79,6 @@ class CatalogNoteController extends BaseController {
 
 	public function edit()
 	{
-		dd('AICI');
 		$data = Input::all();
 		$materie = Materii::find($data['id_materie']);
 		if (! $materie)
@@ -90,9 +91,10 @@ class CatalogNoteController extends BaseController {
 			return Redirect::route('materii-catalog');
 		}
 		$rules = array(
-			'nota' => 'required|min:1|max:10|integer',
-			'data' => 'required',
-			'starea' => 'required',	
+			'nota-edit' => 'required|min:1|max:10|integer',
+			'data-edit' => 'required',
+			'starea-edit' => 'required',
+			'semestru-edit' => 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
 			'required' => 'Ati uitat sa introduceti ceva',
@@ -104,11 +106,12 @@ class CatalogNoteController extends BaseController {
 		if ($validator->passes()) 
 		{
 			$nota = Note::find($data['id']);
-			$nota->valoare = $data['nota'];
+			$nota->valoare = $data['nota-edit'];
 			$nota->materie_id = $materie->id;
 			$nota->elev_id = $data['id_elev'];
-			$nota->data = $data['data'];			
-			if ($data['starea'] == 'publica') 
+			$nota->semestru = $data['semestrul'];
+			$nota->data = $data['data-edit'];			
+			if ($data['starea-edit'] == 'publica') 
 			{
 				$nota->publica_sau_nu = '1';
 			}
