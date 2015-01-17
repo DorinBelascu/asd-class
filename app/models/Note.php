@@ -3,17 +3,15 @@
 class Note extends Eloquent
 {
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'note';
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+    public function Elev()
+    {
+        return $this->belongsTo('Elevi', 'elev_id');
+    }
 
+    public function Materie()
+    {
+        return $this->belongsTo('Materii', 'materie_id');
+    }
 }

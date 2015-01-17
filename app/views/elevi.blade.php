@@ -133,7 +133,7 @@
       $('#error-data_nasterii').html('Completati data nasterii!');
       error = true;
     }
-    if (genul = '-')
+    if (genul == '-')
     {
       $('#error-genul').html('Completati genul!')
     }
