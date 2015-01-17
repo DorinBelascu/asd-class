@@ -52,7 +52,6 @@ class EleviPhotoController extends BaseController
 	    foreach ($sizes as $key => $value) 
 	    {
 	    	$img = Image::make($path . '/' . $baseName . '-square.' . $uploadedFile->getClientOriginalExtension());
-	    	var_dump( $value );
 	    	$img->resize($value, $value , 
 	    		function ($constraint)
 	    		{

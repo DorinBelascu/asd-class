@@ -29,7 +29,6 @@ Route::get('test-image', function()
     foreach ($sizes as $key => $value) 
     {
     	$img = Image::make(storage_path() . '/photos/test-square.jpg');
-    	var_dump( $value );
     	$img->resize($value, $value , 
     		function ($constraint)
     		{

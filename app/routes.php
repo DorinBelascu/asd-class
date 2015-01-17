@@ -8,4 +8,5 @@ include 'routes/profesori-materii/profesori-materii.php';
 include 'routes/materii-profesori/materii-profesori.php';
 include 'routes/elevi/elevi-photo.php';
 include 'routes/commons/catalog.php';
+include 'routes/statistici/statistici.php';
 

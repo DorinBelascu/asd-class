@@ -75,6 +75,34 @@
 
 @section('js')
 <script>
+
+
+function validare()
+{
+  var data    = $('input[name="data"]').val();
+    var nota = $('input[name="nota"').val();
+    var starea  = $('select[name="starea"]').val();
+var error = false;
+    $('span.error-message').html('');
+    if (data.length != 10)
+    {
+      $('#error-data').html('Completati data!');
+      error = true;
+    }
+    if (nota.length == 0)
+    {
+      $('#error-nota').html('Completati nota!');
+      error = true;
+    }
+    if (starea == '-')
+    {
+      $('#error-starea').html('Completati starea!');
+      error = true;
+    }
+    return !error;
+}
+
+
   $('a').tooltip();
   $('button').tooltip();
   $('input').tooltip();
@@ -90,52 +118,12 @@
     }
   });
   $('#btn-add-nota').click(function(e){
-
-    var data = $('input[name="data"]').val();
-    var prenume = $('input[name="nota"').val();
-    var starea = $('select[name="starea"]').val();
-    document.write(data); 
-    var error = false;
-    $('span.error-message').html('');
-    if (data.length == 0)
-    {
-      $('#error-data').html('Completati data!');
-      error = true;
-    }
-    if (nota.length == 0)
-    {
-      $('#error-nota').html('Completati nota!');
-      error = true;
-    }
-    if (starea = '-')
-    {
-      $('#error-starea').html('Completati starea!')
-    }
-    return !error;
+    
+    return validare();
+    
   });
   $('#btn-edit').click(function(e){
-    var nume = $('input[name="nume-edit"]').val();
-    var prenume = $('input[name="prenume-edit"').val();
-    var data_nasterii = $('input[name="data_nasterii-edit"]').val();
-    var error = false;
-    $('span.error-message').html('');
-    if (nume.length == 0)
-    {
-      $('#error-nume-editare').html('Completati numele!');
-      error = true;
-    }
-    if (prenume.length == 0)
-    {
-      $('#error-prenume-editare').html('Completati prenumele!');
-      error = true;
-    }
-    if (data_nasterii.length != 10)
-    {
-      $('#error-data_nasterii-editare').html('Completati data nasterii!');
-      error = true;
-    }
-
-    return !error;
+    return validare();
   });
 </script>
 @stop

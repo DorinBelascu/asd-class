@@ -35,7 +35,7 @@
   		Count: <strong> {{$elevi->count()}} </strong>.
   		</p>
   		<div class="alert alert-info" role="alert">
-  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Student"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
   		</div>
 
     @include('elevi.adaugare')
@@ -133,7 +133,7 @@
       $('#error-data_nasterii').html('Completati data nasterii!');
       error = true;
     }
-    if (genul = '-')
+    if (genul == '-')
     {
       $('#error-genul').html('Completati genul!')
     }
