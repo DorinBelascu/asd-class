@@ -17,10 +17,10 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ Form::text('nota', null , array('class'=>'form-control', 'placeholder' => "Adauga o nota intre 1 si 10")) }}
+                            {{ Form::text('nota', $nota->valoare , array('class'=>'form-control', 'placeholder' => "Adauga o nota intre 1 si 10")) }}
                         </div>
                         <div class="col-md-6">
-                            {{ Form::input('date', 'data', null, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
+                            {{ Form::input('date', 'data', $nota->data, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
                         </div>
                     </div>
                     <div class="row">

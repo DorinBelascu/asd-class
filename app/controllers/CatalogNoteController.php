@@ -4,13 +4,6 @@ class CatalogNoteController extends BaseController {
 
 	public function index($denumirea, $id)
 	{
-		// $adaugare = Session::get('adaugare');
-		// if ($adaugare) 
-		// {
-		// 	$denumirea = Session::get( 'denumirea' );
-  //   		$id = Session::get( 'id' );
-		// }
-
 		$materie = Materii::where('denumirea','=', $denumirea)->get()->first();
 		if (! $materie)
 		{
@@ -71,7 +64,7 @@ class CatalogNoteController extends BaseController {
 			$nota->save();
 			return Redirect::route('catalog-note', ['id' => $id, 'denumirea' => $denumirea])->with('result-success', 'Nota a fost adaugata');
 		}
-		return Redirect::route('catalog-note')->withInput()->witherrors($validator)->with('result-fail', 'Va rog introduceti o nota intre 1 si 10')->with('denumirea', $denumirea)->with('id', $id)->with('adaugare', 'Adaugare');
+		return Redirect::route('catalog-note', ['id' => $id, 'denumirea' => $denumirea])->withInput()->witherrors($validator)->with('result-fail', 'Va rog introduceti o nota intre 1 si 10');
 	}
 
 	public function delete()
@@ -79,11 +72,12 @@ class CatalogNoteController extends BaseController {
 		$data = Input::all();
 		$nota = Note::where('id', $data['id'])->get()->first();
 		$nota->delete();	
-		return Redirect::route('catalog-note')->with('result-success', 'Stergerea s-a efectuat cu succes!')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');
+		return Redirect::route('catalog-note', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->with('result-success', 'Stergerea s-a efectuat cu succes!');
 	}
 
 	public function edit()
 	{
+		dd('AICI');
 		$data = Input::all();
 		$materie = Materii::find($data['id_materie']);
 		if (! $materie)
@@ -123,8 +117,8 @@ class CatalogNoteController extends BaseController {
 				$nota->publica_sau_nu = '0';	
 			}
 			$nota->save();
-			return Redirect::route('catalog-note')->with('result-success','Nota a fost modificata')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');;
+			return Redirect::route('catalog-note', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->with('result-success','Nota a fost modificata');
 		}
-		return Redirect::route('catalog-note')->withInput()->witherrors($validator)->with('result-fail', 'Va rog introduceti o nota intre 1 si 10')->with('denumirea', $data['denumirea'])->with('id', $data['id_elev'])->with('adaugare', 'Adaugare');
+		return Redirect::route('catalog-note', ['id' => $data['elev_id'], 'denumirea' => $data['denumirea']])->withInput()->witherrors($validator)->with('result-fail', 'Va rog introduceti o nota intre 1 si 10');
 	}
 }
