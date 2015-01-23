@@ -10,6 +10,7 @@ class CatalogNoteController extends BaseController {
 		{
 			return Redirect::route('materii-catalog', ['id' => $id_elev]);
 		}
+
 	 	return View::make('catalog-note')->with([
 	 		'note' => Note::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
 	 		'elev' => $elev,
@@ -74,7 +75,6 @@ class CatalogNoteController extends BaseController {
 		{
 			return Redirect::back();
 		}
-
 		$id_elev = $nota->elev_id;
 		$id_materie = $nota->materie_id;
 		$materie = Materii::find($nota->materie_id);
@@ -94,7 +94,6 @@ class CatalogNoteController extends BaseController {
 
 		if ($validator->passes()) 
 		{
-			// echo '<pre>';
 			$nota->valoare        = $data['nota-edit'];
 			$nota->data           = $data['data-edit'];	
 			$nota->semestru       = $data['semestru-edit'];	
