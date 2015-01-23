@@ -72,5 +72,53 @@
         </div>
 </div>
 
+@stop
+
+@section('js')
+<script>
+  $('a').tooltip();
+  $('button').tooltip();
+  $('input').tooltip();
+  $('input').keyup(function(){
+    var val = $(this).val();
+    if (val.length > 0)
+    {
+      $(this).parent().find('span.error-message').html('');
+    }
+    else
+    {
+      $(this).parent().find('span.error-message').html('Trebuie Completat');
+    }
+  });
+  $('#btn-add').click(function(e){
+    var data = $('input[name="data"]').val();
+    var motivata_sau_nemotivata = $('select[name="motivata_sau_nemotivata"]').val();
+    var publica_sau_nu = $('select[name="publica_sau_nu"]').val();
+    var semestrul = $('select[name="semestrul"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (data.length != 10)
+    {
+      $('#error-data').html('Completati data!');
+      error = true;
+    }
+    if (motivata_sau_nemotivata == '-')
+    {
+      $('#error-motivata_sau_nemotivata').html('Completati starea!');
+      error = true;
+    }
+    if (publica_sau_nu == '-')
+    {
+      $('#error-publica_sau_nu').html('Completati campul!');
+      error = true;
+    }
+    if (semestrul == '-')
+    {
+      $('#error-semestrul').html('Completati semestrul!');
+      error = true;
+    }
+    return !error;
+  });
+</script>
 
 @stop

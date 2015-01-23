@@ -19,25 +19,26 @@
                         <span id="error-data" class="error-message"></span>
                     </div>
                     <div class="col-md-6">
-                        {{ Form::select('motivata_sau_nemotivata', $motivata_sau_nemotivata, Input::old('Motivata sau nemotivata') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Daca sa fie motivata sau nemotivata", ))}}
-                        <span id="error-nota" class="error-message"></span>
+                        {{ Form::select('motivata_sau_nemotivata', $motivata_sau_nemotivata, Input::old('Motivata sau nemotivata') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Motivata sau nemotivata", ))}}
+                        <span id="error-motivata_sau_nemotivata" class="error-message"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         {{ Form::select('publica_sau_nu', $publica_sau_nu, Input::old('Publica sau nu') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Publica sau nu", ))}}
-                        <span id="error-starea" class="error-message"></span>
+                        <span id="error-publica_sau_nu" class="error-message"></span>
                     </div>
                     <div class="col-md-6">
                         {{ Form::select('semestrul', $semestrul, Input::old('Semestrul Notei') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Semestrul Notei", ))}}
+                        <span id="error-semestrul" class="error-message"></span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                {{ Form::submit('Adauga', array('id' =>'btn-add-nota', 'class' => "btn btn-success")) }}       
+                {{ Form::submit('Adauga', array('class' => 'btn btn-success','id' =>'btn-add')) }}       
+                {{ Form::close() }}
             </div>
-            {{ Form::close() }}
 
         </div>
     </div>

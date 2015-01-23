@@ -2,7 +2,7 @@ To Do List:
 
 #1. 22.11.2014
 
-	Cand adaug un elev, dupa ce selectez genul si dau adaugare, apare eroarea: "Trebuie completat"
+	Cand adaug un elev, dupa ce selectez genul si dau adaugare, apare eroarea: "Trebuie completat" -> Rezolvat (Stefan)
 
 #2. 22.11.2014
 

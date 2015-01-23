@@ -135,7 +135,8 @@
     }
     if (genul == '-')
     {
-      $('#error-genul').html('Completati genul!')
+      $('#error-genul').html('Completati genul!');
+      error = true;
     }
     return !error;
   });

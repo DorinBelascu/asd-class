@@ -64,7 +64,7 @@ class CatalogAbsenteController extends BaseController {
 				$absenta->stare = '0';	
 			}
 			$absenta->save();
-			return Redirect::route('catalog-absente', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->with('result-success', 'Nota a fost adaugata');
+			return Redirect::route('catalog-absente', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->with('result-success', 'Absenta a fost adaugata');
 		}
 		return Redirect::route('catalog-absente', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->withInput()->witherrors($validator)->with('result-fail', 'Va rog corectati datele');
 	}
@@ -112,27 +112,15 @@ class CatalogAbsenteController extends BaseController {
 		{
 			$absenta->materie_id = $id_materie;
 			$absenta->elev_id = $id_elev;
-			$absenta->semestru = $data['semestru-edit'];
-			$absenta->data = $data['data'];			
-			if ($data['publica_sau_nu'] == 'publica') 
-			{
-				$absenta->publica_sau_nu = '1';
-			}
-			else
-			{
-				$absenta->publica_sau_nu = '0';	
-			}
-
-			if ($data['motivata_sau_nemotivata'] == 'motivata') 
-			{
-				$absenta->stare = '1';
-			}
-			else
-			{
-				$absenta->stare = '0';	
-			}
+			$absenta->data = $data['data'];
+			$aux1 = Input::get('motivata_sau_nemotivata');
+			$aux2= Input::get('publica_sau_nu');
+			$aux3 = Input::get('semestrul');
+			$absenta->stare = intval($aux1);
+			$absenta->publica_sau_nu = intval($aux2);
+			$absenta->semestru = intval($aux3);
 			$absenta->save();
-			return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-success', 'Nota a fost modificata');
+			return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-success', 'Absenta a fost modificata');
 		}
 		return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-fail', 'Va rog corectati datele');
 	}
