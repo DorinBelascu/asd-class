@@ -1,7 +1,7 @@
 <?php
 
-class CatalogController extends BaseController {
-
+class CatalogController extends BaseController 
+{
 	public function index()
 	{
 		$elevi = Elevi::orderBy('nume')->get();

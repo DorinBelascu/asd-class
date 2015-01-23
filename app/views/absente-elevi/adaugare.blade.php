@@ -11,7 +11,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myLargeModalLabel">Adauga absenta noua elevului {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}}</h4>
             </div>
-            {{ Form::open(['url'=> URL::route('add-new-absenta', ['denumirea'=>$materie->denumirea, 'id' => $elev->id]), 'class' => 'form']) }}
+            {{ Form::open(['url'=> URL::route('add-new-absenta', ['id_elev' => $elev->id, 'id_materie' => $materie->id]), 'class' => 'form']) }}
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">

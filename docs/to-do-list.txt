@@ -49,3 +49,4 @@ To Do List:
 	-Sa se adauge coloana photo la tabela profesori si tabela materii
 	-Optiunea statistici-absente
 	-de verificat validarile jquery la toate adaugarile
+	

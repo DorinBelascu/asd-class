@@ -11,7 +11,7 @@ return array(
 
 
 
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Bucharest',
 
 
 	'locale' => 'en',

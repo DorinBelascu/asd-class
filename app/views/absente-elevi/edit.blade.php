@@ -11,11 +11,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myLargeModalLabel">Editeasa absenta elevului {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}}</h4>
             </div>
-            {{ Form::open(['url'=> URL::route('edit-absenta', ['denumirea'=>$materie->denumirea, 'id' => $elev->id]), 'class' => 'form']) }}
-            {{ Form::hidden('id', $absenta->id)}}
-            {{ Form::hidden('id_elev', $elev->id)}}
-            {{ Form::hidden('denumirea', $materie->denumirea)}}
-            {{ Form::hidden('id_materie', $materie->id)}}
+            {{ Form::open(['url'=> URL::route('edit-absenta',['id' => $absenta->id]), 'class' => 'form']) }}
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">

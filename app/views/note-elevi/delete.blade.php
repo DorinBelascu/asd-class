@@ -8,10 +8,8 @@
         <h4 class="modal-title" id="myModalLabel">Delete nota ( {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}} )</h4>
       </div>
       <div class="modal-body">
-        {{ Form::open(['url'=> URL::route('delete-nota'), 'class' => 'form']) }}
-        {{ Form::hidden('id', $nota->id)}}
-        {{ Form::hidden('id_elev', $elev->id)}}
-        {{ Form::hidden('denumirea', $materie->denumirea)}}
+        {{ Form::open(['url'=> URL::route('delete-nota', ['id' => $nota->id]), 'class' => 'form']) }}
+        
         Esti sigur ca vrei sa stergi nota lui "{{ $elev->nume . ' ' . $elev->prenume }}"?
       </div>
       <div class="modal-footer">

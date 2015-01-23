@@ -42,7 +42,6 @@
           </thead>
           <tbody>
             @foreach($absente as $i => $absenta)
-              @if (($elev->id == $absenta->elev_id) && ($materie->id == $absenta->materie_id))
                 <tr>
                   <td>{{ $i+1 }}.</td>
                   <td>{{ $absenta->data}}</td>
@@ -61,14 +60,12 @@
                   <td>{{ $absenta->created_at}}</td>
                   <td>{{ $absenta->updated_at}}</td>
                   <td class="text-center">
-                      <!-- Modal -->
                       <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Delete this subject({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
                       @include('absente-elevi.delete')
                       <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this absenta({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
                       @include('absente-elevi.edit')
                   </td>
                 </tr>
-              @endif
             @endforeach   
             </tbody>
           </table>

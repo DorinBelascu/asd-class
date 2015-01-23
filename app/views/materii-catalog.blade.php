@@ -14,9 +14,16 @@
 					    {{ $materie->denumirea}} <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
-					    <li>{{ HTML::link(URL::route('catalog-note',['denumirea'=>$materie->denumirea, 'id' => $id]), 'Note') }}</li>
+					    <li>{{ HTML::link(URL::route('catalog-note',[
+					    	'denumirea'  => $materie->denumirea, 
+					    	'id_elev'    => $id,
+					    	'id_materie' => $materie->id]), 'Note ...') }}</li>
 					    <li class="divider"></li>
-					    <li>{{ HTML::link(URL::route('catalog-absente',['denumirea'=>$materie->denumirea, 'id' => $id]), 'Absente') }}</li>
+					    <li>{{ HTML::link(URL::route('catalog-absente',[
+					    	'denumirea'  => $materie->denumirea, 
+					    	'id_elev'    => $id,
+					    	'id_materie' => $materie->id]), 'Absente ...') }}</li>
+					    <li></li>
 					  </ul>
 					</div>
 		        </div>

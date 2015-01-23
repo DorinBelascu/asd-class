@@ -1,6 +1,7 @@
 <?php
 
-class MateriiCatalogController extends BaseController {
+class MateriiCatalogController extends BaseController 
+{
 
 	public function index($id)
 	{
@@ -12,7 +13,7 @@ class MateriiCatalogController extends BaseController {
 	 	$materii = Materii::orderBy('denumirea')->get();
 	 	return View::make('materii-catalog')->with([
 	 		'materii' => $materii, 
-	 		'id' => $id
+	 		'id'      => $id
 	 	]);
 	}
 }

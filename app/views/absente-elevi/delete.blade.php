@@ -8,10 +8,7 @@
         <h4 class="modal-title" id="myModalLabel">Delete absenta ( {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}} )</h4>
       </div>
       <div class="modal-body">
-        {{ Form::open(['url'=> URL::route('delete-absenta'), 'class' => 'form']) }}
-        {{ Form::hidden('id', $absenta->id) }}
-        {{ Form::hidden('id_elev', $elev->id) }}
-        {{ Form::hidden('denumirea', $materie->denumirea) }}
+        {{ Form::open(['url'=> URL::route('delete-absenta', ['id' => $absenta->id]), 'class' => 'form']) }}
         Esti sigur ca vrei sa stergi absenta lui "{{ $elev->nume . ' ' . $elev->prenume }}"?
       </div>
       <div class="modal-footer">

@@ -2,53 +2,48 @@
 
 class CatalogAbsenteController extends BaseController {
 
-	public function index($denumirea, $id)
+	public function index($denumirea, $id_elev, $id_materie)
 	{
-		$materie = Materii::where('denumirea', $denumirea)->get()->first();
-		if (! $materie)
+		$materie = Materii::find($id_materie);
+		$elev     = Elevi::find($id_elev);
+		if( ! $materie || ! $elev)
 		{
-			return Redirect::route('materii-catalog');	
+			return Redirect::route('materii-catalog', ['id' => $id_elev]);
 		}
-		$elev = Elevi::find($id);
-		if(! $elev)
-		{
-			return Redirect::route('materii-catalog');
-		}
-	 	$absente = Absente::orderBy('data')->get();
 	 	return View::make('catalog-absente')->with([
-	 		'absente' => $absente, 
+	 		'absente' => Absente::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
 	 		'elev' => $elev,
-	 		'materie' => $materie, 
+	 		'materie' => $materie
 	 	]);
 	}
 
-	public function showAddForm($denumirea, $id)
+	public function insert($id_elev, $id_materia)
 	{
-		$materie = Materii::where('denumirea','=', $denumirea)->get()->first();
-		if (! $materie)
+		$materie = Materii::find($id_materia);
+		$elev     = Elevi::find($id_elev);
+		if( ! $materie || ! $elev)
 		{
-			return Redirect::route('materii-catalog');	
-		}
-		$elev = Elevi::find($id);
-		if(! $elev)
-		{
-			return Redirect::route('materii-catalog');
+			return Redirect::route('catalog-absente', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea]);
 		}
 		$data = Input::all();
 		$rules = array(
 			'data' => 'required',
-			'publica_sau_nu' => 'required',	
+			'publica_sau_nu' => 'required|in:publica,privata',	
 			'motivata_sau_nemotivata' => 'required',
 			'semestrul' => 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Ati uitat sa introduceti ceva',
+			'data.required' => 'Ati uitat sa introduceti data',
+			'publica_sau_nu.required' => 'Ati uitat sa introduceti daca e publica sau nu',
+			'motivata_sau_nemotivata.required' => 'Ati uitat sa introduceti daca e motivata sau nemotivata',
+			'semestrul.required' => 'Ati uitat sa introduceti semestrul',
+
 		));
 		if ($validator->passes()) 
 		{
 			$absenta = new Absente;
-			$absenta->materie_id = $materie->id;
-			$absenta->elev_id = $id;
+			$absenta->materie_id = $id_materia;
+			$absenta->elev_id = $id_elev;
 			$absenta->semestru = $data['semestrul'];
 			$absenta->data = $data['data'];			
 			if ($data['publica_sau_nu'] == 'publica') 
@@ -69,46 +64,54 @@ class CatalogAbsenteController extends BaseController {
 				$absenta->stare = '0';	
 			}
 			$absenta->save();
-			return Redirect::route('catalog-absente', ['id' => $id, 'denumirea' => $denumirea])->with('result-success','Absenta a fost adaugata cu succes');
+			return Redirect::route('catalog-absente', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->with('result-success', 'Nota a fost adaugata');
 		}
-		return Redirect::route('catalog-absente', ['id' => $id, 'denumirea' => $denumirea])->withInput()->witherrors($validator)->with('result-fail', 'Ati uitat sa introduceti data');
+		return Redirect::route('catalog-absente', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->withInput()->witherrors($validator)->with('result-fail', 'Va rog corectati datele');
 	}
 
-	public function delete()
+	public function delete($id)
 	{
-		$data = Input::all();
-		$absenta = Absente::where('id', $data['id'])->get()->first();
-		$absenta->delete();	
-		return Redirect::route('catalog-absente', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->with('result-success', 'Stergerea s-a efectuat cu succes!');
+		$absenta = Absente::find($id);
+		if( $absenta )
+		{
+			$id_elev = $absenta->elev_id;
+			$id_materie = $absenta->materie_id;
+			$materie = Materii::find($absenta->materie_id);
+			$absenta->delete();
+			return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-success', 'Stergerea s-a efectuat cu succes!');
+		}
+		return Redirect::back();
 	}
 
-	public function edit()
+	public function update($id)
 	{
+		$absenta = Absente::find($id);
+		if( ! $absenta )
+		{
+			return Redirect::back();
+		}
+
+		$id_elev = $absenta->elev_id;
+		$id_materie = $absenta->materie_id;
+		$materie = Materii::find($absenta->materie_id);
 		$data = Input::all();
-		$materie = Materii::where('denumirea', $data['denumirea'])->get()->first();
-		if (! $materie)
-		{
-			return Redirect::route('materii-catalog');	
-		}
-		$elev = Elevi::find($data['id_elev']);
-		if(! $elev)
-		{
-			return Redirect::route('materii-catalog');
-		}
 		$rules = array(
 			'data' => 'required',
-			'publica_sau_nu' => 'required',	
-			'motivata_sau_nemotivata' => 'required',
-			'semestru-edit' => 'required',
+			'publica_sau_nu' => 'required|in:publica,privata',	
+			'motivata_sau_nemotivata' => 'required|in:motivata,nemotivata',
+			'semestru-edit' => 'required|in:Semestrul 1,Semestrul 2',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Ati uitat sa introduceti ceva',
+			'data.required' => 'Ati uitat sa introduceti data',
+			'publica_sau_nu.required' => 'Ati uitat sa introduceti daca e publica sau nu',
+			'motivata_sau_nemotivata.required' => 'Ati uitat sa introduceti daca e motivata sau nemotivata',
+			'semestru-edit' => 'Ati uitat sa introduceti semestrul',
 		));
+
 		if ($validator->passes()) 
 		{
-			$absenta = Absente::find($data['id']);
-			$absenta->materie_id = $materie->id;
-			$absenta->elev_id = $data['id_elev'];
+			$absenta->materie_id = $id_materie;
+			$absenta->elev_id = $id_elev;
 			$absenta->semestru = $data['semestru-edit'];
 			$absenta->data = $data['data'];			
 			if ($data['publica_sau_nu'] == 'publica') 
@@ -129,8 +132,8 @@ class CatalogAbsenteController extends BaseController {
 				$absenta->stare = '0';	
 			}
 			$absenta->save();
-			return Redirect::route('catalog-absente', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->with('result-success','Nota a fost modificata');
+			return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-success', 'Nota a fost modificata');
 		}
-		return Redirect::route('catalog-absente', ['id' => $data['id_elev'], 'denumirea' => $data['denumirea']])->withInput()->witherrors($validator)->with('result-fail', 'A aparut o problema la editarea absentei');
+		return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-fail', 'Va rog corectati datele');
 	}
 }

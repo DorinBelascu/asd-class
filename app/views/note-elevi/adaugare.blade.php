@@ -11,7 +11,7 @@
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="myLargeModalLabel">Adauga nota noua elevului {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}}</h4>
                 </div>
-                {{ Form::open(['url'=> URL::route('add-new-nota', ['denumirea'=>$materie->denumirea, 'id' => $elev->id]), 'class' => 'form']) }}
+                {{ Form::open(['url'=> URL::route('add-new-nota', ['id_elev' => $elev->id, 'id_materie' => $materie->id]), 'class' => 'form']) }}
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -19,7 +19,7 @@
                             <span id="error-nota-adaugare" class="error-message"></span>
                         </div>
                         <div class="col-md-6">
-                            {{ Form::input('date', 'data', null, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
+                            {{ Form::input('date', 'data', Carbon\Carbon::now()->format('Y-m-d'), array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
                             <span id="error-data-adaugare" class="error-message"></span>
                         </div>
                     </div>
