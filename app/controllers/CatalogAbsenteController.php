@@ -90,35 +90,27 @@ class CatalogAbsenteController extends BaseController {
 		{
 			return Redirect::back();
 		}
-
 		$id_elev = $absenta->elev_id;
 		$id_materie = $absenta->materie_id;
 		$materie = Materii::find($absenta->materie_id);
 		$data = Input::all();
 		$rules = array(
-			'data' => 'required',
-			'publica_sau_nu' => 'required|in:publica,privata',	
-			'motivata_sau_nemotivata' => 'required|in:motivata,nemotivata',
-			'semestru-edit' => 'required|in:Semestrul 1,Semestrul 2',
+			'data-edit' => 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'data.required' => 'Ati uitat sa introduceti data',
-			'publica_sau_nu.required' => 'Ati uitat sa introduceti daca e publica sau nu',
-			'motivata_sau_nemotivata.required' => 'Ati uitat sa introduceti daca e motivata sau nemotivata',
-			'semestru-edit' => 'Ati uitat sa introduceti semestrul',
+			'data-edit.required' => 'Ati uitat sa introduceti data',
 		));
-
 		if ($validator->passes()) 
 		{
 			$absenta->materie_id = $id_materie;
 			$absenta->elev_id = $id_elev;
-			$absenta->data = $data['data'];
+			$absenta->data = $data['data-edit'];
 			$aux1 = Input::get('motivata_sau_nemotivata');
 			$aux2= Input::get('publica_sau_nu');
 			$aux3 = Input::get('semestrul');
-			$absenta->stare = intval($aux1);
-			$absenta->publica_sau_nu = intval($aux2);
-			$absenta->semestru = intval($aux3);
+			$absenta->stare = $aux1;
+			$absenta->publica_sau_nu = $aux2;
+			$absenta->semestru = $aux3;
 			$absenta->save();
 			return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-success', 'Absenta a fost modificata');
 		}

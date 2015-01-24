@@ -62,7 +62,7 @@
                   <td class="text-center">
                       <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Delete this subject({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
                       @include('absente-elevi.delete')
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this absenta({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $absenta->id }}" data-placement="top" title="Edit this absenta({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
                       @include('absente-elevi.edit')
                   </td>
                 </tr>
@@ -115,6 +115,17 @@
     if (semestrul == '-')
     {
       $('#error-semestrul').html('Completati semestrul!');
+      error = true;
+    }
+    return !error;
+  });
+  $('#btn-edit').click(function(e){
+    var data_edit = $('input[name="data-edit"]').val();
+    var error = false;
+    $('span.error-message').html('');
+    if (data_edit.length != 10)
+    {
+      $('#error-data-edit').html('Completati data!');
       error = true;
     }
     return !error;

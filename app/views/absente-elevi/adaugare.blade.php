@@ -15,7 +15,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {{ Form::input('date', 'data', null, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
+                        {{ Form::input('date', 'data', Carbon\Carbon::now()->format('Y-m-d'), array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data notei")) }}
                         <span id="error-data" class="error-message"></span>
                     </div>
                     <div class="col-md-6">
