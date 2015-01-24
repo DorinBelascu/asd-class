@@ -63,7 +63,6 @@ class EleviPhotoController extends BaseController
 	    	->save($path . '/' . $baseName . $key . $extention);
 	    }
 
-
-		//return Redirect::route('elevi_photo', ['id' => $id])->with('result-success','Poza a fost adaugata cu succes');
+	return Redirect::route('elevi_photo', ['id' => $id])->with('result-success','Poza a fost adaugata cu succes');
 	}
 }

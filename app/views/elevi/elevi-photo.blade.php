@@ -28,9 +28,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div style="width: 240px; text-align:center; margin:0px auto">
-                  {{ 
-                  HTML::image('images/photos/elevi/' . $elev->photo, $elev->photo,['class' => 'img-responsive']) 
-                  }}
+                  {{ HTML::image('images/photos/elevi/' . str_replace('(-)', 'medium', $elev->photo), $elev->photo,['class' => 'img-responsive', 'style' => 'width:100%']) }} 
                 </div>
               </div>
             </div>
