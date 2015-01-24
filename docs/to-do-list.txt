@@ -52,3 +52,11 @@ To Do List:
 
 #12 24.01.2015
 	Cand vreau sa sterg o materie care este predata de un profesor, apare eroare: nu se poate sterge o inregistrare dintr-o tabela legata de alta tabela (gata)
+
+#12 24.01.2015
+	-Sortarea la statistici dupa fiecare coloana de acolo (aproape gata)
+	-Sa putem adauga teza 
+	-La statistici se adauga un nou link cu medii
+	-Cand dau pe profesor view this profesor o sa accesez profilul profesorului unde se poate si nota
+	-Tipuri de conturi admin,diriginte,elev,profesor(roluri)
+	
