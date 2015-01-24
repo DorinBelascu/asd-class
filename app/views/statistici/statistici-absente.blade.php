@@ -27,6 +27,7 @@
       <th><a href="{{URL::route('statistici-absente') . '?sort=elev'}}">Elevul</a></th>
       <th><a href="{{URL::route('statistici-absente') . '?sort=materie'}}">Materia</a></th>
       <th>Starea</th>
+      <th>Semestrul</th>
 		</tr>
 	</thead>
 
@@ -47,6 +48,7 @@
           @else
             <td>Motivata</td>
           @endif
+          <td>{{ $absenta->semestru }}</td>
         </tr>
     @endforeach   
       </tbody>
