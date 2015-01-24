@@ -9,7 +9,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'asdclass',
 			'username'  => 'root',
-			'password'  => 'radacina123',
+			'password'  => '123qwe',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
