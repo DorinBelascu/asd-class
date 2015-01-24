@@ -10,7 +10,6 @@ class Materii extends Eloquent
         return $this->hasMany('Note', 'materie_id');
     }
 
-
 	public function Profesorimaterii()
     {
         return $this->hasMany('ProfesorMaterii', 'materie_id');

@@ -10,24 +10,24 @@ To Do List:
 
 #3. 22.11.2014
 
-	De pus coloana pt poza la profesori.
+	De pus coloana pt poza la profesori. (gata)
 	Poza se incarca din profil profesor.
 
 #4. 22.11.2014
 	
 	Elevii pot da note profesorilor. 
-	Tabela noua pt notele acordate profesorilor.
+	Tabela noua pt notele acordate profesorilor. (gata)
 	
 #5. 29.11.2014
 
-	Pe pagina cu materii (http://localhost/asd-class/public/materii) tooltip-ul de la "vezi profesorii care predau materia asta" are in  paranteza id-ul materiei. Sa punem in paranteza numarul de profesori care predau materia respectiva.
-	La fel si la materiile profesorilor.
+	Pe pagina cu materii (http://localhost/asd-class/public/materii) tooltip-ul de la "vezi profesorii care predau materia asta" are in  paranteza id-ul materiei. Sa punem in paranteza numarul de profesori care predau materia respectiva. (gata)
+	La fel si la materiile profesorilor. 
 
 #6 29.11.2014
 	-opiune in meniul principal denumita "catalog"
 	-de la catalog ajung la o pagina cu icon-uri pentru toti elevi
 	-cand se face click pe un elev sa ajungem la o pagina cu iconite pentru toate materiile
-	-la click pe o materie sa ajungem la o pagina unde vedem notele si absentele
+	-la click pe o materie sa ajungem la o pagina unde vedem notele si absentele (GATA)
 
 #7 29.11.2014
 	validare la size la photo,photo by default
@@ -39,14 +39,16 @@ To Do List:
 	480px
 
 #9 9.12.2014
-	Validarea pentru adaugarea materiei prezinta defecte(in cazul in care deja exista o materie a carei nume incepe cu numele altei materii Limba Romana-Limba Germana)
+	Validarea pentru adaugarea materiei prezinta defecte(in cazul in care deja exista o materie a carei nume incepe cu numele altei materii Limba Romana-Limba Germana) (gata)
 
 #10 14.12.2014 
 	Validarea pentru adaugarea unui elev are probleme la data.Cand incerci sa adaugi o data nu poti adauga 31 la zi
 	
 #11 10.01.2015
-	-Sa se adauge coloana semestru la tabela note si sa se poata completa in formular
-	-Sa se adauge coloana photo la tabela profesori si tabela materii
-	-Optiunea statistici-absente
+	-Sa se adauge coloana semestru la tabela note si sa se poata completa in formular (gata)
+	-Sa se adauge coloana photo la tabela profesori si tabela materii (gata)
+	-Optiunea statistici-absente (gata)
 	-de verificat validarile jquery la toate adaugarile
-	
+
+#12 24.01.2015
+	Cand vreau sa sterg o materie care este predata de un profesor, apare eroare: nu se poate sterge o inregistrare dintr-o tabela legata de alta tabela (gata)

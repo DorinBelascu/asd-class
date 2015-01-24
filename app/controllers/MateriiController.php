@@ -5,6 +5,7 @@ class MateriiController extends BaseController {
 	public function index()
 	{
 		$materii = Materii::orderBy('denumirea')->paginate(5);
+		// dd($materii[0]->Profesorimaterii->count());
 		$current_page = Input::get('page');
 		if($current_page > $materii->getLastPage())
 		{
@@ -58,6 +59,7 @@ class MateriiController extends BaseController {
 	public function delete()
 	{
 		$materie = Materii::findOrFail(Input::get('id'));
+
 		$materie->delete();	
 		return Redirect::route('materii')->with('result-success', 'Stergerea s-a efectuat cu succes!');
 	}
