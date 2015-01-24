@@ -6,7 +6,7 @@ To Do List:
 
 #2. 22.11.2014
 
-	Cand adaug un profesor, imediat ce incep sa completez data, apare eroarea: "Completati genul"
+	Cand adaug un profesor, imediat ce incep sa completez data, apare eroarea: "Completati genul" (nu exista!)
 
 #3. 22.11.2014
 
@@ -21,7 +21,7 @@ To Do List:
 #5. 29.11.2014
 
 	Pe pagina cu materii (http://localhost/asd-class/public/materii) tooltip-ul de la "vezi profesorii care predau materia asta" are in  paranteza id-ul materiei. Sa punem in paranteza numarul de profesori care predau materia respectiva. (gata)
-	La fel si la materiile profesorilor. 
+	La fel si la materiile profesorilor. (gata)
 
 #6 29.11.2014
 	-opiune in meniul principal denumita "catalog"
@@ -30,19 +30,20 @@ To Do List:
 	-la click pe o materie sa ajungem la o pagina unde vedem notele si absentele (GATA)
 
 #7 29.11.2014
-	validare la size la photo,photo by default
+	validare la size la photo,photo by default (gata)
 
 #8. 6.12.2014
 	48px
 	120px
 	240px
 	480px
+	(GATA)
 
 #9 9.12.2014
 	Validarea pentru adaugarea materiei prezinta defecte(in cazul in care deja exista o materie a carei nume incepe cu numele altei materii Limba Romana-Limba Germana) (gata)
 
 #10 14.12.2014 
-	Validarea pentru adaugarea unui elev are probleme la data.Cand incerci sa adaugi o data nu poti adauga 31 la zi
+	Validarea pentru adaugarea unui elev are probleme la data.Cand incerci sa adaugi o data nu poti adauga 31 la zi (gata)
 	
 #11 10.01.2015
 	-Sa se adauge coloana semestru la tabela note si sa se poata completa in formular (gata)

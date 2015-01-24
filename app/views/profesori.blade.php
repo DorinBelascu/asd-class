@@ -15,15 +15,15 @@
   
 
   <div class="panel-body">
-  	  	<p> 
-  		Current page:<strong> {{$profesori->getCurrentPage()}} </strong>, 
-  		Last page:<strong> {{$profesori->getLastPage()}} </strong>, 
-  		Items per page:<strong> {{$profesori->getPerPage()}} </strong>, 
-  		Total items:<strong> {{$profesori->getTotal()}} </strong>, 
-  		From <strong> {{$profesori->getFrom()}} </strong> 
-  		To <strong> {{$profesori->getTo()}} </strong>, 
-  		Count: <strong> {{$profesori->count()}} </strong>.
-  		</p>
+  	  <p> 
+  		  Current page:<strong> {{$profesori->getCurrentPage()}} </strong>, 
+    		Last page:<strong> {{$profesori->getLastPage()}} </strong>, 
+    		Items per page:<strong> {{$profesori->getPerPage()}} </strong>, 
+    		Total items:<strong> {{$profesori->getTotal()}} </strong>, 
+    		From <strong> {{$profesori->getFrom()}} </strong> 
+    		To <strong> {{$profesori->getTo()}} </strong>, 
+    		Count: <strong> {{$profesori->count()}} </strong>.
+    	</p>
   		<div class="alert alert-info" role="alert">
   			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-target="#add-profesori" data-placement="top" title="Add New Profesor"> <span class="glyphicon glyphicon-plus-sign"></span>
         </button>
