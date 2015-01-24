@@ -4,8 +4,6 @@
 <div class="panel panel-primary">
   <!-- Default panel contents -->
   <div class="panel-heading">Elevi <span class="badge pull-right"> {{ $note->getTotal() }}</span> </div>
-  
-
   <div class="panel-body">
   	  	<p> 
   		Current page:<strong> {{$note->getCurrentPage()}} </strong>, 
@@ -23,7 +21,7 @@
 	<thead>
 		<tr>
 			<th>#</th>
-			<th><a href="{{URL::route('statistici-note')}}">Data</a></th>
+			<th><a href="{{URL::route('statistici-note'). '?sort=data'}}">Data</a></th>
       		<th><a href="{{URL::route('statistici-note') . '?sort=elev'}}">Elevul</a></th>
       		<th><a href="{{URL::route('statistici-note') . '?sort=materie'}}">Materia</a></th>
       		<th>Nota</th>
@@ -38,8 +36,8 @@
         <tr>
           <td>{{ $j }}.</td>
           <td>{{ $nota->data}}</td>
-          <td>{{ $nota->elev->nume . ' ' . $nota->elev->prenume }}</td>
-          <td>{{ $nota->materie->denumirea}}</td>
+          <td>{{ $nota->nume . ' ' . $nota->prenume }}</td>
+          <td>{{ $nota->denumirea ? $nota->denumirea : '-- fara materie --'}}</td>
           <td>{{ $nota->valoare}}</td>
           <td>{{ $nota->semestru }} </td>
         </tr>
@@ -51,3 +49,4 @@
 <div class="panel-footer text-center">{{ $note->links() }}</div>
 </div>
 @stop
+
