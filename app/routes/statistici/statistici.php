@@ -9,3 +9,8 @@ Route::get('statistici/absente', array(
 	'as'   => 'statistici-absente',
 	'uses' => 'StatisticiAbsenteController@index'
 ));
+
+Route::get('statistici/medii', array(
+	'as'   => 'statistici-medii',
+	'uses' => 'StatisticiMediiController@index'
+));
