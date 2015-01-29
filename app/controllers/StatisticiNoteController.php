@@ -34,7 +34,7 @@ class StatisticiNoteController extends BaseController
 		$sort = 'data';
 		if($v = Input::get('sort'))
 		{
-			if( in_array($v, ['elev', 'materie', 'data']) )
+			if( in_array($v, ['elev', 'materie', 'data', 'semestru', 'nota']) )
 			{
 				$dir = $this->direction($currentOrder);
 				switch($v)
@@ -48,7 +48,12 @@ class StatisticiNoteController extends BaseController
 					case 'data' :
 						$sort = 'note.data';
 						break;
-				}
+					case 'semestru' :
+						$sort = 'semestru';
+						break;
+					case 'nota' :
+						$sort = 'valoare';
+						break;				}
 			}
 		}
 

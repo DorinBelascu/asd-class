@@ -24,8 +24,8 @@
 			<th><a href="{{URL::route('statistici-note'). '?sort=data'}}">Data</a></th>
       		<th><a href="{{URL::route('statistici-note') . '?sort=elev'}}">Elevul</a></th>
       		<th><a href="{{URL::route('statistici-note') . '?sort=materie'}}">Materia</a></th>
-      		<th>Nota</th>
-          <th>Semestrul</th>
+      		<th><a href="{{URL::route('statistici-note') . '?sort=nota'}}">Nota</th>
+          <th><a href="{{URL::route('statistici-note') . '?sort=semestru'}}">Semestrul</th>
 		</tr>
 	</thead>
 
