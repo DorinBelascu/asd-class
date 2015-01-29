@@ -41,7 +41,7 @@
                       <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 240px; height: 240px;">
                       </div>
 
-                      {{ Form::open(['method'=>'post', 'files'=>true, 'url'=>URL::route('save-elev-photo-upload', ['id'=>$elev->id])])}}
+                      {{ Form::open(['method'=>'post', 'files'=>true, 'url'=>URL::route('save-profesor-photo-upload', ['id'=>$profesor->id])])}}
                       <div>
                         <span class="btn btn-default btn-file">
                           <span class="fileinput-new">Select image</span>
