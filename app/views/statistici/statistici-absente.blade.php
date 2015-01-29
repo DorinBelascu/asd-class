@@ -26,8 +26,8 @@
 			<th><a href="{{URL::route('statistici-absente')}}">Data</a></th>
       <th><a href="{{URL::route('statistici-absente') . '?sort=elev'}}">Elevul</a></th>
       <th><a href="{{URL::route('statistici-absente') . '?sort=materie'}}">Materia</a></th>
-      <th>Starea</th>
-      <th>Semestrul</th>
+      <th><a href="{{URL::route('statistici-absente') . '?sort=stare'}}">Starea</a></th>
+      <th><a href="{{URL::route('statistici-absente') . '?sort=semestru'}}">Semestrul</a></th>
 		</tr>
 	</thead>
 
@@ -41,8 +41,8 @@
         <tr>
           <td>{{ $j }}.</td>
           <td>{{ $absenta->data}}</td>
-          <td>{{ $absenta->elev->nume . ' ' . $absenta->elev->prenume }}</td>
-          <td>{{ $absenta->materie->denumirea}}</td>
+          <td>{{ $absenta->nume . ' ' . $absenta->prenume }}</td>
+          <td>{{ $absenta->denumirea}}</td>
           @if ($absenta->stare == 0)
             <td>Nemotivata</td>
           @else
