@@ -60,4 +60,11 @@ To Do List:
 	-La statistici se adauga un nou link cu medii (gata)
 	-Cand dau pe profesor view this profesor o sa accesez profilul profesorului unde se poate si nota
 	-Tipuri de conturi admin,diriginte,elev,profesor(roluri)
+
+#13 31.01.2015
+	-coloana teza in tabela note;
+	-modificare form adaugare note;
+	-validare form si existenta unei singure teze pe semestru la o materie;
+	-statistici note 'teze' (cu tot cu sortari);
+	-calcularea mediilor pe semestru.
 	
