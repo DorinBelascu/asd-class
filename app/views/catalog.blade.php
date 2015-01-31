@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="panel panel-primary">
-	<div class="panel-heading">Selecteaza un elev din catalog</div>
+	<div class="panel-heading">Selecteaza un elev din catalog <span class="badge pull-right"> {{ count($elevi) }}</span></div>
   	<div class="panel-body">
 		<div class="row">
 		@foreach($elevi as $i => $elev)

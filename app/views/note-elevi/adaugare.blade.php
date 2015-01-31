@@ -1,9 +1,19 @@
 <?php 
     $starea = [ '-' => '[Selectati starea]', 'publica' => 'publica', 'privata' => 'privata'];
     $semestrul = ['-' => '[Selectati semestrul]' , '1' => 'Semestrul 1', '2' => 'Semestrul 2'];
-    $note = ['-' => '[Selectati valoarea notei]', '1' => '1' , '2' => '2' , '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9' , '10' => '10']
+    $notele = ['-' => '[Selectati valoarea notei]', '1' => '1' , '2' => '2' , '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9' , '10' => '10'];
 ?>  
 <!-- Modal -->
+    <?php
+        $exista_teza = 0;
+        foreach ($note as $i => $nota)
+        {
+            if ($nota->teza == 1) 
+            {
+                $exista_teza = 1;
+            }
+        }
+    ?>   
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -15,7 +25,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ Form::select('nota', $note, Input::old('Notele') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Introduceti o nota de la 1 la 10", ))}}
+                            {{ Form::select('nota', $notele, Input::old('Notele') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Introduceti o nota de la 1 la 10", ))}}
                             <span id="error-nota-adaugare" class="error-message"></span>
                         </div>
                         <div class="col-md-6">

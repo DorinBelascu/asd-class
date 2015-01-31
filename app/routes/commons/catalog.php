@@ -70,3 +70,8 @@ Route::post('catalog/editeaza-absenta/{id}', array(
 	'as'   => 'edit-absenta',
 	'uses' => 'CatalogAbsenteController@update',
 ));
+
+Route::post('catalog/adauga-teza/{id_elev}/{id_materia}', array(
+	'as'   => 'add-new-teza',
+	'uses' => 'CatalogNoteController@insertTeza'
+));

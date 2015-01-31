@@ -17,6 +17,23 @@
   @endif
 </div>
 
+<?php
+
+$exista_teza1 = 0;
+$exista_teza2 = 0;
+foreach ($note as $i => $nota)
+{
+  if (($nota->teza == 1) && ($nota->semestru == 1)) 
+  {
+     $exista_teza1 = 1;
+  }
+  if (($nota->teza == 1) && ($nota->semestru == 2)) 
+  {
+     $exista_teza2 = 1;
+  }
+}
+
+?>
 
 <div class="panel panel-primary">
   <!-- Default panel contents -->
@@ -24,8 +41,14 @@
     <div class="panel-body">
       <div class="alert alert-info" role="alert">
         <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga o nota la {{$materie->denumirea}}" data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+
+        @if( ($exista_teza1 == 0) || ($exista_teza2 == 0)) 
+        <button class="btn btn-warning pull-right" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga teza la {{$materie->denumirea}}" data-target="#myModal2"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+        @endif
+
       </div>
           @include('note-elevi.adaugare')
+          @include('note-elevi.adaugare-teza')
       <!-- Table -->
       <div class="table-responsive">
         <table class="table table-hover table-condensed table-striped">
@@ -35,6 +58,7 @@
               <th>Valoare</th>
               <th>Publica sau nu</th>
               <th>Data</th>
+              <th>Tip</th>
               <th>Semestrul</th>
               <th>Created at</th>
               <th>Updated at</th>
@@ -52,6 +76,11 @@
                       <td> Publica </td>
                   @endif    
                   <td>{{ $nota->data }}</td>
+                   @if ($nota->teza == 0)
+                      <td> Nota </td> 
+                  @else
+                      <td> Teza </td>
+                  @endif  
                   <td>{{ $nota->semestru }}</td>
                   <td>{{ $nota->created_at }}</td>
                   <td>{{ $nota->updated_at }}</td>
@@ -68,7 +97,6 @@
           </table>
         </div>
 </div>
-
 @stop
 
 @section('js')
@@ -100,6 +128,37 @@ function validare()
   if (sem == '-')
   {
     $('#error-semestrul-adaugare').html('Completati semestrul!');
+    error = true;
+  }
+  return !error;
+}
+
+function validareTeza()
+{
+  var data    = $('input[name="data-teza"]').val();
+  var nota    = $('select[name="nota-teza"]').val();
+  var starea  = $('select[name="starea-teza"]').val();
+  var sem     = $('select[name="semestrul-teza"]').val();
+  var error = false;
+  $('span.error-message').html('');
+  if (data.length != 10)
+  {
+    $('#error-data-teza-adaugare').html('Completati data!');
+    error = true;
+  }
+  if (nota == '-')
+  {
+    $('#error-nota-teza-adaugare').html('Completati nota!');
+    error = true;
+  }
+  if (starea == '-')
+  {
+    $('#error-starea-teza-adaugare').html('Completati starea!');
+    error = true;
+  }
+  if (sem == '-')
+  {
+    $('#error-semestrul-teza-adaugare').html('Completati semestrul!');
     error = true;
   }
   return !error;
@@ -213,6 +272,10 @@ function validareEditare()
 
   $('#btn-add-nota').click(function(e){
     return validare();
+  });
+
+  $('#btn-add-teza').click(function(e){
+    return validareTeza();
   });
 
 

@@ -28,6 +28,8 @@
     unset($note_edit[$nota->valoare]);
     array_unshift($note_edit,$aux);
     $note_edit = array_combine($note_edit, $note_edit);
+
+    $teze_edit = [0 => 'nota', 1 => 'teza'];
 ?>  
 <!-- Modal -->
     <div class="modal fade" id="edit-{{ $nota->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -58,6 +60,16 @@
                         <div class="col-md-6">
                             {{ Form::select('semestru-edit', $semestru_edit, Input::old('Semestrul Notei') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Semestrul Notei", ))}}
                             <span id="error-semestru-edit" class="error-message"></span>  
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            {{ Form::select('teza-edit', $teze_edit, $nota->teza , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Tipul notei", ))}}
+                            <span id="error-teza-edit" class="error-message"></span>
+                        </div>
+                        <div class="col-md-4">
                         </div>
                     </div>
                 </div>

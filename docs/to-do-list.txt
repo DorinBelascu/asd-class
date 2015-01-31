@@ -62,9 +62,9 @@ To Do List:
 	-Tipuri de conturi admin,diriginte,elev,profesor(roluri)
 
 #13 31.01.2015
-	-coloana teza in tabela note;
-	-modificare form adaugare note;
-	-validare form si existenta unei singure teze pe semestru la o materie;
+	-coloana teza in tabela note; (gata)
+	-modificare form adaugare note;  (gata)
+	-validare form si existenta unei singure teze pe semestru la o materie; (gata)
 	-statistici note 'teze' (cu tot cu sortari);
 	-calcularea mediilor pe semestru.
 	
