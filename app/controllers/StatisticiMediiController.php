@@ -2,8 +2,8 @@
 
 	class StatisticiMediiController extends BaseController {
 
-		public function index()
-		{
+        public function index()
+        {
         $note = Note::all();
         $elevi = Elevi::all();
         $medii = array();
@@ -11,7 +11,7 @@
         {
         	$aux = $elev->id;
         	$v = array();
-        	$v['NumePrenume'] = $elev->nume . ' ' . $elev->prenume; $v['k1'] = 0; $v['s1'] = 0; $v['k2'] = 0; $v['s2'] = 0; $v['teza1'] = '0'; $v['teza2'] = '0'; $v['medie1'] = 0; $v['medie2'] = 0; $v['medietot'] =0;
+        	$v['NumePrenume'] = $elev->nume . ' ' . $elev->prenume; $v['k1'] = 0; $v['s1'] = 0; $v['k2'] = 0; $v['s2'] = 0; $v['teza1'] = '0'; $v['teza2'] = '0'; $v['medie1'] = 'Nu sunt note'; $v['medie2'] = 'Nu sunt note'; $v['medietot'] =0;
         	$medii[$aux]=$v;
         }
         foreach ($note as $i => $nota) {
@@ -62,13 +62,13 @@
         			$medii[$i]['medie2'] = round($medie['s2']/$medie['k2'],2);
         		}
         	}
-        	if(($medii[$i]['medie2']==0) || ($medii[$i]['medie2']==0)) 
+        	if(($medii[$i]['medie2']=='Nu sunt note') || ($medii[$i]['medie2']=='Nu sunt note')) 
         	{
         		$medii[$i]['medietot'] = round(($medii[$i]['medie1'] + $medii[$i]['medie2'])/2,2);
         	}
         	else
         	{
-        		$medii[$i]['medietot'] = round($medii[$i]['medie1'] + $medii[$i]['medie2'],2);		
+        		$medii[$i]['medietot'] = $medii[$i]['medie1'] + $medii[$i]['medie2'];		
         	}
         }
 
