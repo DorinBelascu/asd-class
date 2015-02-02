@@ -30,6 +30,8 @@
                   <li><a href=" {{ URL::route('statistici-absente') }}">Absente</a></li>
                   <li class="divider"></li>
                   <li><a href=" {{ URL::route('statistici-medii') }}">Medii</a></li>
+                  <li class="divider"></li>
+                  <li><a href=" {{ URL::route('statistici-teze') }}">Teze</a></li>
                 </ul>
               </li>
             </ul>

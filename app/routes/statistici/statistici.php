@@ -14,3 +14,8 @@ Route::get('statistici/medii', array(
 	'as'   => 'statistici-medii',
 	'uses' => 'StatisticiMediiController@index'
 ));
+
+Route::get('statistici/teze', array(
+	'as'   => 'statistici-teze',
+	'uses' => 'StatisticiTezeController@index'
+));
