@@ -62,7 +62,7 @@
         			$medii[$i]['medie2'] = round($medie['s2']/$medie['k2'],2);
         		}
         	}
-        	if(($medii[$i]['medie2']=='Nu sunt note') || ($medii[$i]['medie2']=='Nu sunt note')) 
+        	if(($medii[$i]['medie2'] != 'Nu sunt note') || ($medii[$i]['medie2'] != 'Nu sunt note')) 
         	{
         		$medii[$i]['medietot'] = round(($medii[$i]['medie1'] + $medii[$i]['medie2'])/2,2);
         	}
