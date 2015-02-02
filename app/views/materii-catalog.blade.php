@@ -29,9 +29,9 @@
 			<li>
 				<a class="trigger right-caret">Media</a>
 				<ul class="dropdown-menu sub-menu">
-					<li><a href="#">Media pe semestrul 1 : {{$media1}}</a></li>
-					<li><a href="#">Media pe semestrul 2 : {{$media2}}</a></li>
-					<li><a href="#">Media pe ambele semestre : {{$mediatot}}</a></li>
+					<li><a href="#">Media pe semestrul 1 : {{$medii[$materie->id]['medie1']}}</a></li>
+					<li><a href="#">Media pe semestrul 2 : {{$medii[$materie->id]['medie2']}}</a></li>
+					<li><a href="#">Media pe ambele semestre : {{$medii[$materie->id]['medietot']}}</a></li>
 				</ul>
 			</li>
 		</ul>
