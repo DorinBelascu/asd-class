@@ -11,7 +11,7 @@ class CatalogNoteController extends BaseController {
 			return Redirect::route('materii-catalog', ['id' => $id_elev]);
 		}
 
-	 	return View::make('catalog-note')->with([
+	 	return View::make('catalog/catalog-note')->with([
 	 		'note' => Note::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
 	 		'elev' => $elev,
 	 		'materie' => $materie

@@ -10,7 +10,7 @@ class CatalogAbsenteController extends BaseController {
 		{
 			return Redirect::route('materii-catalog', ['id' => $id_elev]);
 		}
-	 	return View::make('catalog-absente')->with([
+	 	return View::make('catalog/catalog-absente')->with([
 	 		'absente' => Absente::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
 	 		'elev' => $elev,
 	 		'materie' => $materie
