@@ -87,42 +87,23 @@
 					<div class="fileinput fileinput-new" data-provides="fileinput">
 						<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 240px; height: 240px;">
 						</div>
-
+						{{ Form::open(['method'=>'post', 'files'=>true, 'url'=>URL::route('save-profesor-photo-upload', ['id'=>$profesor->id])])}}
 						<div>
 							<span class="btn btn-default btn-file">
   								<span class="fileinput-new">Select image</span>
   								<span class="fileinput-exists">Change</span>
-  								<input type="file" name="photo-elev" />
+  								<input type="file" name="photo-profesor" />
 							</span>
 							<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 							<button class="btn btn-default fileinput-exists"> Upload </button>
 						</div>
-
+						{{ Form::close() }}
 					</div>
 				</div>
 			</div>
         </div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @stop
 

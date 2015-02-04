@@ -13,3 +13,7 @@ Route::post('materie/profesori/delete', array(
 	'as'   => 'materie_profesori_delete',
 	'uses' => 'ProfesorMateriiController@delete2'
 ));
+Route::post('save-materie-photo-upload/{id}', array(
+	'as'   => 'save-materie-photo-upload',
+	'uses' => 'ProfesorMateriiController@upload_materii'
+));
