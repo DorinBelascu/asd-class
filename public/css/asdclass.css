@@ -68,16 +68,23 @@
 	user-select: none;
 	cursor:pointer;
 }
+
+.medii 
+{
+	background-color: #f0f0f0;
+}
+
 .dropdown-menu .sub-menu {
-    left: 100%;
+    left: -10%;
     position: absolute;
-    top: 0;
+    top: 25px;
     display:none;
     margin-top: -1px;
 	border-top-left-radius:0;
 	border-bottom-left-radius:0;
-	border-left-color:#fff;
+	border-color:#c7c7c7;
 	box-shadow:none;
+	font-size: 90%;
 }
 .right-caret:after,.left-caret:after
  {	content:"";

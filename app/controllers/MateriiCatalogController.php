@@ -47,38 +47,39 @@ class MateriiCatalogController extends BaseController
         	{
 	        	if ($medii[$i]['teza1']) 
 	        	{
-	        		$medii[$i]['medie1'] = round(($medie['s1']/$medie['k1']*3+$medie['teza1'])/4,2);
+	        		$medii[$i]['medie1'] = round(($medie['s1']/$medie['k1']*3+$medie['teza1'])/4);
 	        	}
 	        	else
 	        	{
-	        		$medii[$i]['medie1'] = round($medie['s1']/$medie['k1'],2);
+	        		$medii[$i]['medie1'] = round($medie['s1']/$medie['k1']);
 	        	}        	
         	}
         	if ($medie['k2'])
         	{
         		if ($medii[$i]['teza2'])
         		{
-        			$medii[$i]['medie2'] = round(($medie['s2']/$medie['k2']*3+$medie['teza2'])/4,2);
+        			$medii[$i]['medie2'] = round(($medie['s2']/$medie['k2']*3+$medie['teza2'])/4);
         		}
         		else
         		{
-        			$medii[$i]['medie2'] = round($medie['s2']/$medie['k2'],2);
+        			$medii[$i]['medie2'] = round($medie['s2']/$medie['k2']);
         		}
         	}
         	if(($medii[$i]['medie2'] != 'Elevul nu are note in acest semestru') || ($medii[$i]['medie2'] != 'Elevul nu are note in acest semestru')) 
         	{
-        		$medii[$i]['medietot'] = round(($medii[$i]['medie1'] + $medii[$i]['medie2'])/2,2);
+        		$medii[$i]['medietot'] = round(($medii[$i]['medie1'] + $medii[$i]['medie2'])/2);
         	}
         	else
         	{
-        		$medii[$i]['medietot'] = round($medii[$i]['medie1'] + $medii[$i]['medie2'],2);		
+        		$medii[$i]['medietot'] = round($medii[$i]['medie1'] + $medii[$i]['medie2']);		
         	}
         }
 
 	 	return View::make('catalog/materii-catalog')->with([
-	 		'materii'  => $materii, 
-	 		'id'       => $id,
-	 		'medii'   => $medii,
+	 		'materii'   => $materii, 
+	 		'id'        => $id,
+	 		'medii'     => $medii,
+                        'nume_elev' => $elev->nume . ' ' . $elev->prenume,
 	 	]);
 	}
 }

@@ -40,11 +40,26 @@ foreach ($note as $i => $nota)
   <div class="panel-heading">Notele lui {{ $elev->prenume . ' ' . $elev->nume }} la {{$materie->denumirea}} </div>
     <div class="panel-body">
       <div class="alert alert-info" role="alert">
-        <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga o nota la {{$materie->denumirea}}" data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
-
-        @if( ($exista_teza1 == 0) || ($exista_teza2 == 0)) 
+        <div class="row">
+          <div class="col-md-1">
+            <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga o nota la {{$materie->denumirea}}" data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+          </div>
+          <div class="col-md-6 col-md-offset-2" style="text-align:center">
+            <div class="btn-group" role="group" aria-label="..." style="margin:auto">
+              <button type="button" class="btn btn-default">Semestrul 1</button>
+              <button type="button" class="btn btn-default">Ambele Semestre</button>
+              <button type="button" class="btn btn-default">Semestrul 2</button>
+            </div>
+          </div>
+          <div class="col-md-1 col-md-offset-2">
+                  @if( ($exista_teza1 == 0) || ($exista_teza2 == 0)) 
         <button class="btn btn-warning pull-right" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga teza la {{$materie->denumirea}}" data-target="#myModal2"> <span class="glyphicon glyphicon-plus-sign"></span></button>
         @endif
+          </div>
+        </div>
+
+
+
 
       </div>
           @include('note-elevi.adaugare')

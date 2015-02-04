@@ -14,9 +14,9 @@
 					<tr>
 						<th>#</th>
 					    <th><a href="{{URL::route('statistici-medii') . '?sort=elev'}}">Elevul</a></th>
-					    <th><a href="{{URL::route('statistici-medii') . '?sort=semestru1'}}">Medie Sem 1</a></th>
-					   	<th><a href="{{URL::route('statistici-medii') . '?sort=semestru2'}}">Medie Sem 2</a></th>
-					   	<th><a href="{{URL::route('statistici-medii') . '?sort=medie'}}">Medie Totala</a></th>
+					    <th><a href="{{URL::route('statistici-medii') . '?sort=medie1'}}">Medie Sem 1</a></th>
+					   	<th><a href="{{URL::route('statistici-medii') . '?sort=medie2'}}">Medie Sem 2</a></th>
+					   	<th><a href="{{URL::route('statistici-medii') . '?sort=medietot'}}">Medie Totala</a></th>
 					</tr>
 				</thead>
 

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="panel panel-primary">
-  <div class="panel-heading">Selecteaza o materie</div>
+  <div class="panel-heading">Selecteaza o materie a elevului {{$nume_elev}}</div>
   <div class="panel-body">
   	<div class="row">
 
@@ -12,8 +12,8 @@
 <div class="col-md-3 col-xs-6">
 <div style="text-align:center; margin:4px auto">
 	<div class="dropdown" style="position:relative">
-	   	<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{ $materie->denumirea}} <span class="caret"></span></a>
-		<ul class="dropdown-menu">
+	   	<a href="#" class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">{{ $materie->denumirea}} <span class="caret"></span></a>
+		<ul class="dropdown-menu" id="materia-{{$i+1}}">
 			<li>
 		    	{{ HTML::link(URL::route('catalog-note',[
 		    	'denumirea'  => $materie->denumirea, 
@@ -28,7 +28,7 @@
 		    </li>
 			<li>
 				<a class="trigger right-caret">Media</a>
-				<ul class="dropdown-menu sub-menu">
+				<ul class="dropdown-menu sub-menu medii">
 					<li><a href="#">Media pe semestrul 1 : {{$medii[$materie->id]['medie1']}}</a></li>
 					<li><a href="#">Media pe semestrul 2 : {{$medii[$materie->id]['medie2']}}</a></li>
 					<li><a href="#">Media pe ambele semestre : {{$medii[$materie->id]['medietot']}}</a></li>
@@ -83,17 +83,34 @@
 <script>
 $(function(){
 	$(".dropdown-menu > li > a.trigger").on("click",function(e){
-		var current=$(this).next();
+		var current=$(this).next(); 
+		var index=$(this).parent().parent().attr('id').replace('materia-','');
+		console.log(index);
+		console.log(current);
 		var grandparent=$(this).parent().parent();
-		if($(this).hasClass('left-caret')||$(this).hasClass('right-caret'))
-			$(this).toggleClass('right-caret left-caret');
-		grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
-		grandparent.find(".sub-menu:visible").not(current).hide();
-		current.toggle();
-		e.stopPropagation();
+		if(index % 4 == 0)
+		{
+			if($(this).hasClass('left-caret')||$(this).hasClass('right-caret'))
+				$(this).toggleClass('right-caret left-caret');
+			grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+			grandparent.find(".sub-menu:visible").not(current).hide();
+			current.toggle();
+			e.stopPropagation();
+		}
+		else
+		{
+			if($(this).hasClass('left-caret')||$(this).hasClass('right-caret'))
+				$(this).toggleClass('right-caret left-caret');
+			grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+			grandparent.find(".sub-menu:visible").not(current).hide();
+			current.toggle();
+			e.stopPropagation();
+		}
 	});
 	$(".dropdown-menu > li > a:not(.trigger)").on("click",function(){
 		var root=$(this).closest('.dropdown');
+		console.log(2);
+				console.log(root);
 		root.find('.left-caret').toggleClass('right-caret left-caret');
 		root.find('.sub-menu:visible').hide();
 	});

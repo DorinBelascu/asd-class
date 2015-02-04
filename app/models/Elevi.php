@@ -8,4 +8,9 @@ class Elevi extends Eloquent
     {
 		return $this->hasMany('Note', 'elev_id');
 	}
+
+	public function Medie()
+	{
+		
+	}
 }
