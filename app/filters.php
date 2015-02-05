@@ -89,24 +89,24 @@ Route::filter('csrf', function()
 	}
 });
 
-Route::filter('isAdmin', function()
+Route::filter('isLogged', function()
 {
 	if (! Sentry::check()) 
 	{
 		return Redirect::route('login');
 	}
-	$user = Sentry::getUser();
-	$groups = $user->getGroups();
-	$isAdmin = false;
-	foreach ($groups as $i => $group) {
-		if($group->name == 'admin')
-		{
-			$isAdmin = true;
-			break;
-		}
-	}
-	if( ! $isAdmin )
-	{
-		return Redirect::route('home');
-	}
+	// $user = Sentry::getUser();
+	// $groups = $user->getGroups();
+	// $isAdmin = false;
+	// foreach ($groups as $i => $group) {
+	// 	if($group->name == 'admin')
+	// 	{
+	// 		$isAdmin = true;
+	// 		break;
+	// 	}
+	// }
+	// if( ! $isAdmin )
+	// {
+	// 	return Redirect::route('home');
+	// }
 });

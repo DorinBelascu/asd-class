@@ -1,6 +1,6 @@
 <?php
-Route::group(array('prefix' => 'administration', 'before' => 'isAdmin'), function()
-{
+Route::group(array('before' => 'isLogged'),function(){
+
 
 	Route::get('profesori', array(
 		'as'   => 'profesori',

@@ -23,4 +23,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	public function groupName()
+	{
+		$user = Sentry::getUser();
+		$groups = $user->getGroups();
+		return($groups[0]->name);
+	}
+
+	public static function Group()
+	{
+		return self::find(Sentry::getUser()->id)->groupName();
+	}
+
+	public static function CanChange()
+	{
+		return in_array(self::Group(), ['admin', 'diriginte']);
+	}
+
 }

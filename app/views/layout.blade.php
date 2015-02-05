@@ -23,7 +23,7 @@
   <body>
     <div class="container">
 
-      @include('includes.navigation')
+      @include('includes.nav.~navigation')
 
       <!-- Main component for a primary marketing message or call to action -->
 
