@@ -1,5 +1,10 @@
 <?php
 
+Route::get('/', array(
+	'as'   => 'home',
+	'uses' => 'HomeController@index'
+));
+
 include 'routes/commons/users.php';
 include 'routes/materii/materii.php';
 include 'routes/elevi/elevi.php';

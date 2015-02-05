@@ -14,7 +14,6 @@
 	<div class="dropdown" style="position:relative">
 	   	<a href="#" class="btn btn-default dropdown-toggle" rel="tooltip" data-toggle="dropdown" title="{{ $materie->denumirea }}" >{{ HTML::image('images/photos/materii/' . str_replace('(-)', 'icon', $materie->photo), $materie->photo,['class' => 'img-responsive', 'style' => 'width:100%']) }} <span class="caret"></span></a>
 		<ul class="dropdown-menu" id="materia-{{$i+1}}">
-
 			<li>
 		    	{{ HTML::link(URL::route('catalog-note',[
 		    	'denumirea'  => $materie->denumirea, 
