@@ -24,7 +24,18 @@
   <div class="panel-body">
       <!-- Table -->
       <div class="alert alert-info" role="alert">
-        <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+        <div class="row">
+          <div class="col-md-1">
+            <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+          </div>
+          <div class="col-md-6 col-md-offset-2" style="text-align:center">
+            <div class="btn-group" role="group" aria-label="..." style="margin:auto">
+              <a href="{{URL::route('catalog-absente', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea]) . '?semestrul=1'}}" class="btn btn-default" rel="tooltip" title='Afiseaza absentele din semestrul 1'>Semestrul 1</a>
+              <a href="{{URL::route('catalog-absente', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea])}}" class="btn btn-default" rel="tooltip" title='Afiseaza absentele din ambele semestre'>Ambele Semestre</a>
+              <a href="{{URL::route('catalog-absente', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea]) . '?semestrul=2'}}" class="btn btn-default" rel="tooltip" title='Afiseaza absentele din semestrul 2'>Semestrul 2</a>
+            </div>
+          </div>
+        </div>
       </div>
       @include('absente-elevi.adaugare')
       <div class="table-responsive">
@@ -41,7 +52,9 @@
             </tr>
           </thead>
           <tbody>
+            <?php $j=0 ?>
             @foreach($absente as $i => $absenta)
+              @if ($sem == 0)
                 <tr>
                   <td>{{ $i+1 }}.</td>
                   <td>{{ $absenta->data}}</td>
@@ -66,6 +79,32 @@
                       @include('absente-elevi.edit')
                   </td>
                 </tr>
+              @elseif ($sem == $absenta->semestru)
+                <tr>
+                  <td>{{ ++$j }}.</td>
+                  <td>{{ $absenta->data}}</td>
+                    @if ($absenta->stare == 0)
+                      <td> Nemotivata </td> 
+                    @else
+                      <td> Motivata </td>
+                    @endif
+                    @if ($absenta->publica_sau_nu == 0)
+                      <td> privata </td> 
+                    @else
+                      <td> publica </td>
+                    @endif
+                  </td>
+                  <td>{{ $absenta->semestru }}</td>
+                  <td>{{ $absenta->created_at}}</td>
+                  <td>{{ $absenta->updated_at}}</td>
+                  <td class="text-center">
+                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Delete this subject({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                      @include('absente-elevi.delete')
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $absenta->id }}" data-placement="top" title="Edit this absenta({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                      @include('absente-elevi.edit')
+                  </td>
+                </tr>
+              @endif
             @endforeach   
             </tbody>
           </table>

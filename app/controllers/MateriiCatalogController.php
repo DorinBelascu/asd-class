@@ -7,7 +7,7 @@ class MateriiCatalogController extends BaseController
 	{
 		$elev = Elevi::find($id);
 		$note = Note::where('elev_id', '=', $id)->get();
-		$materii = Materii::all();
+		$materii = Materii::orderBy('denumirea')->get();
 		$medii = array();
 		foreach ($materii as $i => $materie) 
 		{	 

@@ -46,9 +46,9 @@ foreach ($note as $i => $nota)
           </div>
           <div class="col-md-6 col-md-offset-2" style="text-align:center">
             <div class="btn-group" role="group" aria-label="..." style="margin:auto">
-              <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea])}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din semestrul 1'>Semestrul 1</a>
+              <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea]) . '?semestrul=1'}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din semestrul 1'>Semestrul 1</a>
               <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea])}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din ambele semestre'>Ambele Semestre</a>
-              <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea])}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din semestrul 2'>Semestrul 2</a>
+              <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea]) . '?semestrul=2'}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din semestrul 2'>Semestrul 2</a>
             </div>
           </div>
           <div class="col-md-1 col-md-offset-2">
@@ -80,10 +80,11 @@ foreach ($note as $i => $nota)
             </tr>
           </thead>
           <tbody>
+            <?php $j=0 ?>
             @foreach($note as $i => $nota)
-             
+              @if ($sem == 0)
                 <tr>
-                  <td>{{ ($i+1 ) }}/{{$nota->id}}.</td>
+                  <td>{{ ++$j }}/{{$nota->id}}.</td>
                   <td>{{ $nota->valoare }}</td>
                   @if ($nota->publica_sau_nu == 0)
                       <td> Privata </td> 
@@ -107,6 +108,33 @@ foreach ($note as $i => $nota)
                       @include('note-elevi.edit')
                   </td>
                 </tr>
+              @elseif ($sem == $nota->semestru)
+                <tr>
+                  <td>{{ ++$j }}/{{$nota->id}}.</td>
+                  <td>{{ $nota->valoare }}</td>
+                  @if ($nota->publica_sau_nu == 0)
+                      <td> Privata </td> 
+                  @else
+                      <td> Publica </td>
+                  @endif    
+                  <td>{{ $nota->data }}</td>
+                   @if ($nota->teza == 0)
+                      <td> Nota </td> 
+                  @else
+                      <td> Teza </td>
+                  @endif  
+                  <td>{{ $nota->semestru }}</td>
+                  <td>{{ $nota->created_at }}</td>
+                  <td>{{ $nota->updated_at }}</td>
+                  <td class="text-center">
+                      <!-- Modal -->
+                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                      @include('note-elevi.delete')
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                      @include('note-elevi.edit')
+                  </td>
+                </tr>
+              @endif
             @endforeach   
             </tbody>
           </table>
