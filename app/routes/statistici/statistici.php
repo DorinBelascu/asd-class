@@ -1,5 +1,5 @@
 <?php
-
+Route::group(array('before' => 'isLogged'),function(){
 Route::get('statistici/note', array(
 	'as'   => 'statistici-note',
 	'uses' => 'StatisticiNoteController@index'
@@ -19,3 +19,4 @@ Route::get('statistici/teze', array(
 	'as'   => 'statistici-teze',
 	'uses' => 'StatisticiTezeController@index'
 ));
+});

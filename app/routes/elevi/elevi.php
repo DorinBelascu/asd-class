@@ -1,5 +1,5 @@
 <?php 
-
+Route::group(array('before' => 'isLogged'),function(){
 Route::get('elevi', array(
 	'as'   => 'elevi',
 	'uses' => 'EleviController@index'
@@ -19,3 +19,4 @@ Route::post('elevi/delete', array(
 	'as'   => 'delete-elev',
 	'uses' => 'EleviController@delete',
 ));
+});

@@ -1,5 +1,5 @@
 <?php
-
+Route::group(array('before' => 'isLogged'),function(){
 /**
 vad toti elevii
 **/
@@ -75,3 +75,4 @@ Route::post('catalog/adauga-teza/{id_elev}/{id_materia}', array(
 	'as'   => 'add-new-teza',
 	'uses' => 'CatalogNoteController@insertTeza'
 ));
+});

@@ -1,5 +1,5 @@
 <?php 
-
+Route::group(array('before' => 'isLogged'),function(){
 Route::get('materii', array(
 	'as'   => 'materii',
 	'uses' => 'MateriiController@index'
@@ -20,3 +20,4 @@ Route::post('materii/delete', array(
 	'as'   => 'delete-materie',
 	'uses' => 'MateriiController@delete',
 ));
+});

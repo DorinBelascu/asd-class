@@ -1,5 +1,6 @@
 <?php 
     $gen = array( '-' => '[Selectati genul]', 'masculin' => 'masculin', 'feminin' => 'feminin');
+    $users = array('-' => '[Selectati userul]', '1' => 'user1', '2' => 'user2')
 ?>  
   <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -38,6 +39,16 @@
           <div class="col-md-6">
             {{ Form::select('genul', $gen, Input::old('Genul Elevului') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Genul elevului", ))}}
             <span id="error-genul" class="error-message"></span>
+          </div>  
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            {{ Form::select('user', $users, Input::old('Care user?') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Alege userul", ))}}
+            <span id="error-user" class="error-message"></span>
+          </div>
+          <div class="col-md-4">
           </div>  
         </div>
       </div>

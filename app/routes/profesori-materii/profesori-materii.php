@@ -1,5 +1,5 @@
 <?php
-
+Route::group(array('before' => 'isLogged'),function(){
 Route::get('profesor/{id}/materii', array(
 	'as'   => 'profesor_materii',
 	'uses' => 'ProfesorMateriiController@index1'
@@ -18,3 +18,4 @@ Route::post('save-profesor-photo-upload/{id}', array(
 	'as'   => 'save-profesor-photo-upload',
 	'uses' => 'ProfesorMateriiController@upload_profesori'
 ));
+});
