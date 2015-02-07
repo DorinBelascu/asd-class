@@ -35,7 +35,11 @@ class EleviController extends BaseController {
 			$elev->{"data nasterii"} = $data['data_nasterii'];
 			$elev->genul = $data['genul'];
 			$elev->photo = 'default.png';
+			$elev->user_id = $data['user_id'];
 			$elev->save();
+			$user = Sentry::findUserById($data['user_id']);
+			$user->user_type = 'elev';
+			$user->save();
 			return Redirect::route('elevi')->with('result-success','Elevul a fost adaugat');
 		}
 		return Redirect::route('elevi')->withInput()->witherrors($validator)->with('result-success', 'Atentie! Ai gresit la adaugarea elevului!');
@@ -45,15 +49,15 @@ class EleviController extends BaseController {
 	{
 		$data = Input::all();
 		$rules = array(
-			'nume-edit'=> 'required',
-			'prenume-edit'=> 'required',
-			'data_nasterii-edit'=> 'required|before:2000-01-01|after:1915-01-01|date',	
+			'nume-edit'          => 'required',
+			'prenume-edit'       => 'required',
+			'data_nasterii-edit' => 'required|before:2000-01-01|after:1915-01-01|date',	
 		);
 		$gen = array( '1' => 'masculin', '2' => 'feminin');
 		$validator = Validator::make($data, $rules, array(
 			'required' => 'Baga ba :attribute',
-			'before' => 'Introdu o data anterioara datei 01.01.2000',
-			'after' => 'Introdu o data mai mare decat 01.01.1915'
+			'before'   => 'Introdu o data anterioara datei 01.01.2000',
+			'after'    => 'Introdu o data mai mare decat 01.01.1915'
 		));
 		if ($validator->passes()) 
 		{

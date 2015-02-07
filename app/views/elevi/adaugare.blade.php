@@ -1,6 +1,7 @@
 <?php 
     $gen = array( '-' => '[Selectati genul]', 'masculin' => 'masculin', 'feminin' => 'feminin');
-    $users = array('-' => '[Selectati userul]', '1' => 'user1', '2' => 'user2')
+    $users = ['-' => 'Selectati userul'] + User::whereraw('user_type is null')->orderby('email')->get()->lists('email','id');
+    // $users = array('-' => '[Selectati userul]', '1' => 'user1', '2' => 'user2')
 ?>  
   <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -45,7 +46,7 @@
           <div class="col-md-4">
           </div>
           <div class="col-md-4">
-            {{ Form::select('user', $users, Input::old('Care user?') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Alege userul", ))}}
+            {{ Form::select('user_id', $users, Input::old('Care user?') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Alege userul", ))}}
             <span id="error-user" class="error-message"></span>
           </div>
           <div class="col-md-4">
