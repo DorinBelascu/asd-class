@@ -3,7 +3,7 @@
 @section('content')
 
 @if(Session::has('result'))
-  		<div class="alert alert-danger" role="alert">{{Session::get('result')}}</div>
+  		<div class="alert alert-success" role="alert">{{Session::get('result')}}</div>
 @endif
 
  Home content...

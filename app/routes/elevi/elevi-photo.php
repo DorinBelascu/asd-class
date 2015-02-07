@@ -1,5 +1,5 @@
 <?php
-
+Route::group(array('before' => 'isLogged'),function(){
 Route::get('elevi-photo/{id}', array(
 	'as'   => 'elevi_photo',
 	'uses' => 'EleviPhotoController@index'
@@ -39,4 +39,5 @@ Route::get('test-image', function()
     	// ->crop($value, $value)
     	->save($path . '/test-' . $key .'.jpg');
     }
+});
 });
