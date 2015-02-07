@@ -46,9 +46,9 @@ foreach ($note as $i => $nota)
           </div>
           <div class="col-md-6 col-md-offset-2" style="text-align:center">
             <div class="btn-group" role="group" aria-label="..." style="margin:auto">
-              <button type="button" class="btn btn-default">Semestrul 1</button>
-              <button type="button" class="btn btn-default">Ambele Semestre</button>
-              <button type="button" class="btn btn-default">Semestrul 2</button>
+              <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea])}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din semestrul 1'>Semestrul 1</a>
+              <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea])}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din ambele semestre'>Ambele Semestre</a>
+              <a href="{{URL::route('catalog-note', ['id_elev' => $elev->id, 'id_materia' => $materie->id, 'denumirea' => $materie->denumirea])}}" class="btn btn-default" rel="tooltip" title='Afiseaza notele din semestrul 2'>Semestrul 2</a>
             </div>
           </div>
           <div class="col-md-1 col-md-offset-2">

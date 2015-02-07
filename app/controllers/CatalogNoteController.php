@@ -14,7 +14,7 @@ class CatalogNoteController extends BaseController {
 	 	return View::make('catalog/catalog-note')->with([
 	 		'note' => Note::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
 	 		'elev' => $elev,
-	 		'materie' => $materie
+	 		'materie' => $materie,
 	 	]);
 	}
 
