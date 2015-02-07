@@ -53,7 +53,22 @@
           @endif
   			</div>
   		</div>
-  		<div class='row text-center'>
+      <div class="row">
+          <div class="col-md-12 text-center">
+            <div> Ce sunteti? </div>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-success active">
+              {{ Form::radio('user_type', 'elev', true, ['id' => "elev", 'autocomplete' => "off"]) }}
+              Elev
+            </label>
+            <label class="btn btn-success">
+              {{ Form::radio('user_type', 'profesor', false, ['id' => "elev", 'autocomplete' => "off"]) }}
+              Profesor
+            </label>
+          </div>
+        </div>
+      </div>
+  		<div class="row text-center" style="margin-top:20px">
   			{{ Form::submit('Create account', array('name' => "create_account", 'class' => "btn btn-primary")) }}
   		</div>
   	</div>

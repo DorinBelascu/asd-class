@@ -6,6 +6,8 @@ class Users
 {
 	public static function register($data)
 	{
+		echo '<pre>';
+		dd($data);
 		try
 		{
    			 // Let's register a user.
