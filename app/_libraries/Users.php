@@ -6,8 +6,6 @@ class Users
 {
 	public static function register($data)
 	{
-		echo '<pre>';
-		dd($data);
 		try
 		{
    			 // Let's register a user.
@@ -16,6 +14,7 @@ class Users
 		        'password'  => $data['password'],
 		        'first_name'=> $data['first_name'],
 		        'last_name' => $data['last_name'],
+		        'user_type' => $data['user_type'],
 		    ));
 
 		    // Let's get the activation code

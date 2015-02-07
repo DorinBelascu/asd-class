@@ -32,8 +32,10 @@ class RegisterController extends BaseController {
 
 				//Sa afli $user->activation_code
 
+				//Aici adaugam inregistrare in tabela profesori sau elevi in functie de user_type
+
 				$user = Sentry::findUserByLogin($data['email']);
-				
+
 			 	$emailcontent = array (
 					'first_name'    => $user->first_name,
 					'last_name'     => $user->last_name,
