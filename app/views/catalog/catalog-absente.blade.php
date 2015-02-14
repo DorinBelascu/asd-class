@@ -44,8 +44,8 @@
             <tr>
               <th>#</th>
               <th>Data</th>
+              <th>Tip</th>
               <th>Stare</th>
-              <th>Publica sau Privata </th>
               <th>Semestrul</th>
               <th>Created at</th>
               <th>Updated at</th>
@@ -63,12 +63,9 @@
                     @else
                       <td> Motivata </td>
                     @endif
-                    @if ($absenta->publica_sau_nu == 0)
-                      <td> privata </td> 
-                    @else
-                      <td> publica </td>
-                    @endif
-                  </td>
+                      <td class="text-center" style="width:32px">
+                    {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica' : 'privata'] ) }}
+                    </td>
                   <td>{{ $absenta->semestru }}</td>
                   <td>{{ $absenta->created_at}}</td>
                   <td>{{ $absenta->updated_at}}</td>

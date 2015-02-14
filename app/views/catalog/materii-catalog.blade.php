@@ -26,6 +26,7 @@
 		    	'id_elev'    => $id,
 		    	'id_materie' => $materie->id]), 'Absente ...') }}
 		    </li>
+		    @if( $show_media)
 			<li>
 				<a class="trigger right-caret">Media</a>
 				<ul class="dropdown-menu sub-menu medii">
@@ -34,6 +35,7 @@
 					<li><a href="#">Media pe ambele semestre : {{$medii[$materie->id]['medietot']}}</a></li>
 				</ul>
 			</li>
+			@endif
 		</ul>
 	</div>
 </div>

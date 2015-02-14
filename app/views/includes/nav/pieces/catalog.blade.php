@@ -1,1 +1,1 @@
-<li class="active"><a href=" {{ URL::route('catalog') }}">Catalog</a></li>
+<li><a href=" {{ URL::route('catalog') }}">Catalog</a></li>
