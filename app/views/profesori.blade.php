@@ -47,6 +47,7 @@
 			<th>Data Nasterii</th>
 			<th>Created at</th>
 			<th>Updated at</th>
+      <th>User ID</th>
 			<th class="text-center">Actions</th>
 		</tr>
 	</thead>
@@ -62,6 +63,7 @@
           <td>{{ $profesor->{"data nasterii"} }} </td>
           <td>{{ $profesor->created_at}}</td>
           <td>{{ $profesor->updated_at}}</td>
+          <td>{{ $profesor->user_id}}</td>
           <td class="text-center">
             <a href="{{URL::route('profesor_materii',['id' => $profesor->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='View this profesor ({{ $cnt }})'><span class="glyphicon glyphicon-info-sign"></span></a>
             @if( User::CanChange() )
