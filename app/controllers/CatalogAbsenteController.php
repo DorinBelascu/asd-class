@@ -10,10 +10,27 @@ class CatalogAbsenteController extends BaseController {
 		{
 			return Redirect::route('materii-catalog', ['id' => $id_elev]);
 		}
+		$sem = 0;
+		if($v = Input::get('semestrul'))
+		{
+			if( in_array($v, ['1', '2']) )
+			{
+				switch($v)
+				{
+					case '1' :
+						$sem = 1;
+						break;
+					case '2' :
+						$sem = 2;
+						break;
+				}
+			}
+		}
 	 	return View::make('catalog/catalog-absente')->with([
 	 		'absente' => Absente::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
 	 		'elev' => $elev,
-	 		'materie' => $materie
+	 		'materie' => $materie,
+	 		'sem' => $sem,
 	 	]);
 	}
 

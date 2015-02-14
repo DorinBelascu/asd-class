@@ -69,9 +69,9 @@ To Do List:
 	-calcularea mediilor pe semestru.
 	
 
-1) coloana noua user_id in tabela elevi/profesori cu relatie spre tabela users; 
-	coloana noua user_type (caracter de 16) in users, valori posibile: elev/profesor;
-2) in formularul register sa avem un radio box cu optiunile elev/profesor;
+1) coloana noua user_id in tabela elevi/profesori cu relatie spre tabela users; (Gata)
+	coloana noua user_type (caracter de 16) in users, valori posibile: elev/profesor; (Gata)
+2) in formularul register sa avem un radio box cu optiunile elev/profesor; (Gata)
 3) atunci cand se activeaza contul se vor crea inregistrari in tabelele elevi/profesori; (GATA)
 
 #14 7.02.2015
