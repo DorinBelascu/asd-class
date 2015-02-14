@@ -32,7 +32,17 @@ class ProfesoriController extends BaseController {
 			$profesor->nume = $data['nume'];
 			$profesor->prenume = $data['prenume'];
 			$profesor->{"data nasterii"} = $data['data_nasterii'];
+			$profesor->user_id = $data['user_id'] == '-' ? NULL : $data['user_id'];
 			$profesor->save();
+			if ( is_int($data['user_id']))
+			{
+				$user = Sentry::findUserById($data['user_id']);
+				if ($user)
+				{
+					$user->user_type = 'elev';
+					$user->save();
+				}
+			}
 			return Redirect::route('profesori')->with('result','Profesorul a fost adaugat');
 		}
 		return Redirect::route('profesori')->withInput()->witherrors($validator)->with('result', 'Atentie! Ai gresit la adaugarea profesorului!');

@@ -53,6 +53,7 @@
       <th>Genul</th>
 			<th>Created at</th>
 			<th>Updated at</th>
+      <th>User ID</th>
 			<th class="text-center">Actions</th>
 		</tr>
 	</thead>
@@ -71,6 +72,7 @@
           </td>
           <td>{{ $elev->created_at}}</td>
           <td>{{ $elev->updated_at}}</td>
+          <td>{{ $elev->user_id}}</td>
           <td class="text-center">
             <a href="{{URL::route('elevi_photo',['id' => $elev->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='View this elev ({{ $elev->id }})'><span class="glyphicon glyphicon-info-sign"></span></a>
           	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>

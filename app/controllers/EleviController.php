@@ -35,11 +35,18 @@ class EleviController extends BaseController {
 			$elev->{"data nasterii"} = $data['data_nasterii'];
 			$elev->genul = $data['genul'];
 			$elev->photo = 'default.png';
-			$elev->user_id = $data['user_id'];
+			$elev->user_id = $data['user_id'] == '-' ? NULL : $data['user_id'];
 			$elev->save();
-			$user = Sentry::findUserById($data['user_id']);
-			$user->user_type = 'elev';
-			$user->save();
+
+			if ( is_int($data['user_id']))
+			{
+				$user = Sentry::findUserById($data['user_id']);
+				if ($user)
+				{
+					$user->user_type = 'elev';
+					$user->save();
+				}
+			}
 			return Redirect::route('elevi')->with('result-success','Elevul a fost adaugat');
 		}
 		return Redirect::route('elevi')->withInput()->witherrors($validator)->with('result-success', 'Atentie! Ai gresit la adaugarea elevului!');
