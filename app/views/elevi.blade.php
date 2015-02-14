@@ -6,14 +6,21 @@
 @if ( Session::get('result-success'))
     <div class="alert alert-success" role="alert">{{Session::get('result-success')}}</div>
 @elseif (Session::get('result-fail'))
-    @if ($errors->has('add_materie'))
+    @if ($errors->has('nume-edit'))
             <div class="col-md-12 alert alert-danger">
-                <span class="error-message" style="font-size:20px">{{ $errors->first('add_materie') }}</span>
+                <span class="error-message" style="font-size:20px">{{ $errors->first('nume-edit') }}</span>
             </div>
     @endif
-    @if ($errors->has('edit-materie'))
+
+    @if ($errors->has('prenume-edit'))
             <div class="col-md-12 alert alert-danger">
-                <span class="error-message" style="font-size:20px">{{ $errors->first('edit-materie') }}</span>
+                <span class="error-message" style="font-size:20px">{{ $errors->first('prenume-edit') }}</span>
+            </div>
+    @endif
+
+    @if ($errors->has('data_nasterii-edit'))
+            <div class="col-md-12 alert alert-danger">
+                <span class="error-message" style="font-size:20px">{{ $errors->first('data_nasterii-edit') }}</span>
             </div>
     @endif
 @endif

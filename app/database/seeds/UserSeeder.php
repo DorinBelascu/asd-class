@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
 	        'activated'  => true,
 	        'first_name' => 'Andra',
 	        'last_name'  => 'Andrus',
+	        'user_type'  => 'admin',
 	    ));	    
 	    $user->addGroup($adminGroup);
 
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
 	        'activated'  => true,
 	        'first_name' => 'Stefan',
 	        'last_name'  => 'Maftei',
+	       	'user_type'  => 'admin',
 	    ));	    
 	    $user->addGroup($adminGroup);
 
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
 	        'activated'  => true,
 	        'first_name' => 'Dorin',
 	        'last_name'  => 'Belascu',
+	        'user_type'  => 'admin',	      
 	    ));	    
 	    $user->addGroup($adminGroup);	
 
@@ -50,6 +53,7 @@ class UserSeeder extends Seeder
 	        'activated'  => true,
 	        'first_name' => 'Viorel',
 	        'last_name'  => 'Tarta',
+	        'user_type'  => 'diriginte',	        
 	    ));	    
 	    $user->addGroup($diriginteGroup);   
 

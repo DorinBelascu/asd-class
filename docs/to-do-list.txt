@@ -76,3 +76,7 @@ To Do List:
 
 #14 7.02.2015
 	-de completat edit, add la elevi si profesori in controllers 
+
+#15 14.02.2015
+	-buton pentru a schimba notele sau absentele proprii din private in publice sau invers
+	

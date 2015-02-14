@@ -48,6 +48,7 @@ class EleviController extends BaseController {
 	public function edit()
 	{
 		$data = Input::all();
+
 		$rules = array(
 			'nume-edit'          => 'required',
 			'prenume-edit'       => 'required',
@@ -56,8 +57,8 @@ class EleviController extends BaseController {
 		$gen = array( '1' => 'masculin', '2' => 'feminin');
 		$validator = Validator::make($data, $rules, array(
 			'required' => 'Baga ba :attribute',
-			'before'   => 'Introdu o data anterioara datei 01.01.2000',
-			'after'    => 'Introdu o data mai mare decat 01.01.1915'
+			'data_nasterii-edit.before'   => 'Introdu o data anterioara datei 01.01.2000',
+			'data_nasterii-edit.after'    => 'Introdu o data mai mare decat 01.01.1915',
 		));
 		if ($validator->passes()) 
 		{
