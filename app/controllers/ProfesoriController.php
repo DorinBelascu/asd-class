@@ -39,7 +39,7 @@ class ProfesoriController extends BaseController {
 				$user = Sentry::findUserById($data['user_id']);
 				if ($user)
 				{
-					$user->user_type = 'elev';
+					$user->user_type = 'profesor';
 					$user->save();
 				}
 			}

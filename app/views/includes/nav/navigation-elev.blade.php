@@ -5,7 +5,6 @@
 			<ul class="nav navbar-nav">
 				@include('includes.nav.pieces.catalog')
 				@include('includes.nav.pieces.sistem')
-				@include('includes.nav.pieces.statistici')
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				@include('includes.nav.pieces.profile')

@@ -26,7 +26,9 @@
       <div class="alert alert-info" role="alert">
         <div class="row">
           <div class="col-md-1">
-            <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+          @if( User::canChange() )
+            <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga absenta noua"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+          @endif
           </div>
           <div class="col-md-6 col-md-offset-2" style="text-align:center">
             <div class="btn-group" role="group" aria-label="..." style="margin:auto">
@@ -69,12 +71,14 @@
                   <td>{{ $absenta->semestru }}</td>
                   <td>{{ $absenta->created_at}}</td>
                   <td>{{ $absenta->updated_at}}</td>
+                  @if(User::canChange())
                   <td class="text-center">
                       <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Delete this subject({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
                       @include('absente-elevi.delete')
                       <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $absenta->id }}" data-placement="top" title="Edit this absenta({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
                       @include('absente-elevi.edit')
                   </td>
+                  @endif
                 </tr>
               @elseif ($sem == $absenta->semestru)
                 <tr>

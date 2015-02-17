@@ -1,4 +1,8 @@
-  <!-- Modal -->
+<?php 
+    $users = ['-' => 'Selectati userul'] + User::whereraw('user_type is null')->orderby('email')->get()->lists('email','id');
+    // $users = array('-' => '[Selectati userul]', '1' => 'user1', '2' => 'user2')
+?>  
+<!-- Modal -->
 <div class="modal fade" id="add-profesori" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -25,14 +29,16 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             {{ Form::input('date', 'data_nasterii', null, array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Data nasterii a profesorului")) }}
             <span id="error-data_nasterii" class="error-message"></span>
             @if ($errors->has('data_nasterii'))
               <span class="error-message">{{ $errors->first('data_nasterii') }}</span>
             @endif
+          </div>
+          <div class="col-md-6">
+            {{ Form::select('user_id', $users, Input::old('Care user?') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Alege userul", ))}}
+            <span id="error-user" class="error-message"></span>
           </div>
         </div>
       </div>

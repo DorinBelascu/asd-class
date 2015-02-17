@@ -2,6 +2,18 @@
 
 class CatalogAbsenteController extends BaseController {
 
+	protected function user_este_elev($elev)
+	{
+		if ((Sentry::getUser()->id == $elev->user_id) ) 
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	public function index($denumirea, $id_elev, $id_materie)
 	{
 		$materie = Materii::find($id_materie);
@@ -26,8 +38,17 @@ class CatalogAbsenteController extends BaseController {
 				}
 			}
 		}
+		$user_este_elev = $this->user_este_elev($elev);
+		if((!$user_este_elev) && (User::Group() == 'elev'))
+		{
+			$absente = Absente::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->where('publica_sau_nu', '=' , 1)->get();
+		}
+		else
+		{
+			$absente = Absente::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get();
+		}
 	 	return View::make('catalog/catalog-absente')->with([
-	 		'absente' => Absente::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
+	 		'absente' => $absente,
 	 		'elev' => $elev,
 	 		'materie' => $materie,
 	 		'sem' => $sem,
@@ -51,7 +72,6 @@ class CatalogAbsenteController extends BaseController {
 		);
 		$validator = Validator::make($data, $rules, array(
 			'data.required' => 'Ati uitat sa introduceti data',
-			'publica_sau_nu.required' => 'Ati uitat sa introduceti daca e publica sau nu',
 			'motivata_sau_nemotivata.required' => 'Ati uitat sa introduceti daca e motivata sau nemotivata',
 			'semestrul.required' => 'Ati uitat sa introduceti semestrul',
 
@@ -63,23 +83,7 @@ class CatalogAbsenteController extends BaseController {
 			$absenta->elev_id = $id_elev;
 			$absenta->semestru = $data['semestrul'];
 			$absenta->data = $data['data'];			
-			if ($data['publica_sau_nu'] == 'publica') 
-			{
-				$absenta->publica_sau_nu = '1';
-			}
-			else
-			{
-				$absenta->publica_sau_nu = '0';	
-			}
-
-			if ($data['motivata_sau_nemotivata'] == 'motivata') 
-			{
-				$absenta->stare = '1';
-			}
-			else
-			{
-				$absenta->stare = '0';	
-			}
+			$absenta->publica_sau_nu = 0;
 			$absenta->save();
 			return Redirect::route('catalog-absente', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->with('result-success', 'Absenta a fost adaugata');
 		}

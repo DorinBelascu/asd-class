@@ -22,11 +22,13 @@
 		  <div class="panel-heading">Materiile Profesorului <span style="font-weight: bold;">{{ $profesor->nume . ' ' . $profesor->prenume }}</span> <span class="badge pull-right"> {{ count($materii) }}</span> </div>
 		  
 		  <div class="panel-body">
+		  @if(User::canChange())
 		  	<div class="alert alert-info" role="alert">
 		  		@if( count($lista) )
 		  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject To {{ $profesor->nume . ' ' . $profesor->prenume }}"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
 		  		@endif
 		  	</div>
+		  @endif
 
 		  	@include('profesori.materii.adaugare')
 
@@ -41,7 +43,6 @@
 					<th>Name</th>
 					<th>Created at</th>
 					<th>Updated at</th>
-					<th class="text-center">Actions</th>
 				</tr>
 			</thead>
 
@@ -54,12 +55,16 @@
 			      <td>{{ $pm->denumirea}}</td>
 			      <td>{{ $pm->created_at}}</td>
 			      <td>{{ $pm->updated_at}}</td>
+			      @if(User::canChange())
 			      <td class="text-center">
 		          	<button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $pm->id }}"" data-placement="top" title="Delete this materie ({{ $pm->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
 		          </td>
+		          @endif
 			    </tr>
 
-			    @include('profesori.materii.delete')
+			    @if(User::canChange())
+			    	include('profesori.materii.delete')
+			    @endif
 		    
 		 	@endforeach
 			</tbody>
@@ -80,9 +85,9 @@
                 </div>
             </div>
         </div>
+    @if(User::canChange())
         <div class="row">
             <div class="col-md-12">
-                
 				<div style="width: 240px; text-align:center; margin:0px auto;">
 					<div class="fileinput fileinput-new" data-provides="fileinput">
 						<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 240px; height: 240px;">
@@ -102,6 +107,7 @@
 				</div>
 			</div>
         </div>
+    @endif
 	</div>
 </div>
 

@@ -1,6 +1,6 @@
 <?php 
     $motivata_sau_nemotivata = [ '-' => '[Selectati daca motivata sau nemotivata]', 'motivata' => 'motivata', 'nemotivata' => 'nemotivata'];
-    $publica_sau_nu = ['-' => '[Selectati daca sa fie publica sau nu]', 'publica' => 'publica', 'privata' => 'privata'];
+    $publica_sau_nu = ['privata' => 'privata'];
     $semestrul = ['-' => '[Selectati semestrul]' , '1' => 'Semestrul 1', '2' => 'Semestrul 2'];
 ?>  
 <!-- Modal -->

@@ -2,6 +2,18 @@
 
 class CatalogNoteController extends BaseController {
 
+	protected function user_este_elev($elev)
+	{
+		if ((Sentry::getUser()->id == $elev->user_id) ) 
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	public function index($denumirea, $id_elev, $id_materie)
 	{
 		$materie = Materii::find($id_materie);
@@ -26,11 +38,21 @@ class CatalogNoteController extends BaseController {
 				}
 			}
 		}
+		$user_este_elev = $this->user_este_elev($elev);
+		if((!$user_este_elev) && (User::Group() == 'elev'))
+		{
+			$note = Note::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->where('publica_sau_nu', '=' , 1)->get();
+		}
+		else
+		{
+			$note = Note::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get();
+		}
 	 	return View::make('catalog/catalog-note')->with([
-	 		'note' => Note::orderBy('data','desc')->where('elev_id', '=', $id_elev)->where('materie_id', '=', $id_materie)->get(), 
+	 		'note' => $note, 
 	 		'elev' => $elev,
 	 		'materie' => $materie,
 	 		'sem' => $sem,
+	 		'userul_este_elev' => $user_este_elev,
 	 	]);
 	}
 
@@ -45,8 +67,7 @@ class CatalogNoteController extends BaseController {
 		$data = Input::all();
 		$rules = array(
 			'nota'      => 'required|min:1|max:10|integer',
-			'data'      => 'required',
-			'starea'    => 'required|in:publica,privata',	
+			'data'      => 'required',	
 			'semestrul' => 'required|in:1,2',
 		);
 		$validator = Validator::make($data, $rules, array(
@@ -63,7 +84,7 @@ class CatalogNoteController extends BaseController {
 			$nota->elev_id        = $elev->id;
 			$nota->data           = $data['data'];	
 			$nota->semestru       = $data['semestrul'];	
-			$nota->publica_sau_nu = $data['starea'] == 'publica' ? 1 : 0;
+			$nota->publica_sau_nu = 0;
 			$nota->teza 		  = 0;
 			$nota->save();
 			return Redirect::route('catalog-note', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->with('result-success', 'Nota a fost adaugata');

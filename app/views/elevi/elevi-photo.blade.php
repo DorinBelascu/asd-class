@@ -33,6 +33,7 @@
               </div>
             </div>
 
+          @if(User::canChange() || $user_este_elev)
             <div class="row">
               <div class="col-md-12">
                 
@@ -57,6 +58,7 @@
                 </div>
                </div>
             </div>
+          @endif
         </div>
       </div>
   </div>

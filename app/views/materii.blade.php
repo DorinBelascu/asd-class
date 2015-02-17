@@ -35,10 +35,12 @@
   		To <strong> {{$materii->getTo()}} </strong>, 
   		Count: <strong> {{$materii->count()}} </strong>.
   		</p>
+      @if(User::canChange())
   		<div class="alert alert-info" role="alert">
   			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
       </div>
-    @include('materii.adaugare')
+      @include('materii.adaugare')
+      @endif
     <!-- Table -->
   <div class="table-responsive">
   	<table class="table table-hover table-condensed table-striped">
@@ -66,17 +68,20 @@
           <td>{{ $materie->updated_at}}</td>
           <td class="text-center">
             <a href="{{URL::route('materie_profesori',['id' => $materie->id])}}" class="btn btn-xs btn-success" rel="tooltip" title="View this subject's profesors ({{ $cnt }})"><span class="glyphicon glyphicon-info-sign"></span></a>
-            <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-placement="top" title="Edit this subject ({{ $materie->id }})" data-target="#Modal{{ $i }}"> <span class="glyphicon glyphicon-pencil"></span></button>
-            <!-- Modal -->
-            @if($cnt == 0)
-          	 <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $materie->id }}"" data-placement="top" title="Delete this subject({{ $materie->id }})"> <span class="glyphicon glyphicon-trash"></span></button> 
+            @if(User::canChange())
+              <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-placement="top" title="Edit this subject ({{ $materie->id }})" data-target="#Modal{{ $i }}"> <span class="glyphicon glyphicon-pencil"></span></button>
+              <!-- Modal -->
+              @if($cnt == 0)
+            	 <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $materie->id }}"" data-placement="top" title="Delete this subject({{ $materie->id }})"> <span class="glyphicon glyphicon-trash"></span></button> 
+              @endif
             @endif
             <!-- Modal -->
           </td>
         </tr>
-
+  @if(User::canChange())
     @include('materii.edit')
     @include('materii.delete')
+  @endif
     @endforeach   
       </tbody>
 

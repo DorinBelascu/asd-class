@@ -75,10 +75,10 @@
             @endif
           </td>
         </tr>
-
-@include('profesori.edit')
-
-@include('profesori.delete')
+@if(User::canChange())
+  @include('profesori.edit')
+  @include('profesori.delete')
+@endif
 
   @endforeach   
       </tbody>

@@ -6,12 +6,12 @@ To Do List:
 
 #2. 22.11.2014
 
-	Cand adaug un profesor, imediat ce incep sa completez data, apare eroarea: "Completati genul" (nu exista!)
+	Cand adaug un profesor, imediat ce incep sa completez data, apare eroarea: "Completati genul" (nu exista!) (GATA)
 
 #3. 22.11.2014
 
 	De pus coloana pt poza la profesori. (gata)
-	Poza se incarca din profil profesor.
+	Poza se incarca din profil profesor. (gata)
 
 #4. 22.11.2014
 	
@@ -55,7 +55,7 @@ To Do List:
 	Cand vreau sa sterg o materie care este predata de un profesor, apare eroare: nu se poate sterge o inregistrare dintr-o tabela legata de alta tabela (gata)
 
 #12 24.01.2015
-	-Sortarea la statistici dupa fiecare coloana de acolo (aproape gata)
+	-Sortarea la statistici dupa fiecare coloana de acolo (gata)
 	-Sa putem adauga teza (gata)
 	-La statistici se adauga un nou link cu medii (gata)
 	-Cand dau pe profesor view this profesor o sa accesez profilul profesorului unde se poate si nota
@@ -66,7 +66,7 @@ To Do List:
 	-modificare form adaugare note;  (gata)
 	-validare form si existenta unei singure teze pe semestru la o materie; (gata)
 	-statistici note 'teze' (cu tot cu sortari); (gata)
-	-calcularea mediilor pe semestru.
+	-calcularea mediilor pe semestru. (gata)
 	
 
 1) coloana noua user_id in tabela elevi/profesori cu relatie spre tabela users; (Gata)
@@ -75,8 +75,15 @@ To Do List:
 3) atunci cand se activeaza contul se vor crea inregistrari in tabelele elevi/profesori; (GATA)
 
 #14 7.02.2015
-	-de completat edit, add la elevi si profesori in controllers 
+	-de completat edit, add la elevi si profesori in controllers (gata)
 
 #15 14.02.2015
 	-buton pentru a schimba notele sau absentele proprii din private in publice sau invers
+	-toate notele si absentele din oficiu sunt private (gata)
+
+#16 16.02.2015
+	-interfata de elev (gata)
+	-interfata de profesor (gata)
+	-Filtre
+	
 	

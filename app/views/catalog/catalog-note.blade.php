@@ -32,7 +32,6 @@ foreach ($note as $i => $nota)
      $exista_teza2 = 1;
   }
 }
-
 ?>
 
 <div class="panel panel-primary">
@@ -42,7 +41,9 @@ foreach ($note as $i => $nota)
       <div class="alert alert-info" role="alert">
         <div class="row">
           <div class="col-md-1">
+          @if(User::canChange())
             <button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga o nota la {{$materie->denumirea}}" data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+          @endif
           </div>
           <div class="col-md-6 col-md-offset-2" style="text-align:center">
             <div class="btn-group" role="group" aria-label="..." style="margin:auto">
@@ -52,18 +53,16 @@ foreach ($note as $i => $nota)
             </div>
           </div>
           <div class="col-md-1 col-md-offset-2">
-                  @if( ($exista_teza1 == 0) || ($exista_teza2 == 0)) 
-        <button class="btn btn-warning pull-right" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga teza la {{$materie->denumirea}}" data-target="#myModal2"> <span class="glyphicon glyphicon-plus-sign"></span></button>
-        @endif
+            @if( (($exista_teza1 == 0) || ($exista_teza2 == 0)) && (User::canChange())) 
+            <button class="btn btn-warning pull-right" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga teza la {{$materie->denumirea}}" data-target="#myModal2"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+            @endif
           </div>
         </div>
-
-
-
-
       </div>
-          @include('note-elevi.adaugare')
-          @include('note-elevi.adaugare-teza')
+          @if(User::canChange())
+            @include('note-elevi.adaugare')
+            @include('note-elevi.adaugare-teza')
+          @endif
       <!-- Table -->
       <div class="table-responsive">
         <table class="table table-hover table-condensed table-striped">
@@ -71,7 +70,7 @@ foreach ($note as $i => $nota)
             <tr>
               <th>#</th>
               <th>Valoare</th>
-              <th>Publica sau nu</th>
+              <th>Stare</th>
               <th>Data</th>
               <th>Tip</th>
               <th>Semestrul</th>
@@ -86,11 +85,9 @@ foreach ($note as $i => $nota)
                 <tr>
                   <td>{{ ++$j }}/{{$nota->id}}.</td>
                   <td>{{ $nota->valoare }}</td>
-                  @if ($nota->publica_sau_nu == 0)
-                      <td> Privata </td> 
-                  @else
-                      <td> Publica </td>
-                  @endif    
+                  <td class="text-center" style="width:32px">
+                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica' : 'privata'] ) }}
+                  </td>   
                   <td>{{ $nota->data }}</td>
                    @if ($nota->teza == 0)
                       <td> Nota </td> 
@@ -100,13 +97,15 @@ foreach ($note as $i => $nota)
                   <td>{{ $nota->semestru }}</td>
                   <td>{{ $nota->created_at }}</td>
                   <td>{{ $nota->updated_at }}</td>
-                  <td class="text-center">
-                      <!-- Modal -->
-                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
-                      @include('note-elevi.delete')
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
-                      @include('note-elevi.edit')
-                  </td>
+                  @if(User::canChange())
+                    <td class="text-center">
+                        <!-- Modal -->
+                        <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                        @include('note-elevi.delete')
+                        <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                        @include('note-elevi.edit')
+                    </td>
+                  @endif
                 </tr>
               @elseif ($sem == $nota->semestru)
                 <tr>
@@ -126,13 +125,15 @@ foreach ($note as $i => $nota)
                   <td>{{ $nota->semestru }}</td>
                   <td>{{ $nota->created_at }}</td>
                   <td>{{ $nota->updated_at }}</td>
-                  <td class="text-center">
-                      <!-- Modal -->
-                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
-                      @include('note-elevi.delete')
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
-                      @include('note-elevi.edit')
-                  </td>
+                     @if(User::canChange())                  
+                      <td class="text-center">
+                          <!-- Modal -->
+                          <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                          @include('note-elevi.delete')
+                          <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                          @include('note-elevi.edit')
+                      </td>
+                    @endif
                 </tr>
               @endif
             @endforeach   

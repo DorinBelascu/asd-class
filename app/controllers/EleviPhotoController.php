@@ -2,14 +2,30 @@
 
 class EleviPhotoController extends BaseController
 {
+	protected function user_este_elev($elev)
+	{
+		if ((Sentry::getUser()->id == $elev->user_id) ) 
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	public function index($id)
 	{
 		$elev = Elevi::find($id);
+		$user_este_elev = $this->user_este_elev($elev);
 		if(! $elev)
 		{
 			return Redirect::route('elevi');
 		}
-		return View::make('elevi/elevi-photo')->with('elev', $elev);
+		return View::make('elevi/elevi-photo')->with([
+			'elev' => $elev,
+			'user_este_elev' => $user_este_elev,
+		]);
 	}
 
 	public function upload($id)

@@ -7,12 +7,14 @@
 	  	<!-- Default panel contents -->
 	  	<div class="panel-heading">Profesorii care predau <span style="font-weight: bold;">{{ $materie->denumirea }}</span> <span class="badge pull-right"> {{ $profesori->count() }}</span> </div>
 			<div class="panel-body">
+			@if(User::canChange())
 				<div class="alert alert-info" role="alert">
 			  		@if( count($lista) )
 			  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Teacher To {{ $materie->denumirea }}"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
 			  		@endif
 	  			</div>
 	  			@include('materii.profesori.adaugare')
+	  		@endif
 			  	<!-- Table -->
 			  	<div class="table-responsive">
 					<table class="table table-hover table-condensed table-striped">
@@ -25,7 +27,6 @@
 								<th>Data Nasterii</th>
 								<th>Created at</th>
 								<th>Updated at</th>
-								<th class="text-center">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -38,9 +39,11 @@
 							  <td>{{ $pm->Profesor->{"data nasterii"} }}</td>
 							  <td>{{ $pm->Profesor->created_at}}</td>
 							  <td>{{ $pm->Profesor->updated_at}}</td>
+							  @if(User::canChange())
 							  <td class="text-center">
 				          			<button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $pm->id }}"" data-placement="top" title="Delete this teacher ({{ $pm->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
 				          		</td>
+				          	   @endif
 							</tr>
 							@include('materii.profesori.delete')
 						@endforeach
@@ -60,6 +63,7 @@
                 </div>
             </div>
         </div>
+        @if(User::canChange())
         <div class="row">
             <div class="col-md-12">    
 				<div style="width: 240px; text-align:center; margin:0px auto;">
@@ -81,6 +85,7 @@
 				</div>
 			</div>
         </div>
+        @endif
 	</div>
 </div>
 @stop
