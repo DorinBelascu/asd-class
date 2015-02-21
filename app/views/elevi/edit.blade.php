@@ -1,5 +1,15 @@
 <?php 
     $gen = array('1' => 'masculin', '2' => 'feminin');
+    $all_users = User::whereraw('user_type is null')->orderby('email')->get()->lists('email','id');
+    if ($elev->user_id) 
+    {
+      $curent_user = User::where('id', '=', $elev->user_id)->lists('email','id');
+      $users = $curent_user + $all_users;
+    }
+    else
+    {
+      $users = $all_users;
+    }
 ?>  
   <!-- Modal -->
 <div class="modal fade" id="edit-{{ $elev->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -40,6 +50,16 @@
             {{ Form::select('genul', $gen, Input::old('Genul Elevului') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Genul elevului"))}}
           </div>  
         </div>
+
+
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            {{ Form::select('user_id', $users, Input::old('Care user?') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Alege userul", ))}}
+            <span id="error-user" class="error-message"></span>
+          </div> 
+        </div>
+
+
       </div>
       <div class="modal-footer">
         {{ Form::submit('Editeaza Elev', array('class'=>'btn btn-success', 'id'=>'btn-edit')) }}

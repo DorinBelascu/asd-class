@@ -43,14 +43,10 @@
           </div>  
         </div>
         <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-md-offset-4">
             {{ Form::select('user_id', $users, Input::old('Care user?') , array('class'=>'form-control', 'data-toggle'=>'tooltip', 'title' => "Alege userul", ))}}
             <span id="error-user" class="error-message"></span>
-          </div>
-          <div class="col-md-4">
-          </div>  
+          </div> 
         </div>
       </div>
       <div class="modal-footer">

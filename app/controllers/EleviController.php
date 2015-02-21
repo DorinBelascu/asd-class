@@ -38,7 +38,7 @@ class EleviController extends BaseController {
 			$elev->user_id = $data['user_id'] == '-' ? NULL : $data['user_id'];
 			$elev->save();
 
-			if ( is_int($data['user_id']))
+			if ( $data['user_id'] != '-' )
 			{
 				$user = Sentry::findUserById($data['user_id']);
 				if ($user)
@@ -75,7 +75,19 @@ class EleviController extends BaseController {
 			$elev->{"data nasterii"} = Input::get('data_nasterii-edit');
 			$aux = Input::get('genul');
 			$elev->genul = $gen[$aux];
+			$elev->user_id = $data['user_id'] == '-' ? NULL : $data['user_id'];			
 			$elev->save();
+
+			if ( $data['user_id'] != '-')
+			{
+				$user = Sentry::findUserById($data['user_id']);
+				if ($user)
+				{
+					$user->user_type = 'elev';
+					$user->save();
+				}
+			}
+
 			return Redirect::back()->with('result-success', 'Editarea s-a efectuat cu succes!');
 		}
 		return Redirect::back()->withInput()->witherrors($validator)->with('result-fail', 'Atentie! Ai gresit la editarea elevului!');
