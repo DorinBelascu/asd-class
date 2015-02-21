@@ -137,4 +137,17 @@ class CatalogAbsenteController extends BaseController {
 		}
 		return Redirect::route('catalog-absente', ['id_elev' => $id_elev , 'id_materia' => $id_materie, 'denumirea' => $materie->denumirea])->with('result-fail', 'Va rog corectati datele');
 	}
+
+
+	function schimbaPublic()
+	{
+		$id = Input::get('id'); // id-ul inregistrarii ce trebuie schimbate
+		$stare = Input::get('stare'); // starea curenta ==> trebuie schimbata
+
+		$record = Absente::find($id);
+		$record->publica_sau_nu = 1 - $stare;
+		$record->save();
+
+		return HTML::image('images/status/' . $record->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $record->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_absenta', 'data-id' => $record->id, 'data-stare' => $record->publica_sau_nu] );
+	}
 }

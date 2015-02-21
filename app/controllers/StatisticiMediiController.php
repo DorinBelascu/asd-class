@@ -71,6 +71,10 @@
 
     public function index()
     {
+        if( ! User::CanChange() )
+        {
+            return Redirect::route('home');
+        }
         $note = Note::all();
         $elevi = Elevi::all();
         $medii = array();

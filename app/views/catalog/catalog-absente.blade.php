@@ -48,7 +48,7 @@
               <th>Data</th>
               <th>Tip</th>
               <th>Stare</th>
-              <th>Semestrul</th>
+              <th class="text-center">Semestrul</th>
               <th>Created at</th>
               <th>Updated at</th>
             </tr>
@@ -60,15 +60,16 @@
                 <tr>
                   <td>{{ $i+1 }}.</td>
                   <td>{{ $absenta->data}}</td>
-                    @if ($absenta->stare == 0)
-                      <td> Nemotivata </td> 
-                    @else
-                      <td> Motivata </td>
-                    @endif
-                      <td class="text-center" style="width:32px">
-                    {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica' : 'privata'] ) }}
+                      <td>
+                    {{ HTML::image('images/motivation/' . $absenta->stare . '.png','', ['style'=>'width:24px', 'title' => $absenta->stare ? 'motivata' : 'nemotivata'] ) }}
                     </td>
-                  <td>{{ $absenta->semestru }}</td>
+                    
+                    <!-- coloana cu public sau nu -->
+                      <td class="text-center" style="width:32px">
+                    {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_absenta', 'data-id' => $absenta->id, 'data-stare' => $absenta->publica_sau_nu] ) }}
+                    </td>
+
+                  <td class="text-center">{{ $absenta->semestru }}</td>
                   <td>{{ $absenta->created_at}}</td>
                   <td>{{ $absenta->updated_at}}</td>
                   @if(User::canChange())
@@ -170,6 +171,27 @@
     }
     return !error;
   });
+
+
+  $(document).on('click', '.stare_absenta', function(){
+
+    var id = $(this).attr('data-id');
+    var stare = $(this).attr('data-stare');
+    var row = $(this).parent().parent();
+
+    $.ajax({
+      'url'  : "{{URL::route('schimba-stare-absenta')}}",
+      'type' : 'post',
+      'data' : {'id' : id, 'stare' : stare},
+      'success' : function(response){
+          row.find('td:nth-child(4)').html(response);
+      },
+      'error' : function(error){
+        console.log(error);
+      }
+    });
+  });
+
 </script>
 
 @stop

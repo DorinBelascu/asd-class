@@ -15,3 +15,7 @@ include 'routes/elevi/elevi-photo.php';
 include 'routes/commons/catalog.php';
 include 'routes/statistici/statistici.php';
 
+Route::post('schimba-stare-absenta', array(
+	'as' => 'schimba-stare-absenta',
+	'uses' => 'CatalogAbsenteController@schimbaPublic'
+));

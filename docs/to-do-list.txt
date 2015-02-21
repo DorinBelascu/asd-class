@@ -78,12 +78,17 @@ To Do List:
 	-de completat edit, add la elevi si profesori in controllers (gata)
 
 #15 14.02.2015
-	-buton pentru a schimba notele sau absentele proprii din private in publice sau invers
+	-buton pentru a schimba notele sau absentele proprii din private in publice sau invers (gata)
 	-toate notele si absentele din oficiu sunt private (gata)
 
 #16 16.02.2015
 	-interfata de elev (gata)
 	-interfata de profesor (gata)
-	-Filtre
-	
+	-Filtre (gata)
+
+#17 21.02.2015
+	-ajax la toate
+	-home
+	-conditii de afisare la stare (public/privat)
+
 	

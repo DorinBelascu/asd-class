@@ -64,6 +64,10 @@ class StatisticiTezeController extends BaseController
 
 	public function index()
 	{
+		if( ! User::CanChange() )
+		{
+			return Redirect::route('home');
+		}
 
 		$sort = $this->getSort();
 		$note = DB::table('note')

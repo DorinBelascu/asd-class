@@ -50,7 +50,10 @@ class StatisticiAbsenteController extends BaseController
 
 	public function index()
 	{
-
+		if( ! User::CanChange() )
+		{
+			return Redirect::route('home');
+		}
 		$sort = $this->getSort();
 		
 		$absente = DB::table('absente')
