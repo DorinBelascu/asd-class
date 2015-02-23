@@ -30,7 +30,7 @@
 			</div>
 
 			<div class='row text-center'>
-				{{ Form::submit('Save', array('name' => "save", 'class' => "btn btn-primary")) }}
+				{{ Form::submit('Salveaza', array('name' => "save", 'class' => "btn btn-primary")) }}
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -48,7 +48,7 @@
 				<div class="alert alert-success col-md-12" role="alert">{{Session::get('password_result')}}</div>
 				@endif
 				<div class="col-md-12">
-  				{{ Form::password('password', array('class' => "form-control", 'placeholder' => "Password")) }}
+  				{{ Form::password('password', array('class' => "form-control", 'placeholder' => "Parola")) }}
          		@if ($errors->has('password'))
             		<span class="error-message">{{ $errors->first('password') }}</span>
          		@endif
@@ -56,7 +56,7 @@
 			</div>
 			<div class="row">
   				<div class="col-md-12">
-  				{{ Form::password('new_password', array('class' => "form-control", 'placeholder' => "New Password")) }}
+  				{{ Form::password('new_password', array('class' => "form-control", 'placeholder' => "Noua Parola")) }}
          		 @if ($errors->has('new_password'))
             		<span class="error-message">{{ $errors->first('new_password') }}</span>
          		 @endif
@@ -64,14 +64,14 @@
 			</div>
 			<div class="row">
   				<div class="col-md-12">
-  				{{ Form::password('new_password_confirmed', array('class' => "form-control", 'placeholder' => "Confirm New Password")) }}
+  				{{ Form::password('new_password_confirmed', array('class' => "form-control", 'placeholder' => "Confirma Noua Parola")) }}
          		 @if ($errors->has('new_password_confirmed'))
             		<span class="error-message">{{ $errors->first('new_password_confirmed') }}</span>
          		 @endif
   				</div>
 			</div>
 			<div class='row text-center'>
-				{{ Form::submit('Save', array('name' => "save", 'class' => "btn btn-primary")) }}
+				{{ Form::submit('Salveaza', array('name' => "save", 'class' => "btn btn-primary")) }}
 			</div>
 		</div>
 		<div class="col-md-4">

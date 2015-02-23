@@ -6,6 +6,6 @@ class LogoutController extends BaseController
 	{
 		Sentry::logout();
 		Session::flush();
-		return Redirect::route('home')->with('result', 'Bye!');
+		return Redirect::route('home')->with('result', 'Pa!');
 	}
 }

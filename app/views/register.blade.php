@@ -9,13 +9,13 @@
   	<div class="col-md-4">
   		<div class="row">
   			<div class="col-md-6">
-  				{{ Form::text('first_name', null, array('class'=>'form-control', 'placeholder' => "First Name")) }}
+  				{{ Form::text('first_name', null, array('class'=>'form-control', 'placeholder' => "Prenume")) }}
           @if ($errors->has('first_name'))
             <span class="error-message">{{ $errors->first('first_name') }}</span>
           @endif
   			</div>
   			<div class="col-md-6">
-  				{{ Form::text('last_name', null, array('class'=>'form-control', 'placeholder' => "Last Name")) }}
+  				{{ Form::text('last_name', null, array('class'=>'form-control', 'placeholder' => "Nume")) }}
             @if ($errors->has('last_name'))
               <span class="error-message">{{ $errors->first('last_name') }}</span>
             @endif
@@ -31,7 +31,7 @@
   		</div>
   		<div class="row">
   			<div class="col-md-12">
-  			{{ Form::email('email_confirmed', null, array('class' => "form-control", 'placeholder' => "Email Confirmed")) }}
+  			{{ Form::email('email_confirmed', null, array('class' => "form-control", 'placeholder' => "Email Confirmat")) }}
           @if ($errors->has('email_confirmed'))
             <span class="error-message">{{ $errors->first('email_confirmed') }}</span>
           @endif
@@ -39,7 +39,7 @@
   		</div>
   		<div class="row">
   			<div class="col-md-12">
-  			{{ Form::password('password', array('class' => "form-control", 'placeholder' => "Password")) }}
+  			{{ Form::password('password', array('class' => "form-control", 'placeholder' => "Parola")) }}
           @if ($errors->has('password'))
             <span class="error-message">{{ $errors->first('password') }}</span>
           @endif
@@ -47,7 +47,7 @@
   		</div>
   		<div class="row">
   			<div class="col-md-12">
-  			{{ Form::password('password_confirmed', array('class' => "form-control", 'placeholder' => "Password Confirmed")) }}
+  			{{ Form::password('password_confirmed', array('class' => "form-control", 'placeholder' => "Parola Confirmata")) }}
           @if ($errors->has('password_confirmed'))
             <span class="error-message">{{ $errors->first('password_confirmed') }}</span>
           @endif
@@ -69,7 +69,7 @@
         </div>
       </div>
   		<div class="row text-center" style="margin-top:20px">
-  			{{ Form::submit('Create account', array('name' => "create_account", 'class' => "btn btn-primary")) }}
+  			{{ Form::submit('Creeaza cont', array('name' => "create_account", 'class' => "btn btn-primary")) }}
   		</div>
   	</div>
   	<div class="col-md-4">

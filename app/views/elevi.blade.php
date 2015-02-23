@@ -33,17 +33,17 @@
 
   <div class="panel-body">
   	  	<p> 
-  		Current page:<strong> {{$elevi->getCurrentPage()}} </strong>, 
-  		Last page:<strong> {{$elevi->getLastPage()}} </strong>, 
-  		Items per page:<strong> {{$elevi->getPerPage()}} </strong>, 
-  		Total items:<strong> {{$elevi->getTotal()}} </strong>, 
-  		From <strong> {{$elevi->getFrom()}} </strong> 
-  		To <strong> {{$elevi->getTo()}} </strong>, 
-  		Count: <strong> {{$elevi->count()}} </strong>.
+  		Pagina curenta:<strong> {{$elevi->getCurrentPage()}} </strong>, 
+  		Ultima pagina:<strong> {{$elevi->getLastPage()}} </strong>, 
+  		Itemi pe pagina:<strong> {{$elevi->getPerPage()}} </strong>, 
+  		Total itemi:<strong> {{$elevi->getTotal()}} </strong>, 
+  		De la <strong> {{$elevi->getFrom()}} </strong> 
+  		Pana la <strong> {{$elevi->getTo()}} </strong>, 
+  		Numar: <strong> {{$elevi->count()}} </strong>.
   		</p>
       @if(User::canChange())
   		<div class="alert alert-info" role="alert">
-  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Student"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga elev"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
   		</div>
 
 
@@ -61,8 +61,8 @@
       <th>Prenume</th>
       <th>Data nasterii</th>
       <th>Genul</th>
-			<th>Created at</th>
-			<th>Updated at</th>
+			<th>Creat la</th>
+			<th>Modificat la</th>
       <th>User ID</th>
 		</tr>
 	</thead>
@@ -83,10 +83,10 @@
           <td>{{ $elev->updated_at}}</td>
           <td>{{ $elev->user_id}}</td>
           <td class="text-center">
-            <a href="{{URL::route('elevi_photo',['id' => $elev->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='View this elev ({{ $elev->id }})'><span class="glyphicon glyphicon-info-sign"></span></a>
+            <a href="{{URL::route('elevi_photo',['id' => $elev->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='Vezi elevul ({{ $elev->id }})'><span class="glyphicon glyphicon-info-sign"></span></a>
           @if(User::canChange())
-          	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Edit this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
-            <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $elev->id }}"" data-placement="top" title="Delete this elev ({{ $elev->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+          	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $elev->id }}" data-placement="top" title="Editeaza elevul ({{ $elev->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $elev->id }}"" data-placement="top" title="Sterge elevul ({{ $elev->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
           @endif
           </td>
         </tr>

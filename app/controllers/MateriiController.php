@@ -21,7 +21,7 @@ class MateriiController extends BaseController {
 			'add_materie' => 'required|unique:materii,denumirea',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba materia', 
+			'required' => 'Introdu denumirea materiei', 
 			'unique' => 'Exista deja aceasta materie' 
 		));
 		if ($validator->passes()) 
@@ -53,7 +53,7 @@ class MateriiController extends BaseController {
 		}
 		else
 		{
-			return Redirect::back()->withInput()->witherrors($validator)->with('result-fail', 'da');
+			return Redirect::back()->withInput()->witherrors($validator)->with('result-fail', 'Ceva nu a mers bine!');
 		}
 	}
 	public function delete()

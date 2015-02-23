@@ -15,7 +15,7 @@ class ForgotPasswordController extends BaseController
 
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba :attribute', 
+			'required' => 'Introdu :attribute', 
 			'exists' => 'Nu exista acest :attribute'
 		));
 		if ($validator->passes()) 
@@ -58,7 +58,7 @@ class ForgotPasswordController extends BaseController
 			'password_confirmed' => 'required|same:password',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba :attribute', 
+			'required' => 'Introdu :attribute', 
 			'same'     => 'Parolele introduse nu sunt identice',
 		));
 		if ($validator->passes()) 

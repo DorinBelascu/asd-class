@@ -1,2 +1,2 @@
-<li><a href="{{ URL::route('login') }}">Log in</a></li>
-<li><a href="{{ URL::route('register') }}">Register</a></li>
+<li><a href="{{ URL::route('login') }}">Conecteaza-te</a></li>
+<li><a href="{{ URL::route('register') }}">Inregistreaza-te</a></li>

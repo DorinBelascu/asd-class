@@ -45,13 +45,13 @@
                       {{ Form::open(['method'=>'post', 'files'=>true, 'url'=>URL::route('save-elev-photo-upload', ['id'=>$elev->id])])}}
                       <div>
                         <span class="btn btn-default btn-file">
-                          <span class="fileinput-new">Select image</span>
-                          <span class="fileinput-exists">Change</span>
+                          <span class="fileinput-new">Selecteaza imaginea</span>
+                          <span class="fileinput-exists">Schimba</span>
                           <input type="file" name="photo-elev" />
                           
                         </span>
-                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                        <button class="btn btn-default fileinput-exists"> Upload </button>
+                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Sterge</a>
+                        <button class="btn btn-default fileinput-exists"> Incarca </button>
                       </div>
                       {{ Form::close() }}
                   </div>

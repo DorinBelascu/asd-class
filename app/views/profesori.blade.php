@@ -16,18 +16,18 @@
 
   <div class="panel-body">
   	  <p> 
-  		  Current page:<strong> {{$profesori->getCurrentPage()}} </strong>, 
-    		Last page:<strong> {{$profesori->getLastPage()}} </strong>, 
-    		Items per page:<strong> {{$profesori->getPerPage()}} </strong>, 
-    		Total items:<strong> {{$profesori->getTotal()}} </strong>, 
-    		From <strong> {{$profesori->getFrom()}} </strong> 
-    		To <strong> {{$profesori->getTo()}} </strong>, 
-    		Count: <strong> {{$profesori->count()}} </strong>.
+  		  Pagina curenta:<strong> {{$profesori->getCurrentPage()}} </strong>, 
+    		Ultima pagina:<strong> {{$profesori->getLastPage()}} </strong>, 
+    		Itemi pe pagina:<strong> {{$profesori->getPerPage()}} </strong>, 
+    		Total itemi:<strong> {{$profesori->getTotal()}} </strong>, 
+    		De la <strong> {{$profesori->getFrom()}} </strong> 
+    		Pana la <strong> {{$profesori->getTo()}} </strong>, 
+    		Numar: <strong> {{$profesori->count()}} </strong>.
     	</p>
       <!-- butonul si formularul de adaugare -->
       @if( User::CanChange() )
     		<div class="alert alert-info" role="alert">
-    			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-target="#add-profesori" data-placement="top" title="Add New Profesor"> <span class="glyphicon glyphicon-plus-sign"></span>
+    			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-target="#add-profesori" data-placement="top" title="Adauga profesor"> <span class="glyphicon glyphicon-plus-sign"></span>
           </button>
     		</div>
 
@@ -41,14 +41,13 @@
 		<tr>
 			<th>#</th>
 			<th>ID</th>
-			<th>Name</th>
-			<th>Forename</th>
+			<th>Nume</th>
+			<th>Prenume</th>
       <th>Cate materii preda</th>
 			<th>Data Nasterii</th>
-			<th>Created at</th>
-			<th>Updated at</th>
+			<th>Creat la</th>
+			<th>Modificat la</th>
       <th>User ID</th>
-			<th class="text-center">Actions</th>
 		</tr>
 	</thead>
 
@@ -65,12 +64,12 @@
           <td>{{ $profesor->updated_at}}</td>
           <td>{{ $profesor->user_id}}</td>
           <td class="text-center">
-            <a href="{{URL::route('profesor_materii',['id' => $profesor->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='View this profesor ({{ $cnt }})'><span class="glyphicon glyphicon-info-sign"></span></a>
+            <a href="{{URL::route('profesor_materii',['id' => $profesor->id])}}" class="btn btn-xs btn-success" rel="tooltip" title='Vezi materiile predate de profesor ({{ $cnt }})'><span class="glyphicon glyphicon-info-sign"></span></a>
             @if( User::CanChange() )
-            	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $profesor->id }}" data-placement="top" title="Edit this profesor ({{ $profesor->id }})"> <span class="
+            	<button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $profesor->id }}" data-placement="top" title="Editeaza profesorul ({{ $profesor->id }})"> <span class="
               glyphicon glyphicon-pencil"></span></button>
               @if($cnt == 0)
-            	 <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $profesor->id }}"" data-placement="top" title="Delete this profesor ({{ $profesor->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+            	 <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $profesor->id }}"" data-placement="top" title="Sterge profesorul ({{ $profesor->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
               @endif
             @endif
           </td>

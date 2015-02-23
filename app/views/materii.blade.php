@@ -27,17 +27,17 @@
 
   <div class="panel-body">
   	  	<p> 
-  		Current page:<strong> {{$materii->getCurrentPage()}} </strong>, 
-  		Last page:<strong> {{$materii->getLastPage()}} </strong>, 
-  		Items per page:<strong> {{$materii->getPerPage()}} </strong>, 
-  		Total items:<strong> {{$materii->getTotal()}} </strong>, 
-  		From <strong> {{$materii->getFrom()}} </strong> 
-  		To <strong> {{$materii->getTo()}} </strong>, 
-  		Count: <strong> {{$materii->count()}} </strong>.
+  		Pagina curenta:<strong> {{$materii->getCurrentPage()}} </strong>, 
+  		Ultima pagina:<strong> {{$materii->getLastPage()}} </strong>, 
+  		Itemi pe pagina:<strong> {{$materii->getPerPage()}} </strong>, 
+  		Total itemi:<strong> {{$materii->getTotal()}} </strong>, 
+  		De la <strong> {{$materii->getFrom()}} </strong> 
+  		Pana la <strong> {{$materii->getTo()}} </strong>, 
+  		Numar: <strong> {{$materii->count()}} </strong>.
   		</p>
       @if(User::canChange())
   		<div class="alert alert-info" role="alert">
-  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Subject"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga materie"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
       </div>
       @include('materii.adaugare')
       @endif
@@ -49,10 +49,10 @@
 		<tr>
 			<th>#</th>
 			<th>ID</th>
-			<th>Name</th>
+			<th>Denumirea</th>
       <th>Numar Profesori</th>
-			<th>Created at</th>
-			<th>Updated at</th>
+			<th>Creat la</th>
+			<th>Modificat la</th>
 			<th class="text-center">Actions</th>
 		</tr>
 	</thead>
@@ -67,12 +67,12 @@
           <td>{{ $materie->created_at}}</td>
           <td>{{ $materie->updated_at}}</td>
           <td class="text-center">
-            <a href="{{URL::route('materie_profesori',['id' => $materie->id])}}" class="btn btn-xs btn-success" rel="tooltip" title="View this subject's profesors ({{ $cnt }})"><span class="glyphicon glyphicon-info-sign"></span></a>
+            <a href="{{URL::route('materie_profesori',['id' => $materie->id])}}" class="btn btn-xs btn-success" rel="tooltip" title="Vezi profesorii care predau aceasta materie ({{ $cnt }})"><span class="glyphicon glyphicon-info-sign"></span></a>
             @if(User::canChange())
-              <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-placement="top" title="Edit this subject ({{ $materie->id }})" data-target="#Modal{{ $i }}"> <span class="glyphicon glyphicon-pencil"></span></button>
+              <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-placement="top" title="Editeaza materia ({{ $materie->id }})" data-target="#Modal{{ $i }}"> <span class="glyphicon glyphicon-pencil"></span></button>
               <!-- Modal -->
               @if($cnt == 0)
-            	 <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $materie->id }}"" data-placement="top" title="Delete this subject({{ $materie->id }})"> <span class="glyphicon glyphicon-trash"></span></button> 
+            	 <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $materie->id }}"" data-placement="top" title="Sterge materia({{ $materie->id }})"> <span class="glyphicon glyphicon-trash"></span></button> 
               @endif
             @endif
             <!-- Modal -->

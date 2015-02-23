@@ -10,7 +10,7 @@
 			@if(User::canChange())
 				<div class="alert alert-info" role="alert">
 			  		@if( count($lista) )
-			  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Add New Teacher To {{ $materie->denumirea }}"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
+			  			<button class="btn btn-success" data-toggle="modal" rel="tooltip" data-placement="top" title="Adauga profesor la materia {{ $materie->denumirea }}"  data-target="#myModal"> <span class="glyphicon glyphicon-plus-sign"></span></button>
 			  		@endif
 	  			</div>
 	  			@include('materii.profesori.adaugare')
@@ -22,11 +22,11 @@
 							<tr>
 								<th>#</th>
 								<th>Profesor ID</th>
-								<th>Name</th>
-								<th>Forename</th>
+								<th>Nume</th>
+								<th>Prenume</th>
 								<th>Data Nasterii</th>
-								<th>Created at</th>
-								<th>Updated at</th>
+								<th>Creat la</th>
+								<th>Modificat la</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -41,7 +41,7 @@
 							  <td>{{ $pm->Profesor->updated_at}}</td>
 							  @if(User::canChange())
 							  <td class="text-center">
-				          			<button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $pm->id }}"" data-placement="top" title="Delete this teacher ({{ $pm->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+				          			<button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $pm->id }}"" data-placement="top" title="Sterge profesorul ({{ $pm->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
 				          		</td>
 				          	   @endif
 							</tr>
@@ -73,12 +73,12 @@
 						{{ Form::open(['method'=>'post', 'files'=>true, 'url'=>URL::route('save-materie-photo-upload', ['id'=>$materie->id])])}}
 						<div>
 							<span class="btn btn-default btn-file">
-  								<span class="fileinput-new">Select image</span>
-  								<span class="fileinput-exists">Change</span>
+  								<span class="fileinput-new">Selecteaza imaginea</span>
+  								<span class="fileinput-exists">Schimba</span>
   								<input type="file" name="photo-materie" />
 							</span>
-							<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-							<button class="btn btn-default fileinput-exists"> Upload </button>
+							<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Sterge</a>
+							<button class="btn btn-default fileinput-exists"> Incarca </button>
 						</div>
 						{{ Form::close() }}
 					</div>
@@ -88,4 +88,13 @@
         @endif
 	</div>
 </div>
+@stop
+
+@section('js')
+<script>
+  $('a').tooltip();
+  $('button').tooltip();
+  $('select').tooltip();
+ </script>
+
 @stop

@@ -19,3 +19,8 @@ Route::post('schimba-stare-absenta', array(
 	'as' => 'schimba-stare-absenta',
 	'uses' => 'CatalogAbsenteController@schimbaPublic'
 ));
+
+Route::post('schimba-stare-nota', array(
+	'as' => 'schimba-stare-nota',
+	'uses' => 'CatalogNoteController@schimbaPublic'
+));

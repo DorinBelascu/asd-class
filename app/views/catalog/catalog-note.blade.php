@@ -70,12 +70,14 @@ foreach ($note as $i => $nota)
             <tr>
               <th>#</th>
               <th>Valoare</th>
+              @if((User::canChange()) || ( $user_este_elev ))
               <th>Stare</th>
+              @endif
               <th>Data</th>
               <th>Tip</th>
               <th>Semestrul</th>
-              <th>Created at</th>
-              <th>Updated at</th>
+              <th>Creat la</th>
+              <th>Modificat la</th>
             </tr>
           </thead>
           <tbody>
@@ -85,9 +87,11 @@ foreach ($note as $i => $nota)
                 <tr>
                   <td>{{ ++$j }}/{{$nota->id}}.</td>
                   <td>{{ $nota->valoare }}</td>
+                  @if((User::canChange()) || ( $user_este_elev ))
                   <td class="text-center" style="width:32px">
-                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica' : 'privata'] ) }}
-                  </td>   
+                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_nota', 'data-id' => $nota->id, 'data-stare' => $nota->publica_sau_nu] ) }}
+                  </td> 
+                  @endif  
                   <td>{{ $nota->data }}</td>
                    @if ($nota->teza == 0)
                       <td> Nota </td> 
@@ -100,10 +104,10 @@ foreach ($note as $i => $nota)
                   @if(User::canChange())
                     <td class="text-center">
                         <!-- Modal -->
-                        <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
-                        @include('note-elevi.delete')
-                        <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                        <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Editeaza nota ({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
                         @include('note-elevi.edit')
+                        <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Sterge nota ({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                        @include('note-elevi.delete')
                     </td>
                   @endif
                 </tr>
@@ -111,11 +115,11 @@ foreach ($note as $i => $nota)
                 <tr>
                   <td>{{ ++$j }}/{{$nota->id}}.</td>
                   <td>{{ $nota->valoare }}</td>
-                  @if ($nota->publica_sau_nu == 0)
-                      <td> Privata </td> 
-                  @else
-                      <td> Publica </td>
-                  @endif    
+                  @if((User::canChange()) || ( $user_este_elev ))
+                  <td class="text-center" style="width:32px">
+                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_nota', 'data-id' => $nota->id, 'data-stare' => $nota->publica_sau_nu] ) }}
+                  </td>    
+                  @endif
                   <td>{{ $nota->data }}</td>
                    @if ($nota->teza == 0)
                       <td> Nota </td> 
@@ -128,10 +132,10 @@ foreach ($note as $i => $nota)
                      @if(User::canChange())                  
                       <td class="text-center">
                           <!-- Modal -->
-                          <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Delete this subject({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
-                          @include('note-elevi.delete')
-                          <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Edit this nota({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                          <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $nota->id }}" data-placement="top" title="Editeaza nota ({{ $nota->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
                           @include('note-elevi.edit')
+                          <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $nota->id }}" data-placement="top" title="Sterge nota ({{ $nota->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                          @include('note-elevi.delete')
                       </td>
                     @endif
                 </tr>
@@ -208,64 +212,6 @@ function validareTeza()
   return !error;
 }
 
-
-  // $('a').tooltip();
-  // $('button').tooltip();
-  // $('input').tooltip();
-//   $('input').keyup(function(){
-//     var val = $(this).val();
-//     if (val.length > 0)
-//     {
-//       $(this).parent().find('span.error-message').html('');
-//     }
-//     else
-//     {
-//       $(this).parent().find('span.error-message').html('Trebuie Completat');
-//     }
-//   });
-//   $('#btn-add-nota').click(function(e){
-    
-//     return validare();
-    
-//   });
-//   $('#btn-edit').click(function(e){
-//     return validare();
-//   });
-
-
-// function validareAdaugare()
-// {
-//   var data    = $('input[name="data"]').val();
-//   var nota = $('input[name="nota"').val();
-//   var starea  = $('select[name="starea"]').val();
-//   var semestrul = $ ('select[name="semestrul"]').val();
-//   var error = false;
-//   $('span.error-message').html('');
-//   if (data.length != 10)
-//   {
-//     $('#error-data-adaugare').html('Completati data!');
-//     error = true;
-//   }
-//   if (nota.length == 0)
-//   {
-//     $('#error-nota-adaugare').html('Completati nota!');
-//     error = true;
-//   }
-//   if (starea == '-')
-//   {
-//     $('#error-starea-adaugare').html('Completati starea!');
-//     error = true;
-//   }
-
-//   if (semestrul == '-')
-//   {
-//     $('#error-semestrul-adaugare').html('Completati semestrul!');
-//     error = true;
-//   }
-
-//   return !error;
-// }
-
 function validareEditare()
 {
     var data      = $('input[name="data-edit"]').val();
@@ -327,6 +273,28 @@ function validareEditare()
     return validareEditare();
     // alert('Yesss...');
   });
+
+@if((User::canChange()) || ( $user_este_elev ))
+  $(document).on('click', '.stare_nota', function(){
+
+    var id = $(this).attr('data-id');
+    var stare = $(this).attr('data-stare');
+    var row = $(this).parent().parent();
+
+    $.ajax({
+      'url'  : "{{URL::route('schimba-stare-nota')}}",
+      'type' : 'post',
+      'data' : {'id' : id, 'stare' : stare},
+      'success' : function(response){
+          row.find('td:nth-child(3)').html(response);
+      },
+      'error' : function(error){
+        console.log(error);
+      }
+    });
+  });
+@endif
+
 
 </script>
 @stop

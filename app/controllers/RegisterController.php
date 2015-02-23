@@ -19,7 +19,7 @@ class RegisterController extends BaseController {
 			'password_confirmed'=> 'required|same:password',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba :attribute', 
+			'required' => 'Introdu :attribute', 
 			'same' => 'Vezi ca nu e la fel cu campul anterior'
 		));
 		if ($validator->passes()) 

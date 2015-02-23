@@ -87,8 +87,9 @@ To Do List:
 	-Filtre (gata)
 
 #17 21.02.2015
-	-ajax la toate
+	-ajax la toate(gata)
 	-home
-	-conditii de afisare la stare (public/privat)
+	-conditii de afisare la stare (public/privat) (gata)
 
-	
+#18 23.02.2015
+	-Cand dau pe cont,in loc de profil acum vom avea setari si in acelasi dropdown un buton spre profilul persoanei logate (renuntam)

@@ -52,7 +52,7 @@ class CatalogNoteController extends BaseController {
 	 		'elev' => $elev,
 	 		'materie' => $materie,
 	 		'sem' => $sem,
-	 		'userul_este_elev' => $user_este_elev,
+	 		'user_este_elev' => $user_este_elev,
 	 	]);
 	}
 
@@ -179,5 +179,17 @@ class CatalogNoteController extends BaseController {
 			return Redirect::route('catalog-note', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->with('result-success', 'Teza a fost adaugata');
 		}
 		return Redirect::route('catalog-note', ['id_elev' => $id_elev, 'id_materia' => $id_materia, 'denumirea' => $materie->denumirea])->withInput()->witherrors($validator)->with('result-fail', 'Va rog corectati datele');
+	}
+
+	function schimbaPublic()
+	{
+		$id = Input::get('id'); // id-ul inregistrarii ce trebuie schimbate
+		$stare = Input::get('stare'); // starea curenta ==> trebuie schimbata
+
+		$record = Note::find($id);
+		$record->publica_sau_nu = 1 - $stare;
+		$record->save();
+
+		return HTML::image('images/status/' . $record->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $record->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_nota', 'data-id' => $record->id, 'data-stare' => $record->publica_sau_nu] );
 	}
 }

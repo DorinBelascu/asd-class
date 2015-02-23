@@ -52,6 +52,7 @@ class CatalogAbsenteController extends BaseController {
 	 		'elev' => $elev,
 	 		'materie' => $materie,
 	 		'sem' => $sem,
+	 		'user_este_elev' => $user_este_elev,
 	 	]);
 	}
 

@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <div class="row">
   @if ( Session::get('result-success'))
       <div class="col-md-12 alert alert-succes">
@@ -47,10 +49,12 @@
               <th>#</th>
               <th>Data</th>
               <th>Tip</th>
+              @if((User::canChange()) || ($user_este_elev ))
               <th>Stare</th>
+              @endif
               <th class="text-center">Semestrul</th>
-              <th>Created at</th>
-              <th>Updated at</th>
+              <th>Creat la</th>
+              <th>Modificat la</th>
             </tr>
           </thead>
           <tbody>
@@ -63,21 +67,21 @@
                       <td>
                     {{ HTML::image('images/motivation/' . $absenta->stare . '.png','', ['style'=>'width:24px', 'title' => $absenta->stare ? 'motivata' : 'nemotivata'] ) }}
                     </td>
-                    
+                    @if((User::canChange()) || ($user_este_elev ))
                     <!-- coloana cu public sau nu -->
                       <td class="text-center" style="width:32px">
                     {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_absenta', 'data-id' => $absenta->id, 'data-stare' => $absenta->publica_sau_nu] ) }}
                     </td>
-
+                    @endif
                   <td class="text-center">{{ $absenta->semestru }}</td>
                   <td>{{ $absenta->created_at}}</td>
                   <td>{{ $absenta->updated_at}}</td>
                   @if(User::canChange())
                   <td class="text-center">
-                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Delete this subject({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
-                      @include('absente-elevi.delete')
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $absenta->id }}" data-placement="top" title="Edit this absenta({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $absenta->id }}" data-placement="top" title="Editeaza absenta ({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
                       @include('absente-elevi.edit')
+                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Sterge absenta ({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                      @include('absente-elevi.delete')
                   </td>
                   @endif
                 </tr>
@@ -85,25 +89,23 @@
                 <tr>
                   <td>{{ ++$j }}.</td>
                   <td>{{ $absenta->data}}</td>
-                    @if ($absenta->stare == 0)
-                      <td> Nemotivata </td> 
-                    @else
-                      <td> Motivata </td>
-                    @endif
-                    @if ($absenta->publica_sau_nu == 0)
-                      <td> privata </td> 
-                    @else
-                      <td> publica </td>
-                    @endif
+                  <td>
+                  {{ HTML::image('images/motivation/' . $absenta->stare . '.png','', ['style'=>'width:24px', 'title' => $absenta->stare ? 'motivata' : 'nemotivata'] ) }}
                   </td>
-                  <td>{{ $absenta->semestru }}</td>
+                  <!-- coloana cu public sau nu -->
+                  @if((User::canChange()) || ( $user_este_elev ))
+                  <td class="text-center" style="width:32px">
+                  {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_absenta', 'data-id' => $absenta->id, 'data-stare' => $absenta->publica_sau_nu] ) }}
+                  </td>
+                  @endif
+                  <td class="text-center">{{ $absenta->semestru }}</td>
                   <td>{{ $absenta->created_at}}</td>
                   <td>{{ $absenta->updated_at}}</td>
                   <td class="text-center">
-                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Delete this subject({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
-                      @include('absente-elevi.delete')
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $absenta->id }}" data-placement="top" title="Edit this absenta({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" rel="tooltip" data-target="#edit-{{ $absenta->id }}" data-placement="top" title="Editeaza absenta ({{ $absenta->id }})"> <span class="glyphicon glyphicon-pencil"></span></button>
                       @include('absente-elevi.edit')
+                      <button class="btn btn-danger btn-xs" data-toggle="modal" rel="tooltip" data-target="#delete-{{ $absenta->id }}" data-placement="top" title="Sterge absenta ({{ $absenta->id }})"> <span class="glyphicon glyphicon-trash"></span></button>
+                      @include('absente-elevi.delete')
                   </td>
                 </tr>
               @endif
@@ -172,7 +174,7 @@
     return !error;
   });
 
-
+@if((User::canChange()) || ( $user_este_elev ))
   $(document).on('click', '.stare_absenta', function(){
 
     var id = $(this).attr('data-id');
@@ -191,7 +193,7 @@
       }
     });
   });
-
+@endif
 </script>
 
 @stop

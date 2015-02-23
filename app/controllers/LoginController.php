@@ -15,14 +15,14 @@ class LoginController extends BaseController
 			'password'=> 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba :attribute', 
+			'required' => 'Introdu :attribute', 
 		));
 		if ($validator->passes()) 
 		{
 			$result = Libs\Users::authenticate($data);
 			if ($result == 'success') 
 			{
-			 	return Redirect::route('home')->with('result', 'Hello, ' . Sentry::getUser()->first_name . ' ' . Sentry::getUser()->last_name . '!');
+			 	return Redirect::route('home')->with('result', 'Salut, ' . Sentry::getUser()->first_name . ' ' . Sentry::getUser()->last_name . '!');
 			} 
 			return Redirect::route('login')->withinput()->with('result', $result);
 		}

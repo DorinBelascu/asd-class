@@ -15,7 +15,7 @@ class ProfileController extends BaseController {
 			'last_name'=> 'required',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba :attribute', 
+			'required' => 'Introdu :attribute', 
 		));
 		if ($validator->passes()) 
 		{
@@ -38,7 +38,7 @@ class ProfileController extends BaseController {
 			'new_password_confirmed'=> 'required|same:new_password',
 		);
 		$validator = Validator::make($data, $rules, array(
-			'required' => 'Baga ba :attribute', 
+			'required' => 'Introdu :attribute', 
 			'same'     => 'Campurile in care ati introdus parola noua nu sunt identice',
 		));
 		if ($validator->passes()) 

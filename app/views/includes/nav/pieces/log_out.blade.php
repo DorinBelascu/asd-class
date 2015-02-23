@@ -1,1 +1,1 @@
-<li><a href="{{ URL::route('logout') }}">Log out</a></li>
+<li><a href="{{ URL::route('logout') }}">Deconecteaza-te</a></li>
