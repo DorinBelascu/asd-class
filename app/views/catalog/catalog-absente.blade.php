@@ -70,7 +70,7 @@
                     @if((User::canChange()) || ($user_este_elev ))
                     <!-- coloana cu public sau nu -->
                       <td class="text-center" style="width:32px">
-                    {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_absenta', 'data-id' => $absenta->id, 'data-stare' => $absenta->publica_sau_nu] ) }}
+                    {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica (Apasa pentru a schimba)' : 'privata (Apasa pentru a schimba)', 'class' => 'stare_absenta', 'data-id' => $absenta->id, 'data-stare' => $absenta->publica_sau_nu] ) }}
                     </td>
                     @endif
                   <td class="text-center">{{ $absenta->semestru }}</td>
@@ -95,7 +95,7 @@
                   <!-- coloana cu public sau nu -->
                   @if((User::canChange()) || ( $user_este_elev ))
                   <td class="text-center" style="width:32px">
-                  {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_absenta', 'data-id' => $absenta->id, 'data-stare' => $absenta->publica_sau_nu] ) }}
+                  {{ HTML::image('images/status/' . $absenta->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $absenta->publica_sau_nu ? 'publica (Apasa pentru a schimba)' : 'privata (Apasa pentru a schimba)', 'class' => 'stare_absenta', 'data-id' => $absenta->id, 'data-stare' => $absenta->publica_sau_nu] ) }}
                   </td>
                   @endif
                   <td class="text-center">{{ $absenta->semestru }}</td>
