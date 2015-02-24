@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
 	    $diriginteGroup = Sentry::findGroupById(2);
 	    $user = Sentry::createUser(array(
 	    	'id'         => 4,
-	        'email'      => 'Tarta@yahoo.com',
+	        'email'      => 'tarta_moga_v@yahoo.com',
 	        'password'   => 'vindows',
 	        'activated'  => true,
 	        'first_name' => 'Viorel',
