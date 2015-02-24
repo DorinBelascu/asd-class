@@ -89,7 +89,7 @@ foreach ($note as $i => $nota)
                   <td>{{ $nota->valoare }}</td>
                   @if((User::canChange()) || ( $user_este_elev ))
                   <td class="text-center" style="width:32px">
-                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_nota', 'data-id' => $nota->id, 'data-stare' => $nota->publica_sau_nu] ) }}
+                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica (Apasa pentru a schimba)' : 'privata (Apasa pentru a schimba)', 'class' => 'stare_nota', 'data-id' => $nota->id, 'data-stare' => $nota->publica_sau_nu] ) }}
                   </td> 
                   @endif  
                   <td>{{ $nota->data }}</td>
@@ -117,7 +117,7 @@ foreach ($note as $i => $nota)
                   <td>{{ $nota->valoare }}</td>
                   @if((User::canChange()) || ( $user_este_elev ))
                   <td class="text-center" style="width:32px">
-                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica' : 'privata', 'class' => 'stare_nota', 'data-id' => $nota->id, 'data-stare' => $nota->publica_sau_nu] ) }}
+                     {{ HTML::image('images/status/' . $nota->publica_sau_nu . '.png','', ['style'=>'width:24px', 'title' => $nota->publica_sau_nu ? 'publica (Apasa pentru a schimba)' : 'privata (Apasa pentru a schimba)', 'class' => 'stare_nota', 'data-id' => $nota->id, 'data-stare' => $nota->publica_sau_nu] ) }}
                   </td>    
                   @endif
                   <td>{{ $nota->data }}</td>
