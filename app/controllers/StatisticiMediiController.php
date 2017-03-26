@@ -91,7 +91,7 @@
                 $v['teza2'] = '0';
                 $v['medie1'] = 'Nu sunt note';
                 $v['medie2'] = 'Nu sunt note';
-                $v['medietot'] =0;
+                $v['medietot'] ='Nu sunt note';
         	$medii[$aux]=$v;
         }
         foreach ($note as $i => $nota) {
@@ -124,34 +124,33 @@
         	{
 	        	if ($medii[$i]['teza1']) 
 	        	{
-	        		$medii[$i]['medie1'] = number_format(($medie['s1']/$medie['k1']*3+$medie['teza1'])/4,2,',','');
+	        		$medii[$i]['medie1'] = number_format(($medie['s1']/$medie['k1']*3+$medie['teza1'])/4,2,'.','');
 	        	}
 	        	else
 	        	{
-	        		$medii[$i]['medie1'] = number_format($medie['s1']/$medie['k1'],2,',','');
+	        		$medii[$i]['medie1'] = number_format($medie['s1']/$medie['k1'],2,'.','');
 	        	}        	
         	}
         	if ($medie['k2'])
         	{
         		if ($medii[$i]['teza2'])
         		{
-        			$medii[$i]['medie2'] = number_format(($medie['s2']/$medie['k2']*3+$medie['teza2'])/4,2,',','');
+        			$medii[$i]['medie2'] = number_format(($medie['s2']/$medie['k2']*3+$medie['teza2'])/4,2,'.','');
         		}
         		else
         		{
-        			$medii[$i]['medie2'] = number_format($medie['s2']/$medie['k2'],2,',','');
+        			$medii[$i]['medie2'] = number_format($medie['s2']/$medie['k2'],2,'.','');
         		}
         	}
         	if(($medii[$i]['medie1'] !== 'Nu sunt note') && ($medii[$i]['medie2'] !== 'Nu sunt note')) 
         	{
-        		$medii[$i]['medietot'] = number_format(($medii[$i]['medie1'] + $medii[$i]['medie2'])/2,2,',','');
+        		$medii[$i]['medietot'] = number_format(($medii[$i]['medie1'] + $medii[$i]['medie2'])/2,2,'.','');
         	}
         	else
         	{
         		$medii[$i]['medietot'] = $medii[$i]['medie1'] + $medii[$i]['medie2'];		
         	}
         }
-
         usort($medii, array($this, 'cmp'));
     	return View::make('statistici/statistici-medii')->with('medii',$medii);
 	}
